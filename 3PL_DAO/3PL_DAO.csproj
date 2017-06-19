@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{95C1AD21-CA32-43CE-B221-6BC6156863AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_3PL_DAO</RootNamespace>
+    <AssemblyName>3PL_DAO</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3PL_Addition_DAO.cs" />
+    <Compile Include="3PL_BaseAccounting_DAO.cs" />
+    <Compile Include="3PL_BaseCostSet_DAO.cs" />
+    <Compile Include="3PL_BaseCost_DAO.cs" />
+    <Compile Include="3PL_BaseData_DAO.cs" />
+    <Compile Include="3PL_CommonQuery.cs" />
+    <Compile Include="3PL_Assign_New_DAO.cs" />
+    <Compile Include="3PL_Quotation_DAO.cs" />
+    <Compile Include="3PL_SignOff_DAO.cs" />
+    <Compile Include="3PL_ToExcel.cs" />
+    <Compile Include="Alarm_POPaperNotConfirm_DAO.cs" />
+    <Compile Include="creINVENTORY_DATE_DAO.cs" />
+    <Compile Include="CreInvResult.cs" />
+    <Compile Include="creManageInvLogDAO.cs" />
+    <Compile Include="crePages_DAO.cs" />
+    <Compile Include="EmpInf.cs" />
+    <Compile Include="Entry_DAO.cs" />
+    <Compile Include="IndexBull.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="3PL_Assign_DAO.cs" />
+    <Compile Include="3PL_CostList_DAO.cs" />
+    <Compile Include="RoleInf.cs" />
+    <Compile Include="3PL_ToExcel_SendBox.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\3PL_LIB\3PL_LIB.csproj">
+      <Project>{9FF64318-BD64-4862-8A35-1911B1DA27A7}</Project>
+      <Name>3PL_LIB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,5 @@
+F:\Projects\AspDotnet\3PL\ExcelTool\obj\Release\ExcelTool.csprojResolveAssemblyReference.cache
+F:\Projects\AspDotnet\3PL\ExcelTool\bin\Release\ExcelTool.dll
+F:\Projects\AspDotnet\3PL\ExcelTool\bin\Release\ExcelTool.pdb
+F:\Projects\AspDotnet\3PL\ExcelTool\obj\Release\ExcelTool.dll
+F:\Projects\AspDotnet\3PL\ExcelTool\obj\Release\ExcelTool.pdb

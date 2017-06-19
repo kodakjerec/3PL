@@ -1,0 +1,110 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="3PLMasterPage.Master.cs"
+    Inherits="_3PL_System._3PLMasterPage" %>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
+<head runat="server">
+    <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="CSS/style.css" type="text/css" />
+    <link rel="stylesheet" href="js/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.css" type="text/css" />
+
+    <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <style>
+        .dialog_noTitle .ui-dialog-titlebar {
+            Display: none;
+        }
+
+        .myDIV {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            display: none;
+        }
+
+        .myBackDIV {
+            left:0;
+            top:0;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: block;
+            overflow:auto;
+            background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .myMainSubject {
+            margin-left: 10%;
+            margin-top: 5%;
+            width: 80%;
+            height: 80%;
+            background-color:white
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            //讀取小視窗
+            $('#progressbar').progressbar({
+                value: false
+            });
+            $('#divProgress').dialog({
+                autoOpen: false,
+                modal: true,
+                dialogClass: 'dialog_noTitle'
+            });
+        });
+        //讀取小視窗
+        function ShowProgressBar() {
+            $('#divProgress').dialog('open');
+        }
+        function HideProgressBar() {
+            $('#divProgress').dialog('close');
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <asp:Timer ID="Timer1" runat="server" Enabled="False" OnTick="Timer1_Tick"></asp:Timer>
+        <%--讀取小視窗--%>
+        <div id="divProgress">
+            <div class="progress-label">資料處理中...</div>
+            <div id="progressbar"></div>
+        </div>
+
+        <asp:UpdatePanel ID="UpdPanel_Message" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div id="div_URL" class="myDIV" runat="server">
+                    <div class="myBackDIV">
+                        <div class="myMainSubject">
+                            <asp:Button ID="btn_Close_div_URL" Text="關閉" CssClass="btn btn-default btn-block" OnClick="btn_Close_div_URL_Click" runat="server" />
+                            <iframe id="frame_MessageBox" runat="server" style="width: 100%; height: 100%"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div id="div_Message" class="myDIV" runat="server">
+                    <div class="myBackDIV">
+                        <div class="myMainSubject">
+                            <asp:Button ID="btn_close_div_Message" Text="關閉" CssClass="btn btn-default btn-block" OnClick="btn_Close_div_Message_Click" runat="server"></asp:Button>
+                            <asp:Label CssClass="h3" ID="lbl_Message" runat="server" Text="Test"></asp:Label>
+                            <asp:HiddenField ID="hid_RedirectURL" runat="server" Value="" />
+                        </div>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+</body>
+</html>

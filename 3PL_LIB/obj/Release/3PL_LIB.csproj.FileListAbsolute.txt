@@ -1,0 +1,7 @@
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Release\3PL_LIB.dll
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Release\3PL_LIB.pdb
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Release\MD5.dll
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Release\MD5.pdb
+F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Release\3PL_LIB.csprojResolveAssemblyReference.cache
+F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Release\3PL_LIB.dll
+F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Release\3PL_LIB.pdb

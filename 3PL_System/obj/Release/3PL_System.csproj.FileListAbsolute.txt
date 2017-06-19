@@ -1,0 +1,16 @@
+F:\Projects\AspDotnet\3PL\3PL_System\obj\Release\3PL_System.csprojResolveAssemblyReference.cache
+F:\Projects\AspDotnet\3PL\3PL_System\bin\3PL_System.dll.config
+F:\Projects\AspDotnet\3PL\3PL_System\bin\3PL_System.dll
+F:\Projects\AspDotnet\3PL\3PL_System\bin\3PL_System.pdb
+F:\Projects\AspDotnet\3PL\3PL_System\bin\3PL_DAO.dll
+F:\Projects\AspDotnet\3PL\3PL_System\bin\3PL_LIB.dll
+F:\Projects\AspDotnet\3PL\3PL_System\bin\ExcelTool.dll
+F:\Projects\AspDotnet\3PL\3PL_System\bin\MD5.dll
+F:\Projects\AspDotnet\3PL\3PL_System\bin\NPOI.dll
+F:\Projects\AspDotnet\3PL\3PL_System\bin\Ionic.Zip.dll
+F:\Projects\AspDotnet\3PL\3PL_System\bin\3PL_DAO.pdb
+F:\Projects\AspDotnet\3PL\3PL_System\bin\3PL_LIB.pdb
+F:\Projects\AspDotnet\3PL\3PL_System\bin\ExcelTool.pdb
+F:\Projects\AspDotnet\3PL\3PL_System\bin\MD5.pdb
+F:\Projects\AspDotnet\3PL\3PL_System\obj\Release\3PL_System.dll
+F:\Projects\AspDotnet\3PL\3PL_System\obj\Release\3PL_System.pdb

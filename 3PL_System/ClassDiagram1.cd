@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_3PL_System._3PL_Assign_Modify">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <Members>
+      <Field Name="_3PL_Assign_Modify_Form" Hidden="true" />
+      <Field Name="_3PL_Check" Hidden="true" />
+      <Field Name="_3PLAssign" Hidden="true" />
+      <Field Name="_3PLBCS" Hidden="true" />
+      <Field Name="_3PLCQ" Hidden="true" />
+      <Field Name="btn_AssignDetail_Cancel" Hidden="true" />
+      <Field Name="btn_AssignDetail_OK" Hidden="true" />
+      <Field Name="btn_AssignDetail_Show" Hidden="true" />
+      <Field Name="Btn_Detail_New_Update" Hidden="true" />
+      <Field Name="Btn_Detail_New_Update_Leave" Hidden="true" />
+      <Field Name="CB" Hidden="true" />
+      <Field Name="DDL_DC" Hidden="true" />
+      <Field Name="DIV_Quotation_Detail_New" Hidden="true" />
+      <Field Name="GV_AssignDetailList" Hidden="true" />
+      <Field Name="GV_Quotation_Detail_New" Hidden="true" />
+      <Field Name="hidTotal_I_qtde_Detailseq" Hidden="true" />
+      <Field Name="hidTotal_I_qtde_seq" Hidden="true" />
+      <Field Name="hidTotal_Wk_Id" Hidden="true" />
+      <Field Name="Label1" Hidden="true" />
+      <Field Name="Label4" Hidden="true" />
+      <Field Name="Label5" Hidden="true" />
+      <Field Name="Lbl_ActDate" Hidden="true" />
+      <Field Name="lbl_AddAssignDetail" Hidden="true" />
+      <Field Name="lbl_AssignDetail_SN" Hidden="true" />
+      <Field Name="lbl_barcode" Hidden="true" />
+      <Field Name="Lbl_CreateUser" Hidden="true" />
+      <Field Name="Lbl_DC" Hidden="true" />
+      <Field Name="Lbl_EtaDate" Hidden="true" />
+      <Field Name="lbl_ItemID" Hidden="true" />
+      <Field Name="lbl_ItemName" Hidden="true" />
+      <Field Name="lbl_ITF" Hidden="true" />
+      <Field Name="lbl_PONo" Hidden="true" />
+      <Field Name="lbl_Quotation" Hidden="true" />
+      <Field Name="lbl_Quotation_Query" Hidden="true" />
+      <Field Name="Lbl_SupID" Hidden="true" />
+      <Field Name="lbl_TypeIdIm0" Hidden="true" />
+      <Field Name="lbl_TypeIdIm1" Hidden="true" />
+      <Field Name="lbl_TypeIdIm2" Hidden="true" />
+      <Field Name="lbl_TypeIdIm3" Hidden="true" />
+      <Field Name="lbl_TypeIdIm4" Hidden="true" />
+      <Field Name="lbl_TypeIdIm5" Hidden="true" />
+      <Field Name="lbl_TypeIdIm6" Hidden="true" />
+      <Field Name="Lbl_Wk_ClassName" Hidden="true" />
+      <Field Name="Lbl_Wk_Date" Hidden="true" />
+      <Field Name="Lbl_Wk_Unit" Hidden="true" />
+      <Field Name="Login_Server" Hidden="true" />
+      <Field Name="Quotation_Head_New" Hidden="true" />
+      <Field Name="ScriptManager1" Hidden="true" />
+      <Field Name="table_AssignDetail" Hidden="true" />
+      <Field Name="Txb_ActDate" Hidden="true" />
+      <Field Name="txb_barcode" Hidden="true" />
+      <Field Name="Txb_CreateUser" Hidden="true" />
+      <Field Name="Txb_EtaDate" Hidden="true" />
+      <Field Name="txb_ItemID" Hidden="true" />
+      <Field Name="txb_ItemName" Hidden="true" />
+      <Field Name="txb_ITF" Hidden="true" />
+      <Field Name="txb_PoID" Hidden="true" />
+      <Field Name="Txb_SupID" Hidden="true" />
+      <Field Name="Txb_Wk_ClassName" Hidden="true" />
+      <Field Name="Txb_Wk_Date" Hidden="true" />
+      <Field Name="Txb_Wk_Unit" Hidden="true" />
+      <Field Name="UI" Hidden="true" />
+      <Field Name="UpdatePanel1" Hidden="true" />
+      <Field Name="UpdPanel_AssignDetail" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gABMpBaAkwJNijAgAEAADUqCjIEIAJGAMtE+B+IAlAQ=</HashCode>
+      <FileName>3PL_Assign_Modify.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft JhengHei UI" Size="9" />
+</ClassDiagram>

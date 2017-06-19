@@ -1,0 +1,170 @@
+﻿.PageTitle {
+    text-indent: 0em;
+    font-weight: bold;
+    font-size:large;
+    text-indent: 8px;
+    /*color:GRAY;*/
+    color: white;
+    /*background:#ccffb4;*/
+    background: #3366ff;
+}
+
+.HeaderStyle {
+    background-color: #AFD6FF;
+    border: 0px;
+    color: white;
+    font-weight: bold;
+    text-align: Left;
+    text-indent: 10px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.tborder {
+    /*表格置中*/
+    color: black;
+    border-color: #BEC9D1;
+    border-width: 1px;
+    border-style: solid;
+    border-collapse: separate;
+    border-spacing: 1px;
+    -webkit-border-radious: 5px;
+    -moz-border-radious: 5px;
+    border-radius: 5px;
+}
+    /*標題欄位的顏色設定*/
+    .tborder .EditTD1 {
+        background-color: #E5F1F4;
+        color: #000066;
+        text-align: right;
+        vertical-align: middle;
+    }
+
+/* GridView Style */
+.GVStyle .GVHead {
+    border: 1px solid #BA9;
+    font-weight: bold;
+    background: #9291FF repeat-x top left;
+    vertical-align: top;
+    text-align: center;
+    color: White;
+}
+
+.GVStyle .GVPage {
+    font-weight: bold;
+    background: #9291FF;
+    vertical-align: top;
+}
+    .GVStyle .GVPage a {
+        text-decoration: none;
+        font-size: large;
+    }
+
+    .GVStyle .GVPage span {
+        font-size: x-large;
+        color:white;
+    }
+
+    .GVStyle .GVPage a:hover {
+        text-decoration: underline;
+    }
+
+.GVStyle th {
+    color: #ffffff;
+}
+
+.GVStyle tr td {
+    border-color: #BA9;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.GVStyle .one {
+    background-color: #e5f1f4;
+}
+
+.GVStyle .two {
+    background-color: #f8fbfc;
+}
+
+.GVStyle .one:hover {
+    background-color: #FFF4DA;
+}
+
+.GVStyle .two:hover {
+    background-color: #FFF4DA;
+}
+/*body 設定*/
+html,body {
+    margin-left: 0px;
+    margin-top: 0px;
+    height:100%;
+}
+
+/*圓角邊框*/
+input {
+    -webkit-border-radious: 5px;
+    -moz-border-radious: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    input[type="submit"] 
+    {
+    	font-size:larger;
+        /*background-image: linear-gradient(to bottom,#FFF,#E6E6E6);*/
+        border-width: 1px;
+        border-style: solid;
+        border-color: #000000;
+    }
+    /*取得目標要有黃色底色*/
+    input:focus {
+        background-image: linear-gradient(to bottom,#FFFF00,#E6E6E6);
+    }
+    /*Enable=false設定*/
+    input[disabled] {
+        background-image: linear-gradient(to bottom,#CCCCB2,#E6E6E6);
+        background-color: #CCCCB2;
+        color: gray;
+    }
+
+select {
+    font-size: large;
+}
+
+    select[disabled] {
+        background-color: #CCCCB2;
+        color: Black;
+    }
+
+.rbt {
+    background-color: white;
+    color: #000066;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/*用在MultiView 切換分頁的button特效*/
+input[type="submit"].Button_Initial {
+    float: left;
+    display: block;
+    padding: 2px 10px 2px 10px;
+    color: Black;
+    font-weight: bold;
+    border-bottom-style: none;
+}
+
+    input[type="submit"].Button_Initial:hover {
+        color: White;
+        background-image: linear-gradient(to bottom,#d367f2,#E6E6E6);
+    }
+
+input[type="submit"].Button_Clicked {
+    float: left;
+    display: block;
+    background-image: linear-gradient(to bottom,#d367f2,#E6E6E6);
+    padding: 2px 10px 2px 10px;
+    color: Black;
+    font-weight: bold;
+    border-bottom-style: none;
+}

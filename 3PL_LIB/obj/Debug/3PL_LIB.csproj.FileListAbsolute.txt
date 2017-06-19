@@ -1,0 +1,14 @@
+D:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\3PL_LIB.dll
+D:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\3PL_LIB.pdb
+D:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\MD5.dll
+D:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\MD5.pdb
+D:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\3PL_LIB.dll
+D:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\3PL_LIB.pdb
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\3PL_LIB.dll
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\3PL_LIB.pdb
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\MD5.dll
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\MD5.pdb
+F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\3PL_LIB.csprojResolveAssemblyReference.cache
+F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\3PL_LIB.dll
+F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\3PL_LIB.pdb

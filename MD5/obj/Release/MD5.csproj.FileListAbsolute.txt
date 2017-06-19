@@ -1,0 +1,5 @@
+F:\Projects\AspDotnet\3PL\MD5\bin\Release\MD5.dll
+F:\Projects\AspDotnet\3PL\MD5\bin\Release\MD5.pdb
+F:\Projects\AspDotnet\3PL\MD5\obj\Release\MD5.csprojResolveAssemblyReference.cache
+F:\Projects\AspDotnet\3PL\MD5\obj\Release\MD5.dll
+F:\Projects\AspDotnet\3PL\MD5\obj\Release\MD5.pdb

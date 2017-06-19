@@ -1,0 +1,9 @@
+F:\Projects\AspDotnet\3PL\3PL_DAO\bin\Release\3PL_DAO.dll
+F:\Projects\AspDotnet\3PL\3PL_DAO\bin\Release\3PL_DAO.pdb
+F:\Projects\AspDotnet\3PL\3PL_DAO\bin\Release\3PL_LIB.dll
+F:\Projects\AspDotnet\3PL\3PL_DAO\bin\Release\MD5.dll
+F:\Projects\AspDotnet\3PL\3PL_DAO\bin\Release\3PL_LIB.pdb
+F:\Projects\AspDotnet\3PL\3PL_DAO\bin\Release\MD5.pdb
+F:\Projects\AspDotnet\3PL\3PL_DAO\obj\Release\3PL_DAO.csprojResolveAssemblyReference.cache
+F:\Projects\AspDotnet\3PL\3PL_DAO\obj\Release\3PL_DAO.dll
+F:\Projects\AspDotnet\3PL\3PL_DAO\obj\Release\3PL_DAO.pdb

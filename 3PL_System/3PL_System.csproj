@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B1273D72-E0ED-408F-B558-9F88EB752663}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_3PL_System</RootNamespace>
+    <AssemblyName>3PL_System</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="3PL.Html" />
+    <Content Include="3PL_Addition.aspx" />
+    <Content Include="3PL_Assign_Modify.aspx" />
+    <Content Include="3PL_Assign_Query.aspx" />
+    <Content Include="3PL_BaseAccounting.aspx" />
+    <Content Include="3PL_BaseCost.aspx" />
+    <Content Include="3PL_BaseCostSet.aspx" />
+    <Content Include="3PL_BaseCostSetSelect.aspx" />
+    <Content Include="3PL_BaseCost_Modify.aspx" />
+    <Content Include="3PL_Quotation_Adjust.aspx" />
+    <Content Include="3PL_RoleInf_Edit.aspx" />
+    <Content Include="3PL_BaseData.aspx" />
+    <Content Include="3PL_download.aspx" />
+    <Content Include="3PL_Quotation_Query.aspx" />
+    <Content Include="3PL_Quotation_Modify.aspx" />
+    <Content Include="3PL_SupdSelect.aspx" />
+    <Content Include="3PL_ToExcel001.aspx" />
+    <Content Include="AlartRp.aspx" />
+    <Content Include="ChangePass.aspx" />
+    <Content Include="ClassItem.aspx" />
+    <Content Include="creinvlog\Main.aspx" />
+    <Content Include="CSS\3PL_Quotation_Print.css" />
+    <Content Include="CSS\Style.css" />
+    <Content Include="EmpItem.aspx" />
+    <Content Include="EmpList.aspx" />
+    <Content Include="FunList.aspx" />
+    <Content Include="FunListSet.aspx" />
+    <Content Include="3PL_Quotation_Print.aspx" />
+    <Content Include="Index.aspx" />
+    <Content Include="js\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
+    <Content Include="js\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
+    <Content Include="js\bootstrap-3.3.7-dist\css\bootstrap.css" />
+    <Content Include="js\bootstrap-3.3.7-dist\css\bootstrap.min.css" />
+    <Content Include="js\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="js\bootstrap-3.3.7-dist\js\bootstrap.js" />
+    <Content Include="js\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
+    <Content Include="js\bootstrap-3.3.7-dist\js\npm.js" />
+    <Content Include="js\jquery-ui-1.12.1\AUTHORS.txt" />
+    <Content Include="js\jquery-ui-1.12.1\external\jquery\jquery.js" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-icons_222222_256x240.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-icons_454545_256x240.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-icons_888888_256x240.png" />
+    <Content Include="js\jquery-ui-1.12.1\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="js\jquery-ui-1.12.1\index.html" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-1.12.4.min.js" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-ui.css" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-ui.js" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-ui.min.css" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-ui.min.js" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-ui.structure.css" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-ui.structure.min.css" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-ui.theme.css" />
+    <Content Include="js\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
+    <Content Include="js\jquery-ui-1.12.1\LICENSE.txt" />
+    <Content Include="LogIn.aspx" />
+    <Content Include="Mark.JPG" />
+    <Content Include="Menu.aspx" />
+    <Content Include="3PL_Assign_New.aspx" />
+    <Content Include="PublicMemo.aspx" />
+    <Content Include="PubModify.aspx" />
+    <Content Include="PXMART.jpg" />
+    <Content Include="RoleClassQuery.aspx" />
+    <Content Include="SCError.aspx" />
+    <Content Include="3PL_BaseCostSet_Modify.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="3PL_CostList_Modify.aspx" />
+    <Content Include="3PL_SignOffStatus.aspx" />
+    <Content Include="3PL_SignOffPermission.aspx" />
+    <Content Include="3PL_SignOffLog.aspx" />
+    <Content Include="3PL_Quotation_Stamp.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="3PL_Addition.aspx.cs">
+      <DependentUpon>3PL_Addition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Addition.aspx.designer.cs">
+      <DependentUpon>3PL_Addition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Assign_Modify.aspx.cs">
+      <DependentUpon>3PL_Assign_Modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Assign_Modify.aspx.designer.cs">
+      <DependentUpon>3PL_Assign_Modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Assign_Query.aspx.cs">
+      <DependentUpon>3PL_Assign_Query.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Assign_Query.aspx.designer.cs">
+      <DependentUpon>3PL_Assign_Query.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_BaseAccounting.aspx.cs">
+      <DependentUpon>3PL_BaseAccounting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_BaseAccounting.aspx.designer.cs">
+      <DependentUpon>3PL_BaseAccounting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_BaseCost.aspx.cs">
+      <DependentUpon>3PL_BaseCost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_BaseCost.aspx.designer.cs">
+      <DependentUpon>3PL_BaseCost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_BaseCostSet.aspx.cs">
+      <DependentUpon>3PL_BaseCostSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_BaseCostSet.aspx.designer.cs">
+      <DependentUpon>3PL_BaseCostSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_BaseCostSetSelect.aspx.cs">
+      <DependentUpon>3PL_BaseCostSetSelect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_BaseCostSetSelect.aspx.designer.cs">
+      <DependentUpon>3PL_BaseCostSetSelect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_BaseCost_Modify.aspx.cs">
+      <DependentUpon>3PL_BaseCost_Modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_BaseCost_Modify.aspx.designer.cs">
+      <DependentUpon>3PL_BaseCost_Modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Quotation_Adjust.aspx.cs">
+      <DependentUpon>3PL_Quotation_Adjust.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Quotation_Adjust.aspx.designer.cs">
+      <DependentUpon>3PL_Quotation_Adjust.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_RoleInf_Edit.aspx.cs">
+      <DependentUpon>3PL_RoleInf_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_RoleInf_Edit.aspx.designer.cs">
+      <DependentUpon>3PL_RoleInf_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_BaseData.aspx.cs">
+      <DependentUpon>3PL_BaseData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_BaseData.aspx.designer.cs">
+      <DependentUpon>3PL_BaseData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_download.aspx.cs">
+      <DependentUpon>3PL_download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_download.aspx.designer.cs">
+      <DependentUpon>3PL_download.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Quotation_Query.aspx.cs">
+      <DependentUpon>3PL_Quotation_Query.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Quotation_Query.aspx.designer.cs">
+      <DependentUpon>3PL_Quotation_Query.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Quotation_Modify.aspx.cs">
+      <DependentUpon>3PL_Quotation_Modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Quotation_Modify.aspx.designer.cs">
+      <DependentUpon>3PL_Quotation_Modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_SupdSelect.aspx.cs">
+      <DependentUpon>3PL_SupdSelect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_SupdSelect.aspx.designer.cs">
+      <DependentUpon>3PL_SupdSelect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_ToExcel001.aspx.cs">
+      <DependentUpon>3PL_ToExcel001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_ToExcel001.aspx.designer.cs">
+      <DependentUpon>3PL_ToExcel001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlartRp.aspx.cs">
+      <DependentUpon>AlartRp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlartRp.aspx.designer.cs">
+      <DependentUpon>AlartRp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePass.aspx.cs">
+      <DependentUpon>ChangePass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePass.aspx.designer.cs">
+      <DependentUpon>ChangePass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClassItem.aspx.cs">
+      <DependentUpon>ClassItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClassItem.aspx.designer.cs">
+      <DependentUpon>ClassItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="creinvlog\creINVENTORY_DATE.aspx.cs">
+      <DependentUpon>creINVENTORY_DATE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="creinvlog\creINVENTORY_DATE.aspx.designer.cs">
+      <DependentUpon>creINVENTORY_DATE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="creinvlog\creInvPaper.aspx.cs">
+      <DependentUpon>creInvPaper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="creinvlog\creInvPaper.aspx.designer.cs">
+      <DependentUpon>creInvPaper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="creinvlog\creManageInvPaper.aspx.cs">
+      <DependentUpon>creManageInvPaper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="creinvlog\creManageInvPaper.aspx.designer.cs">
+      <DependentUpon>creManageInvPaper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="creinvlog\creRcvAdj.aspx.cs">
+      <DependentUpon>creRcvAdj.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="creinvlog\creRcvAdj.aspx.designer.cs">
+      <DependentUpon>creRcvAdj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="creinvlog\creTempArea.aspx.cs">
+      <DependentUpon>creTempArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="creinvlog\creTempArea.aspx.designer.cs">
+      <DependentUpon>creTempArea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="creinvlog\Entry.aspx.cs">
+      <DependentUpon>Entry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="creinvlog\Entry.aspx.designer.cs">
+      <DependentUpon>Entry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="creinvlog\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="creinvlog\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmpItem.aspx.cs">
+      <DependentUpon>EmpItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmpItem.aspx.designer.cs">
+      <DependentUpon>EmpItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmpList.aspx.cs">
+      <DependentUpon>EmpList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmpList.aspx.designer.cs">
+      <DependentUpon>EmpList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FunList.aspx.cs">
+      <DependentUpon>FunList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FunList.aspx.designer.cs">
+      <DependentUpon>FunList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FunListSet.aspx.cs">
+      <DependentUpon>FunListSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FunListSet.aspx.designer.cs">
+      <DependentUpon>FunListSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="handler\Handler_Log.ashx.cs">
+      <DependentUpon>Handler_Log.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Quotation_Print.aspx.cs">
+      <DependentUpon>3PL_Quotation_Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Quotation_Print.aspx.designer.cs">
+      <DependentUpon>3PL_Quotation_Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn.aspx.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogIn.aspx.designer.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PLMasterPage.Master.cs">
+      <DependentUpon>3PLMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PLMasterPage.Master.designer.cs">
+      <DependentUpon>3PLMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MD5test.aspx.cs">
+      <DependentUpon>MD5test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MD5test.aspx.designer.cs">
+      <DependentUpon>MD5test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Assign_New.aspx.cs">
+      <DependentUpon>3PL_Assign_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Assign_New.aspx.designer.cs">
+      <DependentUpon>3PL_Assign_New.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.aspx.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu.aspx.designer.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PONotConfirm\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PONotConfirm\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="3PL_BaseCostSet_Modify.aspx.cs">
+      <DependentUpon>3PL_BaseCostSet_Modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_BaseCostSet_Modify.aspx.designer.cs">
+      <DependentUpon>3PL_BaseCostSet_Modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PublicMemo.aspx.cs">
+      <DependentUpon>PublicMemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PublicMemo.aspx.designer.cs">
+      <DependentUpon>PublicMemo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PubModify.aspx.cs">
+      <DependentUpon>PubModify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PubModify.aspx.designer.cs">
+      <DependentUpon>PubModify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RoleClassQuery.aspx.cs">
+      <DependentUpon>RoleClassQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoleClassQuery.aspx.designer.cs">
+      <DependentUpon>RoleClassQuery.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCError.aspx.cs">
+      <DependentUpon>SCError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCError.aspx.designer.cs">
+      <DependentUpon>SCError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_CostList_Modify.aspx.cs">
+      <DependentUpon>3PL_CostList_Modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_CostList_Modify.aspx.designer.cs">
+      <DependentUpon>3PL_CostList_Modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_SignOffStatus.aspx.cs">
+      <DependentUpon>3PL_SignOffStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_SignOffStatus.aspx.designer.cs">
+      <DependentUpon>3PL_SignOffStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_SignOffPermission.aspx.cs">
+      <DependentUpon>3PL_SignOffPermission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_SignOffPermission.aspx.designer.cs">
+      <DependentUpon>3PL_SignOffPermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_SignOffLog.aspx.cs">
+      <DependentUpon>3PL_SignOffLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_SignOffLog.aspx.designer.cs">
+      <DependentUpon>3PL_SignOffLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Quotation_Stamp.aspx.cs">
+      <DependentUpon>3PL_Quotation_Stamp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Quotation_Stamp.aspx.designer.cs">
+      <DependentUpon>3PL_Quotation_Stamp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_ToExcel002_SendBox.aspx.cs">
+      <DependentUpon>3PL_ToExcel002_SendBox.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_ToExcel002_SendBox.aspx.designer.cs">
+      <DependentUpon>3PL_ToExcel002_SendBox.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\3PL_DAO\3PL_DAO.csproj">
+      <Project>{95C1AD21-CA32-43CE-B221-6BC6156863AD}</Project>
+      <Name>3PL_DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\3PL_LIB\3PL_LIB.csproj">
+      <Project>{9FF64318-BD64-4862-8A35-1911B1DA27A7}</Project>
+      <Name>3PL_LIB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExcelTool\ExcelTool.csproj">
+      <Project>{F9F7F049-078D-45F7-B5B4-63D643F26377}</Project>
+      <Name>ExcelTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MD5\MD5.csproj">
+      <Project>{47A0B6D1-7C3F-4402-89D1-C3D101ADB0C8}</Project>
+      <Name>MD5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="3PLMasterPage.Master" />
+    <Content Include="creinvlog\creINVENTORY_DATE.aspx" />
+    <Content Include="creinvlog\creInvPaper.aspx" />
+    <Content Include="creinvlog\creManageInvPaper.aspx" />
+    <Content Include="creinvlog\creRcvAdj.aspx" />
+    <Content Include="creinvlog\creTempArea.aspx" />
+    <Content Include="creinvlog\Entry.aspx" />
+    <Content Include="MD5test.aspx" />
+    <Content Include="PONotConfirm\Main.aspx" />
+    <Content Include="3PL_ToExcel002_SendBox.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="js\jquery-ui-1.12.1\package.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="js\bootstrap-3.3.7-dist\css\bootstrap-theme.css.map" />
+    <Content Include="js\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="js\bootstrap-3.3.7-dist\css\bootstrap.css.map" />
+    <Content Include="js\bootstrap-3.3.7-dist\css\bootstrap.min.css.map" />
+    <Content Include="js\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="js\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="js\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="js\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="handler\Handler_Log.ashx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
