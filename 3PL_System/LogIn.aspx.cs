@@ -10,7 +10,7 @@ namespace _3PL_System
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Clear Session
+            //Clear Session1
             Session.Clear();
 
             //Clear Cookie
