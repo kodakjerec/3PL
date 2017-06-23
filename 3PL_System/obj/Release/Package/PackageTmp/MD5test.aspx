@@ -23,6 +23,13 @@
             <asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" />
             <br />
             解密後文字<asp:TextBox ID="TextBox4" runat="server" Width="80%"></asp:TextBox>
+
+            <br />
+            AES_Decode 密文文字<asp:TextBox ID="TextBox5" runat="server" Width="80%"></asp:TextBox>
+            <br />
+            <asp:Button ID="Button3" runat="server" Text="Button" OnClick="Button3_Click" />
+            <br />
+            解密後文字<asp:TextBox ID="TextBox6" runat="server" Width="80%"></asp:TextBox>
         </div>
     </form>
 </body>

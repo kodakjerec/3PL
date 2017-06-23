@@ -8,11 +8,11 @@
             $("#<%=Txb_EtaDate.ClientID %>").datepicker({ dateFormat: 'yy/mm/dd' });
         });
     </script>
-
     <script type="text/javascript">
         function show_table_SignOff_Back() { <%=table_SignOff_Back.ClientID %>.style.display = 'inline'; }
         function hide_table_SignOff_Back() { <%=table_SignOff_Back.ClientID %>.style.display = 'none'; }
     </script>
+
     <title>派工單修改</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -200,7 +200,7 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <asp:Button ID="Btn_Detail_New_Update" runat="server" Text="確定提交更新" OnClick="Btn_Detail_New_Update_Click" />
+    <asp:Button ID="Btn_Detail_New_Update" runat="server" Text="確定提交更新" OnClick="Btn_Detail_New_Update_Click" OnClientClick="DialogYes()" />
     <asp:Button ID="Btn_Detail_New_Update_Leave" runat="server" Text="取消修改單據" OnClick="Btn_Detail_New_Update_Leave_Click" />
     <asp:HiddenField ID="hidTotal_Wk_Id" runat="server" />
     <asp:HiddenField ID="hidTotal_I_qtde_seq" runat="server" />
@@ -240,6 +240,18 @@
                             </td>
                         </tr>
                     </table>
+                </div>
+            </div>
+            <!-- 1. 訊息視窗
+                     2. 訊息視窗然後跳頁 -->
+            <div id="div_Message_Confirm" class="myDIV" runat="server">
+                <div class="myBackDIV">
+                    <div class="myMainSubject">
+                        <asp:Button ID="btn_close_div_Message_Close" Text="關閉" CssClass="btn btn-default btn-block" OnClick="btn_Close_div_Message_Close_Click" runat="server"></asp:Button>
+                        <asp:Label CssClass="h3" ID="lbl_Message_YesNo" runat="server" Text="Test"></asp:Label>
+                        <asp:Button ID="btn_close_div_Message_Confirm" Text="確定" CssClass="btn btn-default btn-block" OnClick="btn_close_div_Message_Confirm_Click" runat="server"></asp:Button>
+                        <asp:HiddenField ID="hid_Confirm_Value" runat="server" Value="" />
+                    </div>
                 </div>
             </div>
         </ContentTemplate>

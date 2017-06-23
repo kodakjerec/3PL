@@ -124,6 +124,10 @@ namespace _3PL_System
         }
         #endregion
 
+        #region Message_Confirm
+
+        #endregion
+
         #region 島數計時器
         protected void Timer1_Tick(object sender, EventArgs e)
         {
@@ -136,5 +140,7 @@ namespace _3PL_System
             Timer1.Interval = miliseconds;
         }
         #endregion
+
+
     }
 }

@@ -66,7 +66,6 @@
     <Content Include="3PL_BaseCostSet.aspx" />
     <Content Include="3PL_BaseCostSetSelect.aspx" />
     <Content Include="3PL_BaseCost_Modify.aspx" />
-    <Content Include="3PL_Quotation_Adjust.aspx" />
     <Content Include="3PL_RoleInf_Edit.aspx" />
     <Content Include="3PL_BaseData.aspx" />
     <Content Include="3PL_download.aspx" />
@@ -193,13 +192,6 @@
     </Compile>
     <Compile Include="3PL_BaseCost_Modify.aspx.designer.cs">
       <DependentUpon>3PL_BaseCost_Modify.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="3PL_Quotation_Adjust.aspx.cs">
-      <DependentUpon>3PL_Quotation_Adjust.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="3PL_Quotation_Adjust.aspx.designer.cs">
-      <DependentUpon>3PL_Quotation_Adjust.aspx</DependentUpon>
     </Compile>
     <Compile Include="3PL_RoleInf_Edit.aspx.cs">
       <DependentUpon>3PL_RoleInf_Edit.aspx</DependentUpon>

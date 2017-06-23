@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="3PLMasterPage.Master.cs"
     Inherits="_3PL_System._3PLMasterPage" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head runat="server">
     <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,15 +30,15 @@
         }
 
         .myBackDIV {
-            left:0;
-            top:0;
+            left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
             position: fixed;
             display: block;
-            overflow:auto;
+            overflow: auto;
             background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         }
 
         .myMainSubject {
@@ -45,7 +46,7 @@
             margin-top: 5%;
             width: 80%;
             height: 80%;
-            background-color:white
+            background-color: white;
         }
     </style>
     <script>
@@ -58,6 +59,14 @@
                 autoOpen: false,
                 modal: true,
                 dialogClass: 'dialog_noTitle'
+            });
+            $('input').on('focus', function (e) {
+                $(this)
+                    .one('mouseup', function () {
+                        $(this).select();
+                        return false;
+                    })
+                    .select();
             });
         });
         //讀取小視窗
@@ -86,6 +95,7 @@
 
         <asp:UpdatePanel ID="UpdPanel_Message" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
+                <!-- 小視窗中有其他網頁 -->
                 <div id="div_URL" class="myDIV" runat="server">
                     <div class="myBackDIV">
                         <div class="myMainSubject">
@@ -94,8 +104,10 @@
                         </div>
                     </div>
                 </div>
+                <!-- 1. 訊息視窗
+                     2. 訊息視窗然後跳頁 -->
                 <div id="div_Message" class="myDIV" runat="server">
-                    <div class="myBackDIV">
+                    <div class="myBackDIV" runat="server">
                         <div class="myMainSubject">
                             <asp:Button ID="btn_close_div_Message" Text="關閉" CssClass="btn btn-default btn-block" OnClick="btn_Close_div_Message_Click" runat="server"></asp:Button>
                             <asp:Label CssClass="h3" ID="lbl_Message" runat="server" Text="Test"></asp:Label>

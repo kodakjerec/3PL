@@ -4,6 +4,8 @@ using System.Web.UI.WebControls;
 using _3PL_LIB;
 using _3PL_DAO;
 using System.Data;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace _3PL_System
 {
@@ -15,6 +17,8 @@ namespace _3PL_System
         _3PL_BaseCostSet_DAO _3PLBCS = new _3PL_BaseCostSet_DAO();
         _3PL_SignOff_DAO _3PLSignOff = new _3PL_SignOff_DAO();
         EmpInf _3PLEmpInf = new EmpInf();
+
+        List<Thread> myAnswerThreads = new List<Thread>();
 
         ControlBind CB = new ControlBind();
         Check _3PL_Check = new Check();
@@ -238,8 +242,15 @@ namespace _3PL_System
                 }
 
                 if (Convert.ToInt32(RealQty) > Convert.ToInt32(OrdQty))
-                    ErrMsg = "完工數量:" + RealQty + " 大於 派工數量:" + OrdQty + "\\n"
+                {
+                    ErrMsg = "完工數量:" + RealQty + " 大於 派工數量:" + OrdQty + "<p>"
                             + "請確定是否存檔??";
+                    div_Message_Confirm.Style.Add("display", "inline");
+                    lbl_Message_YesNo.Text = ErrMsg.Replace(@"\n", "<br/>");
+                    hid_Confirm_Value.Value = "";
+
+                    return true;
+                }
             }
             if (ErrMsg != "")
             {
@@ -249,6 +260,25 @@ namespace _3PL_System
             return false;
         }
 
+        #region 確認小視窗
+        protected void btn_Close_div_Message_Close_Click(object sender, EventArgs e)
+        {
+            if (div_Message_Confirm.Style["display"] != "none")
+            {
+                div_Message_Confirm.Style.Add("display", "none");
+            }
+        }
+        protected void btn_close_div_Message_Confirm_Click(object sender, EventArgs e)
+        {
+            hid_Confirm_Value.Value = "YES";
+            if (div_Message_Confirm.Style["display"] != "none")
+            {
+                div_Message_Confirm.Style.Add("display", "none");
+            }
+            Btn_Detail_New_Update_Click(Btn_Detail_New_Update, e);
+        }
+        #endregion
+
         //回寫資料
         protected void Btn_Detail_New_Update_Click(object sender, EventArgs e)
         {
@@ -256,13 +286,16 @@ namespace _3PL_System
             bool IsSuccess = false;
 
             #region 錯誤控制
-            if (Head_ErrControl_Upd())
+            if (hid_Confirm_Value.Value == "")
             {
-                return;
-            }
-            if (Detail_ErrControl_Upd())
-            {
-                return;
+                if (Head_ErrControl_Upd())
+                {
+                    return;
+                }
+                if (Detail_ErrControl_Upd())
+                {
+                    return;
+                }
             }
             #endregion
 
