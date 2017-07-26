@@ -31,7 +31,7 @@ namespace _3PL_DAO
         }
 
         /// <summary>
-        /// QuotationQuery
+        /// 報價單查詢
         /// </summary>
         /// <param name="sup_no"></param>
         /// <param name="site_no_select"></param>
@@ -47,6 +47,22 @@ namespace _3PL_DAO
             VarString += Bdate + ",";
             VarString += Edate + ",";
             VarString += PLNO;
+
+            return VarString;
+        }
+
+        /// <summary>
+        /// 調整單查詢
+        /// </summary>
+        /// <param name="sel_Adj_Type">單據類別</param>
+        /// <param name="sel_Adj_Id">單號</param>
+        /// <param name="sel_Adj_Seq">單號絕對序號</param>
+        /// <returns></returns>
+        public string Page_AdjustQuery(string sel_Adj_Type, string sel_Adj_Id)
+        {
+            string VarString = "";
+            VarString += sel_Adj_Type + ",";
+            VarString += sel_Adj_Id;
 
             return VarString;
         }
@@ -201,17 +217,21 @@ namespace _3PL_DAO
             DataTable AccIdList = new DataTable();
 
             string Sql_cmd =
-            @"DECLARE @CNT0 int=0,@CNT1 int=1
+            @"DECLARE @CNT0 int=0,@CNT1 int=0,@CNT2 int=0
 
 	            SELECT @CNT0=COUNT(1)
-	              FROM [3PL].[dbo].[v_未完成報價單]
+	              FROM [v_未完成報價單]
 	               where [工號]=@UserId" + GetDCList(UI.Class, "[寄倉倉別代號]", 1) + " GROUP BY 工號";
             Sql_cmd+= @"
 	            SELECT @CNT1=COUNT(1)
-	              FROM [3PL].[dbo].[v_未完成派工單]
+	              FROM [v_未完成派工單]
 	               where [工號]=@UserId" + GetDCList(UI.Class, "[寄倉倉別代號]", 1) + " GROUP BY 工號";
-            Sql_cmd+=@"
-	        select 'Quotation'=@CNT0,'Assign'=@CNT1";
+            Sql_cmd += @"
+	            SELECT @CNT2=COUNT(1)
+	              FROM [v_未完成調整單]
+	               where [工號]=@UserId GROUP BY 工號";
+            Sql_cmd +=@"
+	        select 'Quotation'=@CNT0,'Assign'=@CNT1,'Adjust'=@CNT2";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserId", UI.UserID);
             DataSet ds = IO.SqlQuery(DBlink, Sql_cmd, ht1);
@@ -266,6 +286,27 @@ namespace _3PL_DAO
               FROM [v_未完成派工單] where [工號]=@UserId";
             Sql_cmd += GetDCList(UI.Class, "[寄倉倉別代號]", 0);
             Sql_cmd += "order by [派工單號]";
+            Hashtable ht1 = new Hashtable();
+            ht1.Add("@UserId", UI.UserID);
+            DataSet ds = IO.SqlQuery(DBlink, Sql_cmd, ht1);
+            AccIdList = ds.Tables[0];
+
+            return AccIdList;
+        }
+
+        /// <summary>
+        /// 取得未完成調整單一覽表
+        /// </summary>
+        /// <param name="DBlink"></param>
+        /// <param name="UI"></param>
+        /// <returns></returns>
+        public DataTable GetNotOKAdjust(string DBlink, UserInf UI)
+        {
+            DataTable AccIdList = new DataTable();
+
+            string Sql_cmd = @"SELECT [調整單號],[調整類別],[異動單號],[單據狀態]
+              FROM [v_未完成調整單] where [工號]=@UserId ";
+            Sql_cmd += "order by [調整單號]";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserId", UI.UserID);
             DataSet ds = IO.SqlQuery(DBlink, Sql_cmd, ht1);

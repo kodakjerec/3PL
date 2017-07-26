@@ -60,6 +60,7 @@ namespace _3PL_System
                 ds = Emp.dsRoleClass_EI("3PL", UI.UserID, string.Empty, string.Empty);
                 dt = ds.Tables[0];
                 UI.Class = dt;
+                Session["UserInf"] = UI;
             }
             else
             {

@@ -60,12 +60,14 @@
     <Content Include="3PL.Html" />
     <Content Include="3PL_Addition.aspx" />
     <Content Include="3PL_Assign_Modify.aspx" />
+    <Content Include="3PL_Adjust_Query.aspx" />
     <Content Include="3PL_Assign_Query.aspx" />
     <Content Include="3PL_BaseAccounting.aspx" />
     <Content Include="3PL_BaseCost.aspx" />
     <Content Include="3PL_BaseCostSet.aspx" />
     <Content Include="3PL_BaseCostSetSelect.aspx" />
     <Content Include="3PL_BaseCost_Modify.aspx" />
+    <Content Include="3PL_Adjust_Modify.aspx" />
     <Content Include="3PL_RoleInf_Edit.aspx" />
     <Content Include="3PL_BaseData.aspx" />
     <Content Include="3PL_download.aspx" />
@@ -151,6 +153,13 @@
     <Compile Include="3PL_Assign_Modify.aspx.designer.cs">
       <DependentUpon>3PL_Assign_Modify.aspx</DependentUpon>
     </Compile>
+    <Compile Include="3PL_Adjust_Query.aspx.cs">
+      <DependentUpon>3PL_Adjust_Query.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Adjust_Query.aspx.designer.cs">
+      <DependentUpon>3PL_Adjust_Query.aspx</DependentUpon>
+    </Compile>
     <Compile Include="3PL_Assign_Query.aspx.cs">
       <DependentUpon>3PL_Assign_Query.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -192,6 +201,13 @@
     </Compile>
     <Compile Include="3PL_BaseCost_Modify.aspx.designer.cs">
       <DependentUpon>3PL_BaseCost_Modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Adjust_Modify.aspx.cs">
+      <DependentUpon>3PL_Adjust_Modify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Adjust_Modify.aspx.designer.cs">
+      <DependentUpon>3PL_Adjust_Modify.aspx</DependentUpon>
     </Compile>
     <Compile Include="3PL_RoleInf_Edit.aspx.cs">
       <DependentUpon>3PL_RoleInf_Edit.aspx</DependentUpon>

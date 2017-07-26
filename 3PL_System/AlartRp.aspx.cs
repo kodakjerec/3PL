@@ -37,6 +37,12 @@ namespace _3PL_System
                 Session["NotOKAssignList"] = NotOKAssignList;
                 GV_NotOKAssign_Bind();
                 #endregion
+
+                #region 未完成調整單
+                DataTable NotOKAdjustList = _3PLCQ.GetNotOKAdjust(Login_Server, UI);
+                Session["NotOKAdjustList"] = NotOKAdjustList;
+                GV_NotOKAdjust_Bind();
+                #endregion
             }
         }
 
@@ -100,6 +106,34 @@ namespace _3PL_System
         {
             GV_NotOKAssign.PageIndex = e.NewPageIndex;
             GV_NotOKAssign_Bind();
+        }
+        #endregion
+
+        #region 未完成調整單_Command
+        protected void GV_NotOKAdjust_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            string PLNO = "", Varstring = "", Path = "";
+            foreach (GridViewRow gvr in GV_NotOKAdjust.Rows)
+            {
+                HyperLink linkBtn = ((HyperLink)gvr.Cells[1].FindControl("Lbl_調整單號"));
+                PLNO = linkBtn.Text;
+                Varstring = _3PLCQ.Page_AdjustQuery("0", PLNO);
+                Path = "3PL_Adjust_Query.aspx?VarString=" + Varstring;
+                linkBtn.NavigateUrl = Path;
+            }
+        }
+
+        private void GV_NotOKAdjust_Bind()
+        {
+            DataTable NotOKAdjustList = (DataTable)Session["NotOKAdjustList"];
+            GV_NotOKAdjust.DataSource = NotOKAdjustList;
+            GV_NotOKAdjust.DataBind();
+        }
+
+        protected void GV_NotOKAdjust_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GV_NotOKAdjust.PageIndex = e.NewPageIndex;
+            GV_NotOKAdjust_Bind();
         }
         #endregion
 

@@ -18,6 +18,12 @@
     <File Include="3PL_Addition.aspx">
       <publishTime>04/05/2017 16:49:17</publishTime>
     </File>
+    <File Include="3PL_Adjust_Modify.aspx">
+      <publishTime>07/25/2017 15:10:18</publishTime>
+    </File>
+    <File Include="3PL_Adjust_Query.aspx">
+      <publishTime>07/25/2017 13:36:47</publishTime>
+    </File>
     <File Include="3PL_Assign_Modify.aspx">
       <publishTime>06/23/2017 11:32:19</publishTime>
     </File>
@@ -73,7 +79,7 @@
       <publishTime>04/19/2017 15:08:11</publishTime>
     </File>
     <File Include="3PL_SignOffLog.aspx">
-      <publishTime>03/10/2017 14:02:44</publishTime>
+      <publishTime>07/25/2017 17:03:06</publishTime>
     </File>
     <File Include="3PL_SignOffPermission.aspx">
       <publishTime>03/10/2017 14:03:08</publishTime>
@@ -91,22 +97,22 @@
       <publishTime>03/17/2017 11:47:07</publishTime>
     </File>
     <File Include="AlartRp.aspx">
-      <publishTime>03/13/2017 10:24:15</publishTime>
+      <publishTime>07/26/2017 09:50:23</publishTime>
     </File>
     <File Include="bin/3PL_DAO.dll">
-      <publishTime>06/23/2017 13:06:34</publishTime>
+      <publishTime>07/26/2017 10:25:02</publishTime>
     </File>
     <File Include="bin/3PL_DAO.pdb">
       <publishTime>07/28/2015 11:21:12</publishTime>
     </File>
     <File Include="bin/3PL_LIB.dll">
-      <publishTime>06/23/2017 13:06:34</publishTime>
+      <publishTime>07/21/2017 13:37:38</publishTime>
     </File>
     <File Include="bin/3PL_LIB.pdb">
       <publishTime>08/07/2015 16:00:34</publishTime>
     </File>
     <File Include="bin/3PL_System.dll">
-      <publishTime>06/23/2017 13:06:35</publishTime>
+      <publishTime>07/26/2017 10:25:02</publishTime>
     </File>
     <File Include="bin/3PL_System.pdb">
       <publishTime>08/12/2015 16:00:33</publishTime>
@@ -121,7 +127,7 @@
       <publishTime>02/15/2012 21:59:34</publishTime>
     </File>
     <File Include="bin/MD5.dll">
-      <publishTime>06/15/2017 11:03:48</publishTime>
+      <publishTime>07/21/2017 13:37:37</publishTime>
     </File>
     <File Include="bin/NPOI.dll">
       <publishTime>05/04/2012 19:57:10</publishTime>
@@ -403,7 +409,7 @@
       <publishTime>06/19/2017 13:19:13</publishTime>
     </File>
     <File Include="Menu.aspx">
-      <publishTime>03/27/2017 15:30:12</publishTime>
+      <publishTime>07/26/2017 10:11:25</publishTime>
     </File>
     <File Include="MenuSwitch.aspx">
       <publishTime>08/11/2015 09:42:07</publishTime>

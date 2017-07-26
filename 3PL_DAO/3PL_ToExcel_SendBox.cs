@@ -268,22 +268,22 @@ from dfgt1a a, bspm10 b, bdpm10 c "
 FROM
 (
 select po_no, rv_no, vendor_no, cs_qty=SUM(cs_qty) ,PCSQTY=SUM(rcv_qty)
-from RC_Detail "
+from RC_Detail  with(nolock)"
 + querycmd_RC_Detail
 + @"
 group by po_no, rv_no , vendor_no
 ) a
 LEFT JOIN 
-	v_Supplier b
+	DRP.dbo.DRP_SUPPLIER b with(nolock)
 on 
 	a.vendor_no=b.ID
 LEFT JOIN
 	(
 select a.ID, b.DOCK_MODE, cs_qty_ori=SUM(a.QTY/a.CS_QTY), PCSQty_ori=SUM(a.QTY)
 from 
-	EDI.dbo.EDI_CRP_PO_LINE a
+	EDI.dbo.EDI_CRP_PO_LINE a with(nolock)
 INNER JOIN
-	EDI.dbo.EDI_CRP_PO_HEADER b
+	EDI.dbo.EDI_CRP_PO_HEADER b with(nolock)
 ON
 	a.ID=b.ID "
 + querycmd_EDI

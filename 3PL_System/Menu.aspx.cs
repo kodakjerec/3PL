@@ -19,7 +19,7 @@ namespace _3PL_System
             ((_3PLMasterPage)Master).SessionCheck(ref UI);
             if (!IsPostBack)
             {
-                _3PLCQ.LOG_Insert("3PL", UI.UserID,"Menu.aspx","登入","Login");
+                _3PLCQ.LOG_Insert("3PL", UI.UserID, "Menu.aspx", "登入", "Login");
                 lbl_name.Text = UI.UserName;
                 init_tree(UI.UserID);
                 GetNotOK_Counts();
@@ -32,8 +32,20 @@ namespace _3PL_System
         private void GetNotOK_Counts()
         {
             DataTable dt = _3PLCQ.GetNotOK_Counts(Login_Server, UI);
-            badge_1.Text = dt.Rows[0][0].ToString();
-            badge_2.Text = dt.Rows[0][1].ToString();
+            int CNT0 = Convert.ToInt32(dt.Rows[0][0]),
+                CNT1 = Convert.ToInt32(dt.Rows[0][1]),
+                CNT2 = Convert.ToInt32(dt.Rows[0][2]);
+            if (CNT0 == 0)
+                div_Quotation.Visible = false;
+            if (CNT1 == 0)
+                div_Assign.Visible = false;
+            if (CNT2 == 0)
+                div_Adjust.Visible = false;
+
+
+            badge_1.Text = CNT0.ToString();
+            badge_2.Text = CNT1.ToString();
+            badge_3.Text = CNT2.ToString();
         }
 
         /// <summary>

@@ -85,6 +85,35 @@
                             </asp:GridView>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label3" runat="server" Text="未完成調整單" ForeColor="Blue"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:GridView ID="GV_NotOKAdjust" runat="server" Width="100%" AutoGenerateColumns="False"
+                                PageSize="5" AllowPaging="True" CssClass="GVStyle"
+                                OnPageIndexChanging="GV_NotOKAdjust_PageIndexChanging" 
+                                EnableSortingAndPagingCallbacks="True" ShowFooter="True" OnRowCreated="GV_NotOKAdjust_RowCreated">
+                                <HeaderStyle CssClass="GVHead" />
+                                <RowStyle CssClass="one" />
+                                <AlternatingRowStyle CssClass="two" />
+                                <PagerStyle CssClass="GVPage" />
+                                <EmptyDataRowStyle HorizontalAlign="Center" />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="調整單號">
+                                        <ItemTemplate>
+                                            <asp:HyperLink ID="Lbl_調整單號" runat="server"  Text='<%# Bind("調整單號") %>' Target="iframe_Index" NavigateUrl="<%= formatAssignUrl(派工單號) %>"></asp:HyperLink>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="調整類別" HeaderText="調整類別" />
+                                    <asp:BoundField DataField="異動單號" HeaderText="異動單號" />
+                                    <asp:BoundField DataField="單據狀態" HeaderText="單據狀態" />
+                                </Columns>
+                            </asp:GridView>
+                        </td>
+                    </tr>
                 </table>
             </ContentTemplate>
         </asp:UpdatePanel>

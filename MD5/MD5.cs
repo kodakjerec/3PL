@@ -7,6 +7,10 @@ using System.Security.Cryptography;
  * 結合3DES+MD5加密
  * securityKey經過MD5加密後
  * toEncrypt+securityKey再經過3DES加密
+ * 
+ * key --> MD5 --> 加密後key --|
+ *                             |--> 3DES --> 密文
+ * 內文     -------------------|
  */
 namespace MD5
 {

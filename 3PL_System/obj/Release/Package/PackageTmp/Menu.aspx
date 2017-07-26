@@ -111,9 +111,13 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li id="lbl_badge" onclick="dialog_alarm_open();">
-                        <a href="#">
-                            <span>報</span><asp:Label CssClass="badge" ID="badge_1" runat="server"></asp:Label>
-                            <span>派</span><asp:Label CssClass="badge" ID="badge_2" runat="server"></asp:Label>
+                        <a href="#" style="padding:0px 0px 0px 0px">
+                            <div id="div_Quotation" runat="server">
+                                報<asp:Label CssClass="badge" ID="badge_1" runat="server"></asp:Label></div>
+                            <div id="div_Assign" runat="server">
+                                派<asp:Label CssClass="badge" ID="badge_2" runat="server"></asp:Label></div>
+                            <div id="div_Adjust" runat="server">
+                                調<asp:Label CssClass="badge" ID="badge_3" runat="server"></asp:Label></div>
                         </a>
                     </li>
                     <li><a href="Menu.aspx">

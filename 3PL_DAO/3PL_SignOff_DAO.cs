@@ -70,14 +70,17 @@ namespace _3PL_DAO
             DataTable SignOffLog = new DataTable();
 
             string Sql_cmd =
-            @"Select a.[Status],b.StatusName,sofp_WorkId,sofp_Workname, sofp_updateDate,sofp_Reason,
-            IsOk=
+            @"Select a.[Status],b.StatusName,sofp_WorkId,sofp_Workname, sofp_updateDate,sofp_Reason
+            ,sofp_IsOk
+            ,IsOk=
             Case When sofp_IsOk='1' THEN b.okbuttonName 
                  WHEN sofp_IsOk='0' THEN b.NobuttonName 
                  WHEN sofp_IsOK='N' THEN '新增' 
-                 WHEN sofp_IsOK='M' THEN '修改' END
+                 WHEN sofp_IsOK='M' THEN '調整' END
+            ,FinalStatusName=c.StatusName
             from SignOff_Log a
 			left join SignOff_Status b on a.pagetype=b.PageType and a.[Status]=b.[Status]
+            left join SignOff_Status c on a.pagetype=c.PageType and a.FinalStatus=c.[Status]
             where a.PageType=@PageType and a.PLNO=@pageNo order by sofp_updateDate DESC";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@PageType", PageType);
@@ -266,7 +269,7 @@ namespace _3PL_DAO
                     order by sofp_updateDate DESC";
             Hashtable ht_Agree = new Hashtable();
             ht_Agree.Add("@PLNO", PLNO);
-            DataSet ds_reason= IO.SqlQuery(DBlink, Sql_cmd, ht_Agree);
+            DataSet ds_reason = IO.SqlQuery(DBlink, Sql_cmd, ht_Agree);
             if (ds_reason.Tables.Count > 0)
                 if (ds_reason.Tables[0].Rows.Count > 0)
                     BackReason = ds_reason.Tables[0].Rows[0][0].ToString();
@@ -313,8 +316,8 @@ namespace _3PL_DAO
 
                 #region 寫入log
                 Sql_cmd =
-                @"Insert Into SignOff_Log(pageType,PLNO,[Status],sofp_WorkId,sofp_WorkName,sofp_updateDate,sofp_IsOK)
-            values(@pagetype,@PLNO,@step,@UserId,@UserName,getdate(),@IsOK)";
+                @"Insert Into SignOff_Log(pageType,PLNO,[Status],sofp_WorkId,sofp_WorkName,sofp_updateDate,sofp_IsOK,FinalStatus)
+            values(@pagetype,@PLNO,@step,@UserId,@UserName,getdate(),@IsOK,@FinalStatus)";
                 Hashtable ht1 = new Hashtable();
                 ht1.Add("@pagetype", PageType);
                 ht1.Add("@PLNO", PLNO);
@@ -322,6 +325,7 @@ namespace _3PL_DAO
                 ht1.Add("@UserId", UserID);
                 ht1.Add("@UserName", UserName);
                 ht1.Add("@IsOK", IsOk == true ? 1 : 0);
+                ht1.Add("@FinalStatus", IsOk == true ? FutureStatus : PreviousStatus);
                 IO.SqlQuery(Login_Server, Sql_cmd, ht1);
                 #endregion
 
@@ -356,40 +360,38 @@ namespace _3PL_DAO
                 #endregion
 
                 #region 更改單據狀態
-                if (PageType == "1")
+                switch (PageType)
                 {
-                    Hashtable ht_Page = new Hashtable();
-                    Sql_cmd = "Update [3PL_QuotationHead] set I_qthe_Status=@Step,S_qthe_UpdId=@UserID where S_qthe_PLNO=@PLNO and I_qthe_Status=@Step2";
-                    ht_Page.Add("@Step", IsOk == true ? FutureStatus : PreviousStatus);
-                    ht_Page.Add("@UserID", UserID);
-                    ht_Page.Add("@PLNO", PLNO);
-                    ht_Page.Add("@Step2", NowStatus);
-                    IO.SqlUpdate(Login_Server, Sql_cmd, ht_Page, ref SuccessCountChild);
-                    SuccessCount += SuccessCountChild;
+                    case "1":
+                        Sql_cmd = "Update [3PL_QuotationHead] set I_qthe_Status=@Step,S_qthe_UpdId=@UserID where S_qthe_PLNO=@PLNO and I_qthe_Status=@Step2";
+                        break;
+                    case "2":
+                        Sql_cmd = "Update [AssignHead] set [Status]=@Step,UpdUser=@UserID where Wk_Id=@PLNO and [Status]=@Step2";
+                        break;
+                    case "4":
+                        Sql_cmd = "Update [_3PL_AdjustHead] set [Status]=@Step,UpdUser=@UserID where Adj_Id=@PLNO and [Status]=@Step2";
+                        break;
                 }
-                else if (PageType == "2")
-                {
-                    Hashtable ht_Page = new Hashtable();
-                    Sql_cmd = "Update [AssignHead] set [Status]=@Step,UpdUser=@UserID where Wk_Id=@PLNO and [Status]=@Step2";
-                    ht_Page.Add("@Step", IsOk == true ? FutureStatus : PreviousStatus);
-                    ht_Page.Add("@UserID", UserID);
-                    ht_Page.Add("@PLNO", PLNO);
-                    ht_Page.Add("@Step2", NowStatus);
-                    IO.SqlUpdate(Login_Server, Sql_cmd, ht_Page, ref SuccessCountChild);
-                    SuccessCount += SuccessCountChild;
-                }
+
+                Hashtable ht_Page = new Hashtable();
+                ht_Page.Add("@Step", IsOk == true ? FutureStatus : PreviousStatus);
+                ht_Page.Add("@UserID", UserID);
+                ht_Page.Add("@PLNO", PLNO);
+                ht_Page.Add("@Step2", NowStatus);
+                IO.SqlUpdate(Login_Server, Sql_cmd, ht_Page, ref SuccessCountChild);
+                SuccessCount += SuccessCountChild;
                 #endregion
 
-                #region 產生派工單,成本單
-                if (IsOk == true && FutureStatus == MaxStatus && PageType == "1")
+                #region 報價單 產生派工單,成本單
+                if (PageType == "1" && FutureStatus == MaxStatus && IsOk == true)
                 {
-                    string strHeadAssignUserId=UserID;
+                    string strHeadAssignUserId = UserID;
 
                     #region 2015.03.05 其他議價單的簽核跑完後，不帶入主管姓名，改為帶入建單人
                     Hashtable ht_CreUser = new Hashtable();
                     Sql_cmd = "Select S_qthe_CreateId from [3PL_QuotationHead] where S_qthe_PLNO=@PLNO";
                     ht_CreUser.Add("@PLNO", PLNO);
-                    DataSet ds1=IO.SqlQuery(Login_Server, Sql_cmd, ht_CreUser);
+                    DataSet ds1 = IO.SqlQuery(Login_Server, Sql_cmd, ht_CreUser);
                     if (ds1.Tables[0].Rows.Count > 0)
                     {
                         strHeadAssignUserId = ds1.Tables[0].Rows[0][0].ToString();
@@ -397,6 +399,14 @@ namespace _3PL_DAO
                     #endregion
 
                     Head_Assign(Login_Server, PLNO, strHeadAssignUserId);
+                }
+                #endregion
+
+                #region 調整單 更改單據資料
+                if (PageType == "4" && FutureStatus == MaxStatus && IsOk == true)
+                {
+                    _3PL_Adjust_DAO _3PLAdjust = new _3PL_Adjust_DAO();
+                    _3PLAdjust.SignOffFinish(PLNO, UserID, UserName);
                 }
                 #endregion
 
@@ -409,7 +419,7 @@ namespace _3PL_DAO
         }
 
         /// <summary>
-        /// 簽核成功
+        /// 簽核成功(其他議價單)
         /// </summary>
         /// <param name="Login_Server"></param>
         /// <param name="UserID"></param>
@@ -442,14 +452,15 @@ namespace _3PL_DAO
 
                 #region 寫入log
                 Sql_cmd =
-                @"Insert Into SignOff_Log(pageType,PLNO,[Status],sofp_WorkId,sofp_WorkName,sofp_updateDate,sofp_IsOK)
-            values(1,@PLNO,@step,@UserId,@UserName,getdate(),@IsOK)";
+                @"Insert Into SignOff_Log(pageType,PLNO,[Status],sofp_WorkId,sofp_WorkName,sofp_updateDate,sofp_IsOK,FinalStatus)
+            values(1,@PLNO,@step,@UserId,@UserName,getdate(),@IsOK,@FinalStatus)";
                 Hashtable ht1 = new Hashtable();
                 ht1.Add("@PLNO", PLNO);
                 ht1.Add("@step", NowStatus);
                 ht1.Add("@UserId", UserID);
                 ht1.Add("@UserName", UserName);
                 ht1.Add("@IsOK", IsOk == true ? 1 : 0);
+                ht1.Add("@FinalStatus", IsOk == true ? FutureStatus : PreviousStatus);
                 IO.SqlQuery(Login_Server, Sql_cmd, ht1);
                 #endregion
 
