@@ -16,7 +16,7 @@
     <title>報價單查詢</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
                 <asp:Label ID="lbl_Quotation" runat="server" Text="報價單設定"></asp:Label>
@@ -78,7 +78,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div id="Div_Quotation" runat="server" visible="false">
-                <table class="tborder" width="100%">
+                <table class="tborder" style="width:100%">
                     <tr>
                         <td>
                             <asp:GridView ID="GV_Quotation_Query" runat="server" Width="100%" AutoGenerateColumns="False"
@@ -135,7 +135,7 @@
             <div id="div_Detail" runat="server" visible="false">
                 <hr size="5" color="Blue" />
                 <asp:Label ID="Label6" Text="報價單內容" runat="server" ForeColor="Blue"></asp:Label>
-                <table class="tborder" width="100%">
+                <table class="tborder" style="width:100%">
                     <tr>
                         <td class="EditTD1">報價單號
                         </td>
@@ -212,7 +212,7 @@
                         </td>
                     </tr>
                 </table>
-                <table class="tborder" width="100%">
+                <table class="tborder" style="width:100%">
                     <tr>
                         <td>
                             <asp:GridView ID="GV_Quotation_Detail_New" runat="server" Width="100%" AutoGenerateColumns="False"

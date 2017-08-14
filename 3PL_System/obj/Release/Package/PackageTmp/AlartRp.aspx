@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="PageTitle">
                     <asp:Label ID="lbl_PageTital" runat="server" Text="系統通知"></asp:Label>

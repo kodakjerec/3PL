@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="PageTitle">管理設定
                 </td>
@@ -16,7 +16,7 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%" align="center">
+        <table class="tborder" style="width:100%" align="center">
             <tr>
                 <td class="EditTD1" width="15%">
                     <asp:Label ID="lbl_2" runat="server" Text="*" ForeColor="Red"></asp:Label>

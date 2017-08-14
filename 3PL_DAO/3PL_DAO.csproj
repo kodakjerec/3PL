@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="3PL_Other_edi_retn_price_DAO.cs" />
     <Compile Include="3PL_Adjust_DAO.cs" />
     <Compile Include="3PL_Addition_DAO.cs" />
     <Compile Include="3PL_BaseAccounting_DAO.cs" />

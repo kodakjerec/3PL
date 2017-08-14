@@ -6,14 +6,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="PageTitle">
                     <asp:Label ID="lbl_TypeFee" runat="server" Text="作業對象查詢"></asp:Label>
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="EditTD1">
                     <asp:Label ID="Label1" runat="server" Text="*" ForeColor="Red"></asp:Label>
@@ -37,7 +37,7 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td width="50%">
                     <asp:GridView ID="gv_List" runat="server" AutoGenerateColumns="False" CssClass="GVStyle"

@@ -4,7 +4,7 @@
     <title>成本費用設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
                 <asp:Label ID="lbl_PriceSet" runat="server" Text="成本費用設定"></asp:Label>
@@ -51,7 +51,7 @@
     <asp:Button ID="Btn_Query" runat="server" Text="查詢" Height="30px" OnClick="Btn_Query_Click" />
     <asp:Button ID="Btn_New" runat="server" Text="新增" Height="30px" OnClick="Btn_New_Click" />
 
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td colspan="2">
                 <asp:GridView ID="GV_PriceList_Query" runat="server" Width="100%" AutoGenerateColumns="False"

@@ -16,7 +16,7 @@
     <title>派工單修改</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
                 <asp:Label ID="lbl_Quotation" runat="server" Text="派工單設定"></asp:Label>
@@ -31,7 +31,7 @@
     <div id="Quotation_Head_New" runat="server">
         <hr size="5" color="Blue" />
         <asp:Label ID="Label5" Text="派工單單頭" runat="server" ForeColor="Blue"></asp:Label>
-        <table class="tborder" id="AssignHead" width="100%">
+        <table class="tborder" id="AssignHead" style="width:100%">
             <tr>
                 <td class="EditTD1">派工單號
                 </td>
@@ -139,7 +139,7 @@
                 </table>
             </div>
             <div id="DIV_Quotation_Detail_New" runat="server" visible="false">
-                <table class="tborder" width="100%">
+                <table class="tborder" style="width:100%">
                     <tr>
                         <td>
                             <asp:GridView ID="GV_Quotation_Detail_New" runat="server" Width="100%" AutoGenerateColumns="False"

@@ -12,7 +12,7 @@
     <title>成本單修改</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
                 <asp:Label ID="lbl_Quotation" runat="server" Text="成本單設定"></asp:Label>

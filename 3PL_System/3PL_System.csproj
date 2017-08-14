@@ -73,6 +73,7 @@
     <Content Include="3PL_download.aspx" />
     <Content Include="3PL_Quotation_Query.aspx" />
     <Content Include="3PL_Quotation_Modify.aspx" />
+    <Content Include="3PL_Other_edi_retn_price.aspx" />
     <Content Include="3PL_SupdSelect.aspx" />
     <Content Include="3PL_ToExcel001.aspx" />
     <Content Include="AlartRp.aspx" />
@@ -243,6 +244,13 @@
     </Compile>
     <Compile Include="3PL_Quotation_Modify.aspx.designer.cs">
       <DependentUpon>3PL_Quotation_Modify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_Other_edi_retn_price.aspx.cs">
+      <DependentUpon>3PL_Other_edi_retn_price.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Other_edi_retn_price.aspx.designer.cs">
+      <DependentUpon>3PL_Other_edi_retn_price.aspx</DependentUpon>
     </Compile>
     <Compile Include="3PL_SupdSelect.aspx.cs">
       <DependentUpon>3PL_SupdSelect.aspx</DependentUpon>

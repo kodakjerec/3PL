@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdPanel_SignOffPermission" runat="server" UpdateMode="Always">
         <ContentTemplate>
-            <table class="tborder" width="100%">
+            <table class="tborder" style="width:100%">
                 <tr>
                     <td class="PageTitle">
                         <asp:Label ID="lbl_BaseAccounting" runat="server" Text="簽核權限設定"></asp:Label>

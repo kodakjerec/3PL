@@ -59,7 +59,7 @@ namespace _3PL_DAO
             string Sql_cmd =
             @"select a.*
             ,Adj_Type_Name=d.S_bsda_FieldName
-            ,IsOk=dbo.[fn3PL_GetSignOffPermission](3,a.[Status],@UserID)
+            ,IsOk=dbo.[fn3PL_GetSignOffPermission](4,a.[Status],@UserID)
             ,c.Step,c.[StatusName],c.[OkbuttonName],c.[NobuttonName]
             ,建單人=a.CrtUser+','+e.WorkName
             ,[UIStatus]='Unchanged'
@@ -155,7 +155,7 @@ namespace _3PL_DAO
 
             DataColumn[] keys = new DataColumn[2];
             keys[0] = QuotationList.Columns["Adj_Id"];
-            keys[1] = QuotationList.Columns["SN"];
+            keys[1] = QuotationList.Columns["SEQ"];
             QuotationList.PrimaryKey = keys;
 
             return QuotationList;

@@ -184,6 +184,15 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.Label Lbl_PriceIm;
         
         /// <summary>
+        /// ddl_OriginValue 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_OriginValue;
+        
+        /// <summary>
         /// txb_OriginValue 控制項。
         /// </summary>
         /// <remarks>
@@ -202,13 +211,22 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txb_NewValue 控制項。
+        /// ddl_newValue 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txb_NewValue;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_newValue;
+        
+        /// <summary>
+        /// txb_newValue 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txb_newValue;
         
         /// <summary>
         /// Btn_Detail_New 控制項。

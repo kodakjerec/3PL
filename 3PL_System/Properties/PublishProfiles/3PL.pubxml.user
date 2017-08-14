@@ -10,52 +10,52 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="3PL.Html">
-      <publishTime>03/09/2017 17:35:27</publishTime>
+      <publishTime>08/01/2017 09:37:40</publishTime>
     </File>
     <File Include="3PLMasterPage.Master">
       <publishTime>06/23/2017 13:05:53</publishTime>
     </File>
     <File Include="3PL_Addition.aspx">
-      <publishTime>04/05/2017 16:49:17</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_Adjust_Modify.aspx">
-      <publishTime>07/25/2017 15:10:18</publishTime>
+      <publishTime>07/31/2017 11:56:29</publishTime>
     </File>
     <File Include="3PL_Adjust_Query.aspx">
       <publishTime>07/25/2017 13:36:47</publishTime>
     </File>
     <File Include="3PL_Assign_Modify.aspx">
-      <publishTime>06/23/2017 11:32:19</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_Assign_New.aspx">
-      <publishTime>06/15/2017 11:27:22</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_Assign_Query.aspx">
-      <publishTime>04/19/2017 11:22:14</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_BaseAccounting.aspx">
-      <publishTime>03/10/2017 13:57:48</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_BaseCost.aspx">
-      <publishTime>03/10/2017 13:58:15</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_BaseCostSet.aspx">
-      <publishTime>03/10/2017 13:59:08</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_BaseCostSetSelect.aspx">
-      <publishTime>03/10/2017 13:59:56</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_BaseCostSet_Modify.aspx">
       <publishTime>03/10/2017 14:17:53</publishTime>
     </File>
     <File Include="3PL_BaseCost_Modify.aspx">
-      <publishTime>03/15/2017 13:12:11</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_BaseData.aspx">
-      <publishTime>04/19/2017 13:02:39</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_CostList_Modify.aspx">
-      <publishTime>03/10/2017 16:47:57</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_download.aspx">
       <publishTime>05/08/2015 11:21:29</publishTime>
@@ -63,44 +63,47 @@
     <File Include="3PL_Main.aspx">
       <publishTime>08/11/2015 11:31:11</publishTime>
     </File>
+    <File Include="3PL_Other_edi_retn_price.aspx">
+      <publishTime>08/01/2017 09:33:15</publishTime>
+    </File>
     <File Include="3PL_Quotation_Modify.aspx">
-      <publishTime>06/15/2017 16:01:19</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_Quotation_Print.aspx">
       <publishTime>04/20/2017 14:56:16</publishTime>
     </File>
     <File Include="3PL_Quotation_Query.aspx">
-      <publishTime>03/17/2017 11:44:44</publishTime>
+      <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_Quotation_Stamp.aspx">
-      <publishTime>03/13/2017 10:51:43</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="3PL_RoleInf_Edit.aspx">
-      <publishTime>04/19/2017 15:08:11</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="3PL_SignOffLog.aspx">
-      <publishTime>07/25/2017 17:03:06</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="3PL_SignOffPermission.aspx">
-      <publishTime>03/10/2017 14:03:08</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="3PL_SignOffStatus.aspx">
-      <publishTime>03/10/2017 14:03:29</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="3PL_SupdSelect.aspx">
-      <publishTime>03/17/2017 15:40:47</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="3PL_ToExcel001.aspx">
-      <publishTime>03/17/2017 11:43:55</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="3PL_ToExcel002_SendBox.aspx">
-      <publishTime>03/17/2017 11:47:07</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="AlartRp.aspx">
-      <publishTime>07/26/2017 09:50:23</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="bin/3PL_DAO.dll">
-      <publishTime>07/26/2017 10:25:02</publishTime>
+      <publishTime>07/31/2017 18:17:07</publishTime>
     </File>
     <File Include="bin/3PL_DAO.pdb">
       <publishTime>07/28/2015 11:21:12</publishTime>
@@ -112,7 +115,7 @@
       <publishTime>08/07/2015 16:00:34</publishTime>
     </File>
     <File Include="bin/3PL_System.dll">
-      <publishTime>07/26/2017 10:25:02</publishTime>
+      <publishTime>08/14/2017 10:15:45</publishTime>
     </File>
     <File Include="bin/3PL_System.pdb">
       <publishTime>08/12/2015 16:00:33</publishTime>
@@ -133,13 +136,13 @@
       <publishTime>05/04/2012 19:57:10</publishTime>
     </File>
     <File Include="ChangePass.aspx">
-      <publishTime>03/10/2017 14:05:55</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="ClassItem.aspx">
-      <publishTime>04/19/2017 11:40:13</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="creinvlog/creINVENTORY_DATE.aspx">
-      <publishTime>03/17/2017 15:05:34</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="creinvlog/creInvPaper.aspx">
       <publishTime>03/17/2017 15:05:37</publishTime>
@@ -184,19 +187,19 @@
       <publishTime>01/23/2015 18:00:38</publishTime>
     </File>
     <File Include="EmpItem.aspx">
-      <publishTime>03/10/2017 14:15:55</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="EmpList.aspx">
-      <publishTime>03/10/2017 14:07:31</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="Err404.jpg">
       <publishTime>01/23/2015 18:00:44</publishTime>
     </File>
     <File Include="FunList.aspx">
-      <publishTime>03/10/2017 14:07:53</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="FunListSet.aspx">
-      <publishTime>04/19/2017 13:51:22</publishTime>
+      <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="handler/Handler_Log.ashx">
       <publishTime>03/15/2017 10:57:16</publishTime>
@@ -421,16 +424,16 @@
       <publishTime>08/14/2015 13:34:44</publishTime>
     </File>
     <File Include="PublicMemo.aspx">
-      <publishTime>06/15/2017 11:08:52</publishTime>
+      <publishTime>08/01/2017 09:36:51</publishTime>
     </File>
     <File Include="PubModify.aspx">
-      <publishTime>06/15/2017 16:35:49</publishTime>
+      <publishTime>08/01/2017 09:36:51</publishTime>
     </File>
     <File Include="PXMART.jpg">
       <publishTime>01/23/2015 18:00:45</publishTime>
     </File>
     <File Include="RoleClassQuery.aspx">
-      <publishTime>03/10/2017 14:14:42</publishTime>
+      <publishTime>08/01/2017 09:36:51</publishTime>
     </File>
     <File Include="SCError.aspx">
       <publishTime>03/09/2017 13:13:07</publishTime>

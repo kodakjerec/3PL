@@ -22,7 +22,7 @@
             <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
                     <div id="ExportQuotation">
-                        <table class="tborder" width="100%">
+                        <table class="tborder" style="width:100%">
                             <tr>
                                 <td class="PageTitle">投貨收現明細表
                                 </td>
@@ -76,7 +76,7 @@
                 </asp:View>
                 <asp:View ID="View2" runat="server">
                     <div id="ExportAssign">
-                        <table class="tborder" width="100%">
+                        <table class="tborder" style="width:100%">
                             <tr>
                                 <td class="PageTitle">投貨收現總表
                                 </td>

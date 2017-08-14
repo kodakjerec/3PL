@@ -6,7 +6,7 @@
     <title>成本費用設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
                 <asp:Label ID="lbl_PriceSet" runat="server" Text="成本費用設定"></asp:Label>
@@ -102,7 +102,7 @@
             </td>
         </tr>
     </table>
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td>
                 <asp:Button ID="Btn_Upd" runat="server" Text="確定" OnClick="Btn_Upd_Click" />

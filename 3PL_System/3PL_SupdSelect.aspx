@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="PageTitle">作業對象查詢
                 </td>
@@ -14,7 +14,7 @@
         </table>
         <asp:UpdatePanel ID="UpdPanel_table1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <table class="tborder" width="100%">
+                <table class="tborder" style="width:100%">
                     <tr>
                         <td class="EditTD1" width="15%">對象代碼：
                         </td>

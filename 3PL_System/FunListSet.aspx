@@ -32,7 +32,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="PageTitle">資訊系統管理
                 </td>
@@ -43,7 +43,7 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="EditTD1" width="15%">
                     <asp:Label ID="lbl_Fun" runat="server" Text="主功能名稱:"></asp:Label>
@@ -71,7 +71,7 @@
             </tr>
         </table>
         <%-- <asp:Panel ID="pnl_List" runat="server">--%>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td>
                     <asp:GridView ID="gv_List" runat="server" AutoGenerateColumns="False" CssClass="GVStyle"
@@ -128,7 +128,7 @@
         </table>
         <%--        </asp:Panel>--%>
         <asp:Panel ID="pnl_AddFun" runat="server">
-            <table class="tborder" width="100%">
+            <table class="tborder" style="width:100%">
                 <tr runat="server" id="dyn_tr">
                     <td width="15%" class="EditTD1">
                         <asp:Label ID="lbl_FunID" runat="server" Text="主功能代號："></asp:Label>

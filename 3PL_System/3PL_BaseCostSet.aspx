@@ -6,7 +6,7 @@
     <title>計價費用設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle" colspan="4">
                 <asp:Label ID="lbl_PriceSet" runat="server" Text="計價費用設定"></asp:Label>
@@ -45,7 +45,7 @@
             </td>
         </tr>
     </table>
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td colspan="2">
                 <asp:GridView ID="GV_PriceList_Query" runat="server" Width="100%" AutoGenerateColumns="False"

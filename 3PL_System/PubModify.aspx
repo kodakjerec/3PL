@@ -14,7 +14,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="PageTitle">管理設定
                 </td>
@@ -25,7 +25,7 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="EditTD1" width="15%">
                     <asp:Label ID="lbl_BullDay" runat="server" Text="發佈日期:"></asp:Label>
@@ -36,7 +36,7 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <asp:GridView ID="gv_List" runat="server" AutoGenerateColumns="False" CssClass="GVStyle"
                 Width="100%" AllowPaging="True" OnPageIndexChanging="gv_List_PageIndexChanging"
                 OnRowCommand="gv_List_RowCommand" OnRowDataBound="gv_List_RowDataBound">

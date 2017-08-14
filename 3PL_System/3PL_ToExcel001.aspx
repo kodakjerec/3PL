@@ -23,7 +23,7 @@
             <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
                     <div id="ExportQuotation">
-                        <table class="tborder" width="100%">
+                        <table class="tborder" style="width:100%">
                             <tr>
                                 <td class="PageTitle">
                                     報價單匯出Excel
@@ -90,7 +90,7 @@
                 </asp:View>
                 <asp:View ID="View2" runat="server">
                     <div id="ExportAssign">
-                        <table class="tborder" width="100%">
+                        <table class="tborder" style="width:100%">
                             <tr>
                                 <td class="PageTitle">
                                     派工單匯出Excel
@@ -153,7 +153,7 @@
                 </asp:View>
                 <asp:View ID="View3" runat="server">
                     <div id="ExportCostIncome">
-                        <table class="tborder" width="100%">
+                        <table class="tborder" style="width:100%">
                             <tr>
                                 <td class="PageTitle">
                                     成本及收入明細匯出Excel

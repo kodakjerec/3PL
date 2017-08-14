@@ -15,7 +15,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="PageTitle">
                     管理設定
@@ -27,7 +27,7 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="EditTD1" width="15%">
                     <asp:Label ID="lbl_Member" runat="server" Text="公告人員:"></asp:Label>

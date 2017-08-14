@@ -30,7 +30,7 @@
         </tr>
     </table>
     <div id="Quotation_Head_New" runat="server">
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="EditTD1">報價單號
                 </td>
@@ -144,7 +144,7 @@
                         <asp:BoundField DataField="S_qtde_SiteNo" HeaderText="倉別" />
                     </Columns>
                 </asp:GridView>
-                <table class="tborder" width="100%">
+                <table class="tborder" style="width:100%">
                     <tr>
                         <td class="EditTD1">
                             <asp:Label ID="lbl_TypeIdIm" runat="server" Text="*" ForeColor="Red"></asp:Label>

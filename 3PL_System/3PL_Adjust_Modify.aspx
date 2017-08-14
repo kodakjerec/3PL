@@ -111,7 +111,9 @@
                             元內容：
                         </td>
                         <td>
-                            <asp:TextBox ID="txb_OriginValue" runat="server"></asp:TextBox>
+                            <asp:DropDownList ID="ddl_OriginValue" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_OriginValue_SelectedIndexChanged" Enabled="false">
+                            </asp:DropDownList>
+                            <asp:TextBox ID="txb_OriginValue" runat="server" Enabled="false"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -120,7 +122,9 @@
                             異動內容：
                         </td>
                         <td>
-                            <asp:TextBox ID="txb_NewValue" runat="server"></asp:TextBox>
+                            <asp:DropDownList ID="ddl_newValue" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddl_newValue_SelectedIndexChanged">
+                            </asp:DropDownList>
+                            <asp:TextBox ID="txb_newValue" runat="server" Enabled="false"></asp:TextBox>
                         </td>
                     </tr>
                 </table>

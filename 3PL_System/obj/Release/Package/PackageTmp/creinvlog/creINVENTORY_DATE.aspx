@@ -216,7 +216,7 @@
                     </table>
                 </div>
                 <div id="div_Inventory_Date_list" runat="server">
-                    <table class="tborder" width="100%">
+                    <table class="tborder" style="width:100%">
                         <tr>
                             <td align="left">
                                 <asp:Button ID="btn_Del" runat="server" Text="刪除本頁選擇項目" OnClick="btn_Del_Click" OnClientClick="return confirm('確定刪除本頁選擇項目嗎？');" />

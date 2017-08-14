@@ -49,7 +49,11 @@ namespace _3PL_System
         }
 
         #region DropDownList changed
-
+        /// <summary>
+        /// 調整單類別
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void DDL_Adj_Type_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (DDL_Adj_Type.SelectedIndex)
@@ -64,9 +68,54 @@ namespace _3PL_System
 
         }
 
+        /// <summary>
+        /// 異動欄位
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ddl_OriginId_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbl_ColName.Text = ddl_OriginID.SelectedValue;
+
+            switch (DDL_Adj_Type.SelectedIndex)
+            {
+                case 0:
+                    switch (lbl_ColName.Text)
+                    {
+                        case "I_qthe_Status":
+                            //更新 異動內容下拉式選單
+                            CB.DropDownListBind(ref ddl_newValue, _3PLSignOff.GetSOStatus(Login_Server, "1"), "Status", "StatusName");
+                            CB.DropDownListBind(ref ddl_OriginValue, _3PLSignOff.GetSOStatus(Login_Server, "1"), "Status", "StatusName");
+                            break;
+                    }
+                    break;
+                case 1:
+                    switch (lbl_ColName.Text)
+                    {
+                        case "Status":
+                            //更新 異動內容下拉式選單
+                            CB.DropDownListBind(ref ddl_newValue, _3PLSignOff.GetSOStatus(Login_Server, "2"), "Status", "StatusName");
+                            CB.DropDownListBind(ref ddl_OriginValue, _3PLSignOff.GetSOStatus(Login_Server, "2"), "Status", "StatusName");
+                            break;
+                    }
+                    break;
+            }
+            ddl_newValue.SelectedIndex = 0;
+            ddl_newValue_SelectedIndexChanged(ddl_newValue, e);
+        }
+
+        /// <summary>
+        /// 異動內容
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddl_newValue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txb_newValue.Text = ddl_newValue.SelectedValue;
+        }
+        protected void ddl_OriginValue_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txb_OriginValue.Text = ddl_OriginValue.SelectedValue;
         }
         #endregion
 
@@ -96,10 +145,7 @@ namespace _3PL_System
             Session["Quotation_Detail"] = dt_Detail;
 
             GVBind_Quotation_Detail();
-            if (dt_Detail.Rows.Count > 0)
-                BringDetail(dt_Detail.Rows[0]);
-            else
-                BringDetail();
+            BringDetail();
 
             DIV_Quotation_Detail_New.Visible = true;
             Btn_Detail_New_Update.Visible = true;
@@ -223,8 +269,10 @@ namespace _3PL_System
             ddl_OriginID.SelectedIndex = 0;
             ddl_OriginId_SelectedIndexChanged(ddl_OriginID, new EventArgs());
 
-            txb_OriginValue.Text = _3PLAdjust.BringHeadAdjustPageId_Value(DDL_Adj_Type.Text, lbl_Adj_PageId.Text, ddl_OriginID.SelectedValue);
-            txb_NewValue.Text = "";
+            ddl_OriginValue.SelectedIndex = 0;
+            ddl_OriginValue_SelectedIndexChanged(ddl_OriginValue, new EventArgs());
+            ddl_newValue.SelectedIndex = 0;
+            ddl_newValue_SelectedIndexChanged(ddl_newValue, new EventArgs());
 
             lbl_SN.Text = "";
             hidTotal_I_qtde_seq.Value = "";
@@ -240,10 +288,13 @@ namespace _3PL_System
             ddl_OriginId_SelectedIndexChanged(ddl_OriginID, new EventArgs());
 
             txb_OriginValue.Text = dr["OriginValue"].ToString();
-            txb_NewValue.Text = dr["newValue"].ToString();
+            ddl_OriginValue.SelectedValue = txb_OriginValue.Text;
+
+            txb_newValue.Text = dr["newValue"].ToString();
+            ddl_newValue.SelectedValue = txb_newValue.Text;
 
             lbl_SN.Text = dr["SEQ"].ToString();
-            hidTotal_I_qtde_seq.Value = dr["SN"].ToString();
+            hidTotal_I_qtde_seq.Value = dr["SEQ"].ToString();
         }
 
         //選定要更新/刪除的Row
@@ -286,7 +337,7 @@ namespace _3PL_System
                 ErrMsg += "異動欄位未設定！\\n";
             if (txb_OriginValue.Text == "")
                 ErrMsg += "元內容未設定！\\n";
-            if (txb_NewValue.Text == "")
+            if (txb_newValue.Text == "")
                 ErrMsg += "異動內容未設定！\\n";
 
             if (ErrMsg != "")
@@ -323,7 +374,7 @@ namespace _3PL_System
             dr["ColName"] = ddl_OriginID.SelectedItem.Text;
             dr["OriginID"] = ddl_OriginID.SelectedValue;
             dr["OriginValue"] = txb_OriginValue.Text;
-            dr["NewValue"] = txb_NewValue.Text;
+            dr["NewValue"] = txb_newValue.Text;
             dr["CrtUser"] = UI.UserID;
             dr["UpdUser"] = UI.UserID;
 
@@ -350,7 +401,7 @@ namespace _3PL_System
 
             dr["OriginID"] = ddl_OriginID.SelectedValue;
             dr["OriginValue"] = txb_OriginValue.Text;
-            dr["NewValue"] = txb_NewValue.Text;
+            dr["NewValue"] = txb_newValue.Text;
             dr["UpdUser"] = UI.UserID;
 
             if (dr["UIStatus"].ToString() != "Added")

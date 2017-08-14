@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="PageTitle">管理設定
                 </td>
@@ -16,7 +16,7 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td class="EditTD1" width="15%">
                     <asp:Label ID="lbl_WorkId" runat="server" Text="帳號:"></asp:Label>
@@ -41,14 +41,14 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%">
+        <table class="tborder" style="width:100%">
             <tr>
                 <td>
                     <asp:Button ID="btn_Submit" runat="server" Text="查詢" OnClick="btn_Submit_Click" Style="height: 21px" />
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="100%" align="center">
+        <table class="tborder" style="width:100%" align="center">
             <asp:GridView ID="gv_List" runat="server" AutoGenerateColumns="False" CssClass="GVStyle"
                 Width="60%" AllowPaging="True" OnPageIndexChanging="gv_List_PageIndexChanging"
                 OnRowCommand="gv_List_RowCommand">

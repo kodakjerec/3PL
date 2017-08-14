@@ -190,7 +190,10 @@ namespace _3PL_System
                 else
                 {
                     if (Status == "10")
+                    {
                         ((Button)e.Row.FindControl("Btn_SignOffCancel")).Visible = false;
+                    }
+
                     if (((Button)e.Row.FindControl("Btn_SignOffOk")).Text == "X")
                         ((Button)e.Row.FindControl("Btn_SignOffOk")).Visible = false;
                     if (((Button)e.Row.FindControl("Btn_SignOffCancel")).Text == "X")

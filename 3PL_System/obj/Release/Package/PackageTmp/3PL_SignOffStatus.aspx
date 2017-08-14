@@ -5,7 +5,7 @@
     <title>簽核流程設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" width="100%">
+    <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
                 <asp:Label ID="lbl_BaseAccounting" runat="server" Text="簽核流程設定"></asp:Label>
