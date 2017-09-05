@@ -16,7 +16,7 @@ namespace _3PL_System
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((_3PLMasterPage)Master).SessionCheck(ref UI, 0);
+            ((_3PLMasterPage)Master).SessionCheck(ref UI);
 
             if (!IsPostBack)
             {
@@ -39,7 +39,8 @@ namespace _3PL_System
                 , txb_Query_back_id.Text
                 , txb_Query_boxid.Text
                 , txb_back_date_S.Text
-                , txb_back_date_E.Text);
+                , txb_back_date_E.Text
+                , txb_Bill_date.Text);
             div_Content.Visible = true;
             GVBind();
         }

@@ -174,8 +174,8 @@
                                     <asp:BoundField DataField="SEQ" HeaderText="序號" />
                                     <asp:BoundField DataField="OriginID" HeaderText="異動欄位" />
                                     <asp:BoundField DataField="ColName" HeaderText="欄位名稱" />
-                                    <asp:BoundField DataField="OriginValue" HeaderText="元內容" />
-                                    <asp:BoundField DataField="newValue" HeaderText="異動內容" />
+                                    <asp:BoundField DataField="OriginValueName" HeaderText="元內容" />
+                                    <asp:BoundField DataField="newValueName" HeaderText="異動內容" />
                                 </Columns>
                             </asp:GridView>
                         </td>

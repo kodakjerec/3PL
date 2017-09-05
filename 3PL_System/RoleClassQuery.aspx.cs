@@ -67,35 +67,38 @@ namespace _3PL_System
         /// <param name="e"></param>
         protected void gv_List_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            GridViewRow Row = ((GridViewRow)((WebControl)(e.CommandSource)).NamingContainer);
-            int index = Row.RowIndex;
-            string ClassId = ((HiddenField)gv_List.Rows[index].FindControl("hid_ClassId")).Value;
-            string ClassName=((LinkButton)gv_List.Rows[index].FindControl("lbtn_ClassName")).Text;
-            try 
+            if (e.CommandName != "Page")
             {
-                if (e.CommandName == "Select")
+                GridViewRow Row = ((GridViewRow)((WebControl)(e.CommandSource)).NamingContainer);
+                int index = Row.RowIndex;
+                string ClassId = ((HiddenField)gv_List.Rows[index].FindControl("hid_ClassId")).Value;
+                string ClassName = ((LinkButton)gv_List.Rows[index].FindControl("lbtn_ClassName")).Text;
+                try
                 {
-                    string Path = string.Format("ClassItem.aspx?ClassId={0}&ClassNm={1}", ClassId, ClassName);
-                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "", "location.href='" + Path + "';", true);
+                    if (e.CommandName == "Select")
+                    {
+                        string Path = string.Format("ClassItem.aspx?ClassId={0}&ClassNm={1}", ClassId, ClassName);
+                        ScriptManager.RegisterClientScriptBlock(this, typeof(string), "", "location.href='" + Path + "';", true);
+                    }
+                    else if (e.CommandName == "Del")
+                    {
+                        bool booDel = false;
+                        RoleInf RI = new RoleInf();
+                        booDel = RI.DelClass("3PL", ClassId);
+                        if (booDel)
+                        {
+                            GetList(string.Empty, string.Empty);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 刪除失敗!!! ');", true);
+                        }
+                    }
                 }
-                else if (e.CommandName == "Del")
+                catch
                 {
-                    bool booDel = false;
-                    RoleInf RI = new RoleInf();
-                    booDel = RI.DelClass("3PL", ClassId);
-                    if (booDel)
-                    {
-                        GetList(string.Empty,string.Empty);
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 刪除失敗!!! ');", true);
-                    }
+                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 系統異常，請洽資訊人員!!! ');", true);
                 }
-            }
-            catch
-            {
-                ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 系統異常，請洽資訊人員!!! ');", true);
             }
         }
 

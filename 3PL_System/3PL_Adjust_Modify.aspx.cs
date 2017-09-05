@@ -132,6 +132,7 @@ namespace _3PL_System
                 //ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert('找不到指定單號')", true);
                 return;
             }
+
             DataRow dr = dt_head.Rows[0];
             lbl_Adj_Id.Text = dr["Adj_Id"].ToString();
 
@@ -140,12 +141,16 @@ namespace _3PL_System
             lbl_Adj_PageId.Text = dr["Adj_PageId"].ToString();
             txa_Memo.Value = dr["Memo"].ToString();
 
+            //帶出指定單號的狀態
+            string PaperStatus="";
+            _3PLAdjust.CheckHeadAdjustPageId(DDL_Adj_Type.Text, lbl_Adj_PageId.Text, ref PaperStatus);
+
             Session["Quotation_head"] = dt_head;
             DataTable dt_Detail = _3PLAdjust.GetDetail(lbl_Adj_Id.Text);
             Session["Quotation_Detail"] = dt_Detail;
 
             GVBind_Quotation_Detail();
-            BringDetail();
+            BringDetail(PaperStatus);
 
             DIV_Quotation_Detail_New.Visible = true;
             Btn_Detail_New_Update.Visible = true;
@@ -175,13 +180,14 @@ namespace _3PL_System
         {
             #region 錯誤控制
             string CloseDate = _3PLCQ.Addon_GetCloseData();
+            string PaperStatus = "";
             string ErrMsg = "";
             if (DDL_Adj_Type.Text == "")
                 ErrMsg += "調整單類別未設定！\\n";
             if (lbl_Adj_PageId.Text == "")
                 ErrMsg += "異動單號未設定！\\n";
             //檢查單號正確性
-            ErrMsg += _3PLAdjust.CheckHeadAdjustPageId(DDL_Adj_Type.Text, lbl_Adj_PageId.Text);
+            ErrMsg += _3PLAdjust.CheckHeadAdjustPageId(DDL_Adj_Type.Text, lbl_Adj_PageId.Text,ref PaperStatus);
 
 
             if (ErrMsg != "")
@@ -214,7 +220,7 @@ namespace _3PL_System
                 Session["Quotation_Detail"] = dt_Detail;
 
                 GVBind_Quotation_Detail();
-                BringDetail();
+                BringDetail(PaperStatus);
 
                 DIV_Quotation_Detail_New.Visible = true;
                 Btn_Detail_New_Update.Visible = true;
@@ -264,12 +270,13 @@ namespace _3PL_System
 
 
         }
-        private void BringDetail()
+        private void BringDetail(string PaperStatus)
         {
-            ddl_OriginID.SelectedIndex = 0;
+
+            ddl_OriginID.SelectedIndex= 0;
             ddl_OriginId_SelectedIndexChanged(ddl_OriginID, new EventArgs());
 
-            ddl_OriginValue.SelectedIndex = 0;
+            ddl_OriginValue.SelectedValue = PaperStatus;
             ddl_OriginValue_SelectedIndexChanged(ddl_OriginValue, new EventArgs());
             ddl_newValue.SelectedIndex = 0;
             ddl_newValue_SelectedIndexChanged(ddl_newValue, new EventArgs());

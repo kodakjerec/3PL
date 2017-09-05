@@ -3,7 +3,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <script type="text/javascript">
-        $(document).ready(function() {
+         $(document).ready(function () {
+             $("#<%=txb_Bill_date.ClientID %>").datepicker({ dateFormat: 'yymm' });
             $("#<%=txb_back_date_S.ClientID %>").datepicker({ dateFormat: 'yy/mm/dd' });
             $("#<%=txb_back_date_E.ClientID %>").datepicker({ dateFormat: 'yy/mm/dd' });
         });
@@ -25,6 +26,13 @@
     </table>
     <asp:Panel ID="Pan_Quotation_Query" runat="server">
         <table class="tborder">
+            <tr>
+                <td class="EditTD1">計費年月：
+                </td>
+                <td>
+                    <asp:TextBox ID="txb_Bill_date" runat="server"></asp:TextBox>
+                </td>
+            </tr>
             <tr>
                 <td class="EditTD1">供應商編號：
                 </td>
@@ -80,12 +88,17 @@
                 <asp:GridView ID="GV_BaseAccounting" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                     CssClass="GVStyle" OnPageIndexChanging="GV_BaseAccounting_PageIndexChanging"
                     AllowSorting="True"
-                    Width="100%" PageSize="10" OnRowDataBound="GV_BaseAccounting_RowDataBound">
+                    Width="100%" PageSize="20" OnRowDataBound="GV_BaseAccounting_RowDataBound">
                     <HeaderStyle CssClass="GVHead" />
                     <RowStyle CssClass="one" />
                     <PagerStyle CssClass="GVPage" />
                     <EmptyDataRowStyle HorizontalAlign="Center" />
                     <Columns>
+                        <asp:TemplateField HeaderText="計費年月">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_Bill_date" runat="server" Text='<%# Bind("Bill_date") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="倉別">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_Siteno" runat="server" Text='<%# Bind("site_no") %>'></asp:Label>

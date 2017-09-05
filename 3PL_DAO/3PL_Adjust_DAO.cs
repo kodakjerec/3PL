@@ -14,7 +14,7 @@ namespace _3PL_DAO
         DB_IO IO = new DB_IO();
 
         #region 檢查
-        public string CheckHeadAdjustPageId(string Adj_Type, string Adj_Page_Id)
+        public string CheckHeadAdjustPageId(string Adj_Type, string Adj_Page_Id, ref string PaperStatus)
         {
             string ErrMsg = "";
             string Sql_cmd = "";
@@ -24,10 +24,10 @@ namespace _3PL_DAO
             switch (Adj_Type)
             {
                 case "1":
-                    Sql_cmd = @"select top 1 0 from [3PL_QuotationHead] with(nolock) where S_qthe_PLNO=@Adj_Page_Id";
+                    Sql_cmd = @"select top 1 I_qthe_Status from [3PL_QuotationHead] with(nolock) where S_qthe_PLNO=@Adj_Page_Id";
                     break;
                 case "2":
-                    Sql_cmd = @"select top 1 0 from [AssignHead] with(nolock) where Wk_Id=@Adj_Page_Id";
+                    Sql_cmd = @"select top 1 [Status] from [AssignHead] with(nolock) where Wk_Id=@Adj_Page_Id";
                     break;
                 default:
                     ErrMsg = "輸入資料錯誤\\n"; break;
@@ -37,6 +37,9 @@ namespace _3PL_DAO
             if (dt.Rows.Count <= 0)
             {
                 ErrMsg = "找不到相關單號\\n";
+            }
+            else {
+                PaperStatus = dt.Rows[0][0].ToString();
             }
 
             return ErrMsg;
@@ -129,6 +132,8 @@ namespace _3PL_DAO
             @"Select top 50
             SEQ=ROW_NUMBER() OVER (ORDER BY a.ADJ_ID)
             ,a.*
+            ,OriginValueName=a.OriginValue+','+d1.StatusName
+            ,newValueName=a.newValue+','+d2.StatusName
             ,[ColName]=CASE b.Adj_Type
 			            WHEN 1 THEN c1.S_bsda_FieldName
 			            WHEN 2 THEN c2.S_bsda_FieldName END
@@ -146,6 +151,16 @@ namespace _3PL_DAO
 	            [3PL_BaseData] c2 with(nolock)
             ON 
 	            a.OriginID=c2.S_bsda_FieldId and c2.S_bsda_CateId='AssignHead'
+            LEFT JOIN 
+				[SignOff_status] d1 with(nolock)
+			ON
+				d1.PageType=b.Adj_Type
+				and d1.[Status]=a.OriginValue
+			LEFT JOIN 
+				[SignOff_status] d2 with(nolock)
+			ON
+				d2.PageType=b.Adj_Type
+				and d2.[Status]=a.newValue
             where a.Adj_Id=@Wk_ID and DelFlag<1 ";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@Wk_ID", Wk_ID);

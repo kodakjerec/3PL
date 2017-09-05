@@ -31,9 +31,9 @@ namespace _3PL_DAO
                                 E.Email,
                                 C.ClassId,
                                 C.ClassName
-                                From dbo.EmpInf E
-                                Join dbo.EmpClass EC On EC.WorkId=E.WorkId
-                                Join dbo.ClassInf C On C.ClassId=EC.ClassId
+                                From EmpInf E with(nolock)
+                                Join EmpClass EC with(nolock) On EC.WorkId=E.WorkId
+                                Join ClassInf C with(nolock) On C.ClassId=EC.ClassId
                                 Where E.DelStatus='0' and E.WorkId= @WorkId";
 
                 hs.Add("@WorkId", strId);
@@ -70,9 +70,9 @@ namespace _3PL_DAO
                                 E.Email,
                                 C.ClassId,
                                 C.ClassName
-                                From dbo.EmpInf E
-                                Join dbo.EmpClass EC On EC.WorkId=E.WorkId
-                                Join dbo.ClassInf C On C.ClassId=EC.ClassId
+                                From EmpInf E with(nolock)
+                                Join EmpClass EC with(nolock) On EC.WorkId=E.WorkId
+                                Join ClassInf C with(nolock) On C.ClassId=EC.ClassId
                                 Where E.DelStatus='0' and C.ClassId != '000000' ";
 
                 if (strId.Length > 0)
@@ -114,12 +114,13 @@ namespace _3PL_DAO
             DB_IO IO = new DB_IO();
             try
             {
-                string SqlCom = @"Select EI.WorkId,EI.WorkName,CI.ClassId,CI.ClassName,RI.RoleId,RI.RoleNm,CR.DC,WI.DCNm From EmpInf EI
-                                    Left Join dbo.EmpClass EC On EC.WorkId=EI.WorkId
-                                    Left Join dbo.ClassInf CI On CI.ClassId=EC.ClassId
-                                    Left Join dbo.ClassRole CR On CR.ClassId=EC.ClassId
-                                    Left Join dbo.RoleInf RI On RI.RoleId= CR.RoleId
-                                    Left Join dbo.WareInf WI On WI.DC=CR.DC
+                string SqlCom = @"Select EI.WorkId,EI.WorkName,CI.ClassId,CI.ClassName,RI.RoleId,RI.RoleNm,CR.DC,WI.DCNm 
+                                    From EmpInf EI with(nolock)
+                                    Left Join EmpClass EC with(nolock) On EC.WorkId=EI.WorkId
+                                    Left Join ClassInf CI with(nolock) On CI.ClassId=EC.ClassId
+                                    Left Join ClassRole CR with(nolock) On CR.ClassId=EC.ClassId
+                                    Left Join RoleInf RI with(nolock) On RI.RoleId= CR.RoleId
+                                    Left Join WareInf WI with(nolock) On WI.DC=CR.DC
                                     Where EI.WorkId=@WorkId ";
 
                 hs.Add("@WorkId", strID);
@@ -153,11 +154,12 @@ namespace _3PL_DAO
             DB_IO IO = new DB_IO();
             try
             {
-                string SqlCom = @"Select MAX(F.Sn) as Sn,F.FunId,F.PgId,convert(varchar(10),F.FunOrd)+'-'+convert(varchar(10),F.PgOrd)+' '+F.PgNm as PgNm,F.PgUrl from EmpInf EI
-                                Left Join dbo.EmpClass EC On EC.WorkId=EI.WorkId
-                                Left Join dbo.ClassRole CR On CR.ClassId=EC.ClassId
-                                Left Join dbo.RoleFun RF On RF.RoleId=CR.RoleId
-                                Left Join dbo.FunList F On F.FunId=RF.FunId and F.PgId=RF.PgId
+                string SqlCom = @"Select MAX(F.Sn) as Sn,F.FunId,F.PgId,convert(varchar(10),F.FunOrd)+'-'+convert(varchar(10),F.PgOrd)+' '+F.PgNm as PgNm,F.PgUrl 
+                                From EmpInf EI with(nolock)
+                                Left Join dbo.EmpClass EC with(nolock) On EC.WorkId=EI.WorkId
+                                Left Join dbo.ClassRole CR with(nolock) On CR.ClassId=EC.ClassId
+                                Left Join dbo.RoleFun RF with(nolock) On RF.RoleId=CR.RoleId
+                                Left Join dbo.FunList F with(nolock) On F.FunId=RF.FunId and F.PgId=RF.PgId
                                 Where EI.WorkId=@WorkId 
                                 Group By F.FunId,F.PgId,F.PgNm,F.PgUrl,F.FunOrd,F.PgOrd 
                                 Order by F.FunOrd,F.FunId,F.PgOrd ";
@@ -184,11 +186,11 @@ namespace _3PL_DAO
             try
             {
                 string SqlCom = @"Select  F.FunId,convert(varchar(10),F.FunOrd)+' '+ F.FunNm as FunNm
-                                From EmpInf EI
-                                Left Join dbo.EmpClass EC On EC.WorkId=EI.WorkId
-                                Left Join dbo.ClassRole CR On CR.ClassId=EC.ClassId
-                                Left Join dbo.RoleFun RF On RF.RoleId=CR.RoleId
-                                Left Join dbo.FunList F On F.FunId=RF.FunId and F.PgId=RF.PgId
+                                From EmpInf EI with(nolock)
+                                Left Join dbo.EmpClass EC with(nolock) On EC.WorkId=EI.WorkId
+                                Left Join dbo.ClassRole CR with(nolock) On CR.ClassId=EC.ClassId
+                                Left Join dbo.RoleFun RF with(nolock) On RF.RoleId=CR.RoleId
+                                Left Join dbo.FunList F with(nolock) On F.FunId=RF.FunId and F.PgId=RF.PgId
                                 Where EI.WorkId=@WorkId 
                                 Group By  F.FunId,F.FunNm,F.FunOrd  
                                 Order by F.FunOrd, F.FunId ";
@@ -214,7 +216,9 @@ namespace _3PL_DAO
             DB_IO IO = new DB_IO();
             try
             {
-                string SqlCom = " Select ClassId,ClassName From ClassInf Where  ClassId != '000000' ";
+                string SqlCom = @" Select ClassId,ClassName 
+                                    From ClassInf with(nolock)
+                                    Where  ClassId != '000000' ";
 
                 if (ClassId.Length > 0)
                 {
@@ -245,7 +249,9 @@ namespace _3PL_DAO
             DB_IO IO = new DB_IO();
             try
             {
-                string SqlCom = " Select Top 1 ClassId ClassId,ClassName From ClassInf Where  ClassId != '000000' Order by ClassId Desc ";
+                string SqlCom = @" Select Top 1 ClassId ClassId,ClassName 
+                                    From ClassInf with(nolock)
+                                    Where  ClassId != '000000' Order by ClassId Desc ";
                 ds = IO.SqlQuery(DB, SqlCom, hs);
             }
             catch
@@ -266,10 +272,11 @@ namespace _3PL_DAO
             DB_IO IO = new DB_IO();
             try 
             {
-                string SqlCom = @"Select CI.ClassId,CI.ClassName,RI.RoleId,RI.RoleNm,WI.DC,WI.DCNm from dbo.ClassInf  CI
-                                Inner Join dbo.ClassRole CR On CR.ClassId=CI.ClassId
-                                Inner Join dbo.RoleInf RI On RI.RoleId= CR.RoleId
-                                Inner Join dbo.WareInf WI On WI.DC=CR.DC
+                string SqlCom = @"Select CI.ClassId,CI.ClassName,RI.RoleId,RI.RoleNm,WI.DC,WI.DCNm 
+                                From ClassInf  CI with(nolock)
+                                Inner Join ClassRole CR with(nolock) On CR.ClassId=CI.ClassId
+                                Inner Join RoleInf RI with(nolock) On RI.RoleId= CR.RoleId
+                                Inner Join WareInf WI with(nolock) On WI.DC=CR.DC
                                 Where CI.ClassId != '000000' ";
                 if (ClassId.Length>0)
                 {

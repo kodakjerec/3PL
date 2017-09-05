@@ -18,12 +18,18 @@ namespace _3PL_DAO
         /// <summary>
         /// 查詢逆物流費
         /// </summary>
-        public DataTable GetData(string site_no, string vendor_no, string back_id, string boxid, string back_date_S, string back_date_E)
+        public DataTable GetData(string site_no
+            , string vendor_no
+            , string back_id
+            , string boxid
+            , string back_date_S
+            , string back_date_E
+            , string Bill_date)
         {
             DataTable dt = new DataTable();
 
             string Sql_cmd =
-            @"select TOP 50
+            @"select TOP 100
                 edi_retn_price.*,[UIStatus]='Unchanged'
             from edi_retn_price with(nolock)
             where 1=1 ";
@@ -39,13 +45,13 @@ namespace _3PL_DAO
             }
             if (back_id != "")
             {
-                Sql_cmd += " and back_id like '%'+@back_id+'%'";
+                Sql_cmd += " and back_id like @back_id+'%'";
                 ht1.Add("@back_id", back_id);
             }
             if (boxid != "")
             {
-                Sql_cmd += " and boxid like '%'+@boxid+'%'";
-                ht1.Add("@boxid", back_id);
+                Sql_cmd += " and boxid like @boxid+'%'";
+                ht1.Add("@boxid", boxid);
             }
             if (back_date_S != "")
             {
@@ -56,6 +62,11 @@ namespace _3PL_DAO
             {
                 Sql_cmd += " and back_date<=@back_date_E";
                 ht1.Add("@back_date_E", back_date_E);
+            }
+            if (Bill_date != "")
+            {
+                Sql_cmd += " and Bill_date=@Bill_date";
+                ht1.Add("@Bill_date", Bill_date);
             }
 
             Sql_cmd += " order by back_date DESC, site_no, vendor_no, back_id DESC, boxid, item_id";
