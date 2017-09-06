@@ -161,7 +161,7 @@ namespace _3PL_DAO
 			ON
 				d2.PageType=b.Adj_Type
 				and d2.[Status]=a.newValue
-            where a.Adj_Id=@Wk_ID and DelFlag<1 ";
+            where a.Adj_Id=@Wk_ID and DelFlag=0 ";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@Wk_ID", Wk_ID);
 
@@ -453,7 +453,7 @@ namespace _3PL_DAO
             string Sql_Cmd = @"select a.Adj_Type, a.Adj_PageId, b.OriginID, b.OriginValue, b.newValue
             from _3PL_AdjustHead a with(nolock)
             inner join _3PL_AdjustDetail b with(nolock)
-            on a.Adj_Id=b.Adj_Id
+            on a.Adj_Id=b.Adj_Id and b.DelFlag=0
             where a.Adj_Id=@Adj_Id";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@Adj_Id", Adj_Id);
