@@ -1,5 +1,8 @@
-/3PL_DAO/bin/
-/3PL_System/bin/
-/3PL_System/obj/
-/MD5/bin/
-/MD5/obj/
+/3PL_DAO/bin/*
+/3PL_DAO/obj/*
+/3PL_LIB/bin/*
+/3PL_LIB/obj/*
+/3PL_System/bin/*
+/3PL_System/obj/*
+/MD5/bin/*
+/MD5/obj/*
