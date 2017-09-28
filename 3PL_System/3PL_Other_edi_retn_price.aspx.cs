@@ -16,16 +16,18 @@ namespace _3PL_System
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((_3PLMasterPage)Master).SessionCheck(ref UI,0);
+            ((_3PLMasterPage)Master).SessionCheck(ref UI, 0);
 
             if (!IsPostBack)
             {
+                div_Content.Visible = false;
                 lbl_CloseDate.Text = _3PLCQ.Addon_GetCloseData();
-                txb_back_date_S.Text = DateTime.Parse(lbl_CloseDate.Text).AddMonths(-1).ToString("yyyy/MM/dd");
+
+                txb_back_date_S.Text = DateTime.Parse(lbl_CloseDate.Text).AddDays(-7).ToString("yyyy/MM/dd");
                 //倉別
                 CB.DropDownListBind(ref ddl_Query_site_no, _3PLOtherEdiRetnPrice.SiteNoList(), "Value", "Name", "ALL", "");
                 //計費類別
-                CB.DropDownListBind(ref ddl_Query_Kind, _3PLOtherEdiRetnPrice.KindList(), "Value", "Name","ALL","");
+                CB.DropDownListBind(ref ddl_Query_Kind, _3PLOtherEdiRetnPrice.KindList(), "Value", "Name", "ALL", "");
 
             }
         }
@@ -153,5 +155,64 @@ namespace _3PL_System
             string Path = "3PL_SupdSelect.aspx?ReturnLocation=" + txb_Query_vendor_no.ClientID + "&btnCloseID=" + ((_3PLMasterPage)Master).FindControl("btn_Close_div_URL").ClientID;
             ((_3PLMasterPage)Master).ShowURL(Path);
         }
+
+        //匯出Excel
+        protected void btn_OutputExcel_Click(object sender, EventArgs e)
+        {
+            btn_OutputExcel.Enabled = false;
+
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(string), "alert", "HideProgressBar();", true);
+            DataTable dt = (DataTable)Session["SourceTable"];
+
+            #region 建立欄位
+            DataTable dt_Output = new DataTable();
+            dt_Output.Columns.Add("倉別", typeof(string));
+            dt_Output.Columns.Add("供應商", typeof(string));
+            dt_Output.Columns.Add("驗收日期", typeof(string));
+            dt_Output.Columns.Add("退廠日期", typeof(string));
+            dt_Output.Columns.Add("退廠單號", typeof(string));
+            dt_Output.Columns.Add("計費類別", typeof(string));
+            dt_Output.Columns.Add("退廠箱號", typeof(string));
+            dt_Output.Columns.Add("貨號", typeof(string));
+            dt_Output.Columns.Add("品名規格", typeof(string));
+            dt_Output.Columns.Add("退廠量", typeof(string));
+            dt_Output.Columns.Add("計費量", typeof(string));
+            #endregion
+
+            #region 填入資料 by Row
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                dt_Output.Rows.Add(new object[] {
+                    dr["site_no"]
+                    ,dr["vendor_no"]
+                    ,((DateTime)dr["rec_date"]).ToString("yyyy/MM/dd")
+                    ,((DateTime)dr["back_date"]).ToString("yyyy/MM/dd")
+                    ,dr["back_id"]
+                    ,dr["kind"]
+                    ,dr["boxid"]
+                    ,dr["item_id"]
+                    ,dr["name"]
+                    ,dr["qty"]
+                    ,dr["qty_real"]
+                });
+            }
+            #endregion
+            Session["AssignList"] = dt_Output;
+            string Path = "3PL_download.aspx?TableName=AssignList&FileName=逆物流費用";
+            ((_3PLMasterPage)Master).ShowURL(Path,"download");
+            btn_OutputExcel.Enabled = true;
+        }
+
+        #region 設定濾除
+        protected void Btn_ShowSetting_Click(object sender, EventArgs e)
+        {
+            dialog_Settings.Style.Add("display", "inline");
+        }
+        protected void Btn_CloseSetting_Click(object sender, EventArgs e)
+        {
+            dialog_Settings.Style.Add("display", "none");
+        }
+        #endregion
     }
 }

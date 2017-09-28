@@ -57,8 +57,7 @@ namespace _3PL_System
             Session["AssignList"] = dt1;
 
             string Path = "3PL_download.aspx?TableName=AssignList&FileName=投貨收現明細";
-            Path = "window.open('" + Path + "','作業對象')";
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", Path, true);
+            ((_3PLMasterPage)Master).ShowURL(Path, "download");
 
             btn_Output_Quotation.Enabled = true;
         }
@@ -78,8 +77,7 @@ namespace _3PL_System
             Session["AssignList"] = dt1;
 
             string Path = "3PL_download.aspx?TableName=AssignList&FileName=投貨收現總表";
-            Path = "window.open('" + Path + "','作業對象')";
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", Path, true);
+            ((_3PLMasterPage)Master).ShowURL(Path, "download");
 
             btn_Output_Assign.Enabled = true;
         }

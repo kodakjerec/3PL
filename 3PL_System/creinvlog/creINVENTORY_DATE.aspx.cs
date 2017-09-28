@@ -344,8 +344,7 @@ namespace _3PL_System.creinvlog
             Session["AssignList"] = dt1;
 
             string Path = "../3PL_download.aspx?TableName=AssignList&FileName=廠商盤點資料";
-            Path = "window.open('" + Path + "','作業對象')";
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", Path, true);
+            ((_3PLMasterPage)Master).ShowURL(Path, "download");
         }
         #endregion
     }

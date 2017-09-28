@@ -12,6 +12,23 @@
     <title>逆物流費用設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="dialog_Settings" class="myDIV" runat="server">
+        <div class="myBackDIV">
+            <div class="myMainSubject">
+                <asp:Button ID="btn_close_dialog_Settings" runat="server" class="btn btn-default btn-block" Text="儲存並關閉" OnClick="Btn_CloseSetting_Click" />
+                <div class="input-group">
+                    <span class="input-group-addon">廠商編號</span>
+                    <input id="txb_Settings_SupNo" type="text" class="form-control" name="msg" placeholder="請輸入廠商編號">
+                    (請用","分隔，例如：0888,0123)
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">貨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;號</span>
+                    <input id="txb_Settings_ItemNo" type="text" class="form-control" name="msg" placeholder="請輸入貨號">
+                    (請用","分隔，例如：20310392,20310781)
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="tborder" style="width: 100%">
         <tr>
             <td class="PageTitle">
@@ -38,7 +55,7 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txb_Query_vendor_no" runat="server"></asp:TextBox>
-                    </td>
+                </td>
                 <td>
                     <asp:Button ID="Btn_Query_vendor_no" runat="server" Text="選擇對象" OnClick="Btn_Query_vendor_no_Click" />
                 </td>
@@ -85,7 +102,10 @@
             </tr>
             <tr>
                 <td>
-                    <asp:Button ID="Button1" runat="server" Text="查詢" OnClick="Btn_Query_Click" />
+                    <asp:Button ID="Btn_Query" runat="server" Text="查詢" OnClick="Btn_Query_Click" />
+                </td>
+                <td>
+                    <asp:Button ID="Btn_ShowSetting" runat="server" Text="設定濾除" OnClick="Btn_ShowSetting_Click" />
                 </td>
             </tr>
         </table>
@@ -93,7 +113,7 @@
         <asp:Label ID="lbl_CloseDate" runat="server" Style="color: red"></asp:Label>
         之前的資料
     </asp:Panel>
-    <div id="div_Content" runat="server" visible="false">
+    <div id="div_Content" runat="server">
         <table class="tborder" style="width: 100%">
             <tr>
                 <asp:GridView ID="GV_BaseAccounting" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -171,6 +191,6 @@
             </tr>
         </table>
         <asp:Button ID="btn_CloseDateConfirm" runat="server" Text="更新本頁資訊" OnClick="btn_CloseDateConfirm_Click" />
+        <asp:Button ID="btn_OutputExcel" runat="server" Text="匯出EXCEL" OnClick="btn_OutputExcel_Click" />
     </div>
-    <asp:Label ID="Message" runat="server"></asp:Label>
 </asp:Content>

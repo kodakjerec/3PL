@@ -109,6 +109,7 @@ namespace _3PL_System
             if (e.CommandName != "Page")
             {
                 GridViewRow row = ((GridViewRow)((WebControl)(e.CommandSource)).NamingContainer);
+                row.Enabled = false;
                 string I_qthe_PLNO = ((LinkButton)row.Cells[1].FindControl("Lbl_I_qthe_PLNO")).Text;
                 if (e.CommandName == "Select_I_qthe_PLNO")
                     I_qthe_PLNO_Select_Action(I_qthe_PLNO);
@@ -118,6 +119,7 @@ namespace _3PL_System
                     Btn_SignOffOk_Click(I_qthe_PLNO);
                 else if (e.CommandName == "SignOffCancel")
                     Btn_SignOffCancel_Click(I_qthe_PLNO);
+                row.Enabled = true;
             }
 
         }

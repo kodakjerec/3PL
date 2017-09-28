@@ -19,9 +19,13 @@ namespace _3PL_System
                 ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert('路徑錯誤');", true);
                 return;
             }
+            if (Session[Request["TableName"]] == null) {
+                return;
+            }
             string TableName = Request["TableName"],
                     FileName = Request["FileName"];
             DataTable dt1 = (DataTable)Session[Request["TableName"]];
+            Session[Request["TableName"]] = null;
             crExcel.CrWebEx(dt1, FileName, FileName);
         }
     }

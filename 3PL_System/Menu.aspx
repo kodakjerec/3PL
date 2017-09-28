@@ -6,14 +6,14 @@
             $('iframe').css('height', $(window).height() - $('nav').height());
 
             $('#dialog_alarm').dialog({
-                height: 600,
-                width: 500,
+                height: $(window).height() * 0.8,
+                width: $(window).width() * 0.8,
                 title: '未完成單據'
             });
             $('#dialog_Settings').dialog({
                 autoOpen: false,
-                height: 600,
-                width: 500,
+                height: $(window).height()*0.8,
+                width: $(window).width()*0.8,
                 title: '網頁設定'
             });
 

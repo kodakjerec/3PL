@@ -13,6 +13,24 @@ namespace _3PL_System {
     public partial class _3PL_Other_edi_retn_price {
         
         /// <summary>
+        /// dialog_Settings 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dialog_Settings;
+        
+        /// <summary>
+        /// btn_close_dialog_Settings 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_close_dialog_Settings;
+        
+        /// <summary>
         /// lbl_Quotation 控制項。
         /// </summary>
         /// <remarks>
@@ -121,13 +139,22 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox txb_Query_boxid;
         
         /// <summary>
-        /// Button1 控制項。
+        /// Btn_Query 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Btn_Query;
+        
+        /// <summary>
+        /// Btn_ShowSetting 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_ShowSetting;
         
         /// <summary>
         /// lbl_CloseDate 控制項。
@@ -166,12 +193,12 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.Button btn_CloseDateConfirm;
         
         /// <summary>
-        /// Message 控制項。
+        /// btn_OutputExcel 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Message;
+        protected global::System.Web.UI.WebControls.Button btn_OutputExcel;
     }
 }

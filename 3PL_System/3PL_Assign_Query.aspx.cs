@@ -222,9 +222,8 @@ namespace _3PL_System
             if (e.CommandName != "Page")
             {
                 GridViewRow row = ((GridViewRow)((WebControl)(e.CommandSource)).NamingContainer);
+
                 string I_qthe_PLNO = ((LinkButton)row.Cells[1].FindControl("Lbl_I_qthe_PLNO")).Text;
-                //if (e.CommandName == "Select_I_qthe_PLNO")
-                //    I_qthe_PLNO_Select_Action(I_qthe_PLNO);
                 if (e.CommandName == "StatusName")
                     StatusName_Select(I_qthe_PLNO);
                 else if (e.CommandName == "SignOffOk")
@@ -393,7 +392,12 @@ namespace _3PL_System
             #endregion
 
             //需每關做簽核
-            _3PLSignOff.SignOff_Quotation(Login_Server, UI.UserID, UI.UserName, true, dr["status"].ToString(), PLNO, "2");
+            int SuccessCount = _3PLSignOff.SignOff_Quotation(Login_Server, UI.UserID, UI.UserName, true, dr["status"].ToString(), PLNO, "2");
+            if (SuccessCount <= 0)
+            {
+                ((_3PLMasterPage)Master).ShowMessage("簽核執行失敗");
+                return;
+            }
 
             ((_3PLMasterPage)Master).ShowMessage("簽核執行完成");
             

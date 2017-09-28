@@ -311,6 +311,15 @@ namespace _3PL_DAO
             PreviousStatus = dt_Status.Rows[0][1].ToString();
             MaxStatus = dt_Status.Rows[0][2].ToString();
 
+            #region 錯誤處理
+            //有時候會連點簽核, 避免重複簽核犯錯
+            if (FutureStatus.Equals(string.Empty) 
+                || PreviousStatus.Equals(string.Empty) 
+                || MaxStatus.Equals(string.Empty)) {
+                return 0;
+            }
+            #endregion
+
             try
             {
 

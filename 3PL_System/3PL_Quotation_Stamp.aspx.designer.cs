@@ -346,24 +346,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl xtable1;
         
         /// <summary>
-        /// lbl_TypeFee 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeFee;
-        
-        /// <summary>
-        /// lbl_ObjNo 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ObjNo;
-        
-        /// <summary>
         /// txb_ObjNo 控制項。
         /// </summary>
         /// <remarks>
@@ -371,15 +353,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txb_ObjNo;
-        
-        /// <summary>
-        /// Label12 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
         /// txb_Status 控制項。
@@ -398,15 +371,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txb_StatusName;
-        
-        /// <summary>
-        /// lbl_ObjName 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ObjName;
         
         /// <summary>
         /// txb_ObjName 控制項。

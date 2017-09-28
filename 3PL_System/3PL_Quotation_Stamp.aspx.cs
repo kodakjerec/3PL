@@ -126,6 +126,23 @@ namespace _3PL_System
             GVBindDetail();
         }
 
+        protected void GV_Quotation_Query_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string StampDate = ((Button)e.Row.FindControl("Btn_StampDate")).Text;
+                //有日期, 顯示有日期的按鈕
+                if (StampDate.Equals(string.Empty))
+                {
+                    ((Button)e.Row.FindControl("Btn_StampDate")).Visible = false;
+                    ((Button)e.Row.FindControl("Btn_Stamp")).Visible = true;
+                }
+                else {
+                    ((Button)e.Row.FindControl("Btn_StampDate")).Visible = true;
+                    ((Button)e.Row.FindControl("Btn_Stamp")).Visible = false;
+                }
+            }
+        }
         #endregion
 
         #region 綁定

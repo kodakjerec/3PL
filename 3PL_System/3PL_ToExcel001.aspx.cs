@@ -58,8 +58,7 @@ namespace _3PL_System
             Session["AssignList"] = dt1;
 
             string Path = "3PL_download.aspx?TableName=AssignList&FileName=報價單明細";
-            Path = "window.open('" + Path + "','作業對象')";
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", Path, true);
+            ((_3PLMasterPage)Master).ShowURL(Path, "download");
 
             btn_Output_Quotation.Enabled = true;
         }
@@ -81,8 +80,7 @@ namespace _3PL_System
             Session["AssignList"] = dt1;
 
             string Path = "3PL_download.aspx?TableName=AssignList&FileName=派工單明細";
-            Path = "window.open('" + Path + "','作業對象')";
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", Path, true);
+            ((_3PLMasterPage)Master).ShowURL(Path, "download");
 
             btn_Output_Assign.Enabled = true;
         }
@@ -104,8 +102,7 @@ namespace _3PL_System
             Session["AssignList"] = dt1;
 
             string Path = "3PL_download.aspx?TableName=AssignList&FileName=成本及收入明細表";
-            Path = "window.open('" + Path + "','作業對象')";
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", Path, true);
+            ((_3PLMasterPage)Master).ShowURL(Path, "download");
 
             btn_CostIncome.Enabled = true;
         }

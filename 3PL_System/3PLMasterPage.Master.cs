@@ -86,6 +86,15 @@ namespace _3PL_System
             UpdPanel_Message.Update();
             Timer1.Enabled = true;
         }
+        public void ShowURL(string Path, string Mode)
+        {
+            switch (Mode.ToLower()) {
+                case "download":
+                    frame_MessageBox.Attributes["src"] = Path;
+                    UpdPanel_Message.Update();
+                    break;
+            }
+        }
         #endregion
 
         #region message_Message

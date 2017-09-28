@@ -15,7 +15,7 @@
         </table>
         <asp:UpdatePanel ID="UpdPanel_Assign_HeadList" runat="server" UpdateMode="Always">
             <ContentTemplate>
-                <table class="tborder" align="center">
+                <table class="tborder" style="width:100%">
                     <tr>
                         <td>
                             <asp:Label ID="Label1" runat="server" Text="未完成報價單" ForeColor="Blue"></asp:Label>
