@@ -2,9 +2,9 @@
     Inherits="_3PL_System._3PL_Other_edi_retn_price" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <script type="text/javascript">
-         $(document).ready(function () {
-             $("#<%=txb_Bill_date.ClientID %>").datepicker({ dateFormat: 'yymm' });
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#<%=txb_Bill_date.ClientID %>").datepicker({ dateFormat: 'yymm' });
             $("#<%=txb_back_date_S.ClientID %>").datepicker({ dateFormat: 'yy/mm/dd' });
             $("#<%=txb_back_date_E.ClientID %>").datepicker({ dateFormat: 'yy/mm/dd' });
         });
@@ -12,7 +12,7 @@
     <title>逆物流費用設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" style="width:100%">
+    <table class="tborder" style="width: 100%">
         <tr>
             <td class="PageTitle">
                 <asp:Label ID="lbl_Quotation" runat="server" Text="逆物流費用設定"></asp:Label>
@@ -38,6 +38,8 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txb_Query_vendor_no" runat="server"></asp:TextBox>
+                    </td>
+                <td>
                     <asp:Button ID="Btn_Query_vendor_no" runat="server" Text="選擇對象" OnClick="Btn_Query_vendor_no_Click" />
                 </td>
             </tr>
@@ -49,12 +51,23 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-             <tr>
+            <tr>
+                <td class="EditTD1">計費類別：
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddl_Query_Kind" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
                 <td class="EditTD1">退廠日期：
                 </td>
                 <td>
                     <asp:TextBox ID="txb_back_date_S" runat="server" />
-                    至
+                </td>
+                <td>至
+                </td>
+                <td>
                     <asp:TextBox ID="txb_back_date_E" runat="server" />
                 </td>
             </tr>
@@ -64,8 +77,6 @@
                 <td>
                     <asp:TextBox ID="txb_Query_back_id" runat="server"></asp:TextBox>
                 </td>
-            </tr>
-            <tr>
                 <td class="EditTD1">退廠箱號：
                 </td>
                 <td>
@@ -83,12 +94,12 @@
         之前的資料
     </asp:Panel>
     <div id="div_Content" runat="server" visible="false">
-        <table class="tborder" style="width:100%">
+        <table class="tborder" style="width: 100%">
             <tr>
                 <asp:GridView ID="GV_BaseAccounting" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                     CssClass="GVStyle" OnPageIndexChanging="GV_BaseAccounting_PageIndexChanging"
                     AllowSorting="True"
-                    Width="100%" PageSize="20" OnRowDataBound="GV_BaseAccounting_RowDataBound">
+                    Width="100%" PageSize="50" OnRowDataBound="GV_BaseAccounting_RowDataBound">
                     <HeaderStyle CssClass="GVHead" />
                     <RowStyle CssClass="one" />
                     <PagerStyle CssClass="GVPage" />
@@ -104,7 +115,7 @@
                                 <asp:Label ID="lbl_Siteno" runat="server" Text='<%# Bind("site_no") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="供應商代碼">
+                        <asp:TemplateField HeaderText="供應商">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_vendor_no" runat="server" Text='<%# Bind("vendor_no") %>'></asp:Label>
                             </ItemTemplate>
@@ -153,11 +164,6 @@
                         <asp:TemplateField HeaderText="計費量">
                             <ItemTemplate>
                                 <asp:TextBox ID="txb_qty_real" runat="server" Text='<%# Bind("qty_real") %>' Width="100px" OnTextChanged="txb_qty_real_TextChanged"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="售價">
-                            <ItemTemplate>
-                                <asp:Label ID="lbl_price" runat="server" Text='<%# Bind("price") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

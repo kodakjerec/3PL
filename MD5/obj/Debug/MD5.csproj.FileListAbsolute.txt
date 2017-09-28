@@ -22,4 +22,3 @@ F:\Projects\AspDotnet\3PL\MD5\bin\Debug\MD5.dll
 F:\Projects\AspDotnet\3PL\MD5\bin\Debug\MD5.pdb
 F:\Projects\AspDotnet\3PL\MD5\obj\Debug\MD5.dll
 F:\Projects\AspDotnet\3PL\MD5\obj\Debug\MD5.pdb
-F:\Projects\AspDotnet\3PL\MD5\obj\Debug\MD5.csprojResolveAssemblyReference.cache

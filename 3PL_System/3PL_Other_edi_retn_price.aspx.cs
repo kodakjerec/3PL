@@ -16,13 +16,17 @@ namespace _3PL_System
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((_3PLMasterPage)Master).SessionCheck(ref UI);
+            ((_3PLMasterPage)Master).SessionCheck(ref UI,0);
 
             if (!IsPostBack)
             {
                 lbl_CloseDate.Text = _3PLCQ.Addon_GetCloseData();
-                txb_back_date_S.Text = lbl_CloseDate.Text;
+                txb_back_date_S.Text = DateTime.Parse(lbl_CloseDate.Text).AddMonths(-1).ToString("yyyy/MM/dd");
+                //倉別
                 CB.DropDownListBind(ref ddl_Query_site_no, _3PLOtherEdiRetnPrice.SiteNoList(), "Value", "Name", "ALL", "");
+                //計費類別
+                CB.DropDownListBind(ref ddl_Query_Kind, _3PLOtherEdiRetnPrice.KindList(), "Value", "Name","ALL","");
+
             }
         }
 
@@ -40,7 +44,8 @@ namespace _3PL_System
                 , txb_Query_boxid.Text
                 , txb_back_date_S.Text
                 , txb_back_date_E.Text
-                , txb_Bill_date.Text);
+                , txb_Bill_date.Text
+                , ddl_Query_Kind.SelectedValue);
             div_Content.Visible = true;
             GVBind();
         }

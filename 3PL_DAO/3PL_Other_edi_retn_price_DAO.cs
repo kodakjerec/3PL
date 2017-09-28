@@ -24,12 +24,13 @@ namespace _3PL_DAO
             , string boxid
             , string back_date_S
             , string back_date_E
-            , string Bill_date)
+            , string Bill_date
+            , string Kind)
         {
             DataTable dt = new DataTable();
 
             string Sql_cmd =
-            @"select TOP 100
+            @"select TOP 500
                 edi_retn_price.*,[UIStatus]='Unchanged'
             from edi_retn_price with(nolock)
             where 1=1 ";
@@ -67,6 +68,11 @@ namespace _3PL_DAO
             {
                 Sql_cmd += " and Bill_date=@Bill_date";
                 ht1.Add("@Bill_date", Bill_date);
+            }
+            if (Kind != "")
+            {
+                Sql_cmd += " and kind=@Kind";
+                ht1.Add("@Kind", Kind);
             }
 
             Sql_cmd += " order by back_date DESC, site_no, vendor_no, back_id DESC, boxid, item_id";
