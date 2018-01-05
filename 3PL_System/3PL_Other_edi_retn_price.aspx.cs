@@ -16,19 +16,17 @@ namespace _3PL_System
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((_3PLMasterPage)Master).SessionCheck(ref UI, 0);
+            ((_3PLMasterPage)Master).SessionCheck(ref UI);
 
             if (!IsPostBack)
             {
                 div_Content.Visible = false;
-                lbl_CloseDate.Text = _3PLCQ.Addon_GetCloseData();
 
-                txb_back_date_S.Text = DateTime.Parse(lbl_CloseDate.Text).AddDays(-7).ToString("yyyy/MM/dd");
+                txb_back_date_S.Text = DateTime.Now.AddMonths(-1).ToString("yyyy/MM/dd");
                 //倉別
                 CB.DropDownListBind(ref ddl_Query_site_no, _3PLOtherEdiRetnPrice.SiteNoList(), "Value", "Name", "ALL", "");
                 //計費類別
-                CB.DropDownListBind(ref ddl_Query_Kind, _3PLOtherEdiRetnPrice.KindList(), "Value", "Name", "ALL", "");
-
+                CB.DropDownListBind(ref ddl_Query_Kind, _3PLOtherEdiRetnPrice.kind_list(), "Value", "Name", "ALL", "");
             }
         }
 
@@ -78,33 +76,76 @@ namespace _3PL_System
         /// <param name="e"></param>
         protected void GV_BaseAccounting_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            DropDownList ddl_kind_obj;
+            DropDownList ddl_kind_obj, ddl_charge_kind_obj;
             TextBox txb_qty_real_obj;
-            string myCloseDate = _3PLCQ.Addon_GetCloseData();
+
+            DataTable dt_kind = _3PLOtherEdiRetnPrice.kind_list();
+            DataTable dt_charge_kind = _3PLOtherEdiRetnPrice.charge_kind_List();
+
+            string back_date = "";
+            string lock_date = "";
+            string source_charge_kind = "";
+            string source_kind = "";
+            DataRow dr_charge_kind, dr_kind;
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string back_date = ((Label)e.Row.FindControl("lbl_back_date")).Text;
+                back_date = ((Label)e.Row.FindControl("lbl_back_date")).Text;
+                lock_date = ((Label)e.Row.FindControl("lbl_lock_date")).Text;
+                source_charge_kind = ((HiddenField)e.Row.FindControl("hid_charge_kind")).Value;
+                source_kind = ((HiddenField)e.Row.FindControl("hid_kind")).Value;
+
                 ddl_kind_obj = (DropDownList)e.Row.FindControl("ddl_kind");
+                ddl_charge_kind_obj = (DropDownList)e.Row.FindControl("ddl_charge_kind");
                 txb_qty_real_obj = (TextBox)e.Row.FindControl("txb_qty_real");
 
                 //用FindControl(你的DropDownList的ID)，來找我們的DropDownList，記得要轉型喔!
-                CB.DropDownListBind(ref ddl_kind_obj, _3PLOtherEdiRetnPrice.KindList(), "Value", "Name");
+                //帶出大類
+                CB.DropDownListBind(ref ddl_charge_kind_obj, dt_charge_kind, "Value", "Name", "", "");
+                if (source_charge_kind != string.Empty)
+                {
+                    try
+                    {
+                        dr_charge_kind = dt_charge_kind.Select("Name='" + source_charge_kind + "'")[0];
+                        ddl_charge_kind_obj.SelectedIndex = dt_charge_kind.Rows.IndexOf(dr_charge_kind) + 1;
+                    }
+                    catch
+                    {
+                        ddl_charge_kind_obj.SelectedIndex = 0;
+                    }
+                }
+
+                //帶出細類
+                dt_kind = dt_kind.Select("kind=" + ddl_charge_kind_obj.SelectedValue).CopyToDataTable();
+                CB.DropDownListBind(ref ddl_kind_obj, dt_kind, "Value", "Name", "", "");
+                if (source_kind != string.Empty)
+                {
+                    try
+                    {
+                        dr_kind = dt_kind.Select("Name='" + source_kind + "'")[0];
+                        ddl_kind_obj.SelectedIndex = dt_kind.Rows.IndexOf(dr_kind) + 1;
+                    }
+                    catch
+                    {
+                        ddl_kind_obj.SelectedIndex = 0;
+                    }
+                }
 
                 DataRowView dr = e.Row.DataItem as DataRowView;
                 ddl_kind_obj.SelectedValue = dr["kind"].ToString();
 
                 //小於關帳日
-                if (DateTime.Compare(DateTime.Parse(back_date), DateTime.Parse(myCloseDate)) < 0)
+                if (lock_date != string.Empty)
                 {
                     ddl_kind_obj.Enabled = false;
+                    ddl_charge_kind_obj.Enabled = false;
                     txb_qty_real_obj.Enabled = false;
                 }
             }
         }
 
         /// <summary>
-        /// 下拉是選單變更
+        /// 細類-下拉選單變更
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -113,6 +154,18 @@ namespace _3PL_System
             int RowIndex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
             DataTable dt = (DataTable)Session["SourceTable"];
             dt.Rows[RowIndex]["kind"] = ((DropDownList)sender).SelectedValue;
+            dt.Rows[RowIndex]["UIStatus"] = "Modified";
+        }
+        /// <summary>
+        /// 大類-下拉選單變更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddl_charge_kind_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int RowIndex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
+            DataTable dt = (DataTable)Session["SourceTable"];
+            dt.Rows[RowIndex]["charge_kind"] = ((DropDownList)sender).Text;
             dt.Rows[RowIndex]["UIStatus"] = "Modified";
         }
 
@@ -200,18 +253,14 @@ namespace _3PL_System
             #endregion
             Session["AssignList"] = dt_Output;
             string Path = "3PL_download.aspx?TableName=AssignList&FileName=逆物流費用";
-            ((_3PLMasterPage)Master).ShowURL(Path,"download");
+            ((_3PLMasterPage)Master).ShowURL(Path, "download");
             btn_OutputExcel.Enabled = true;
         }
 
         #region 設定濾除
         protected void Btn_ShowSetting_Click(object sender, EventArgs e)
         {
-            dialog_Settings.Style.Add("display", "inline");
-        }
-        protected void Btn_CloseSetting_Click(object sender, EventArgs e)
-        {
-            dialog_Settings.Style.Add("display", "none");
+            ((_3PLMasterPage)Master).ShowURL("3PL_Other_edi_retn_price_Settings.aspx");
         }
         #endregion
     }

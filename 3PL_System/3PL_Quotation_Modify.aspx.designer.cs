@@ -13,15 +13,6 @@ namespace _3PL_System {
     public partial class _3PL_Quotation_Modify {
         
         /// <summary>
-        /// lbl_Quotation 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Quotation;
-        
-        /// <summary>
         /// lbl_Quotation_Query 控制項。
         /// </summary>
         /// <remarks>
@@ -49,15 +40,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox Txb_S_qthe_PLNO;
         
         /// <summary>
-        /// Label2 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
         /// Txb_S_qthe_SupdId_New 控制項。
         /// </summary>
         /// <remarks>
@@ -83,15 +65,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_S_qthe_SupdId_New;
-        
-        /// <summary>
-        /// Label3 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// CheckBoxList_Quotation 控制項。
@@ -130,15 +103,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox txb_S_qthe_FAX;
         
         /// <summary>
-        /// Label5 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
         /// Txb_D_qthe_ContractS 控制項。
         /// </summary>
         /// <remarks>
@@ -146,15 +110,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Txb_D_qthe_ContractS;
-        
-        /// <summary>
-        /// Label4 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
         /// Txb_D_qthe_ContractE 控制項。
@@ -229,15 +184,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.GridView GV_Quotation_Detail_New;
         
         /// <summary>
-        /// lbl_TypeIdIm 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm;
-        
-        /// <summary>
         /// ddl_TypeId 控制項。
         /// </summary>
         /// <remarks>
@@ -247,15 +193,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.DropDownList ddl_TypeId;
         
         /// <summary>
-        /// Lbl_bcseseqIm 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_bcseseqIm;
-        
-        /// <summary>
         /// DDL_bcseseq 控制項。
         /// </summary>
         /// <remarks>
@@ -263,15 +200,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDL_bcseseq;
-        
-        /// <summary>
-        /// Lbl_PriceIm 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_PriceIm;
         
         /// <summary>
         /// Txb_Price 控制項。
@@ -301,22 +229,13 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.Label Lbl_Unit2;
         
         /// <summary>
-        /// Txb_PriceMemo 控制項。
+        /// ddl_HaveMinimum 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Txb_PriceMemo;
-        
-        /// <summary>
-        /// Chk_IsBaseCost 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Chk_IsBaseCost;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_HaveMinimum;
         
         /// <summary>
         /// Txb_Memo 控制項。
@@ -355,13 +274,13 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.Button Btn_Detail_Upd;
         
         /// <summary>
-        /// Btn_Detail_Del 控制項。
+        /// Btn_Detail_Upd_Cancel 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Detail_Del;
+        protected global::System.Web.UI.WebControls.Button Btn_Detail_Upd_Cancel;
         
         /// <summary>
         /// hidTotal_I_qthe_seq 控制項。

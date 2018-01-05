@@ -30,7 +30,7 @@
                 帳號：
             </td>
             <td>
-                <asp:TextBox ID="tbx_Account" Width="100px" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbx_Account" Width="100px" runat="server" autocomplete="on"></asp:TextBox>
             </td>
         </tr>
         <tr>

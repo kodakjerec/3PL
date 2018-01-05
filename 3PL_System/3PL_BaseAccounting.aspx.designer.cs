@@ -13,13 +13,13 @@ namespace _3PL_System {
     public partial class _3PL_BaseAccounting {
         
         /// <summary>
-        /// lbl_BaseAccounting 控制項。
+        /// UpdPanel_Assign_HeadList 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_BaseAccounting;
+        protected global::System.Web.UI.UpdatePanel UpdPanel_Assign_HeadList;
         
         /// <summary>
         /// GV_BaseAccounting 控制項。

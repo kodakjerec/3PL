@@ -73,7 +73,7 @@ namespace _3PL_DAO
                                 From EmpInf E with(nolock)
                                 Join EmpClass EC with(nolock) On EC.WorkId=E.WorkId
                                 Join ClassInf C with(nolock) On C.ClassId=EC.ClassId
-                                Where E.DelStatus='0' and C.ClassId != '000000' ";
+                                Where E.DelStatus='0' ";
 
                 if (strId.Length > 0)
                 {
@@ -114,7 +114,7 @@ namespace _3PL_DAO
             DB_IO IO = new DB_IO();
             try
             {
-                string SqlCom = @"Select EI.WorkId,EI.WorkName,CI.ClassId,CI.ClassName,RI.RoleId,RI.RoleNm,CR.DC,WI.DCNm 
+                string SqlCom = @"Select EI.WorkId, EI.WorkName, CI.ClassId, CI.ClassName, RI.RoleId, RI.RoleNm, CR.DC, WI.DCNm 
                                     From EmpInf EI with(nolock)
                                     Left Join EmpClass EC with(nolock) On EC.WorkId=EI.WorkId
                                     Left Join ClassInf CI with(nolock) On CI.ClassId=EC.ClassId
@@ -217,8 +217,7 @@ namespace _3PL_DAO
             try
             {
                 string SqlCom = @" Select ClassId,ClassName 
-                                    From ClassInf with(nolock)
-                                    Where  ClassId != '000000' ";
+                                    From ClassInf with(nolock) ";
 
                 if (ClassId.Length > 0)
                 {
@@ -251,7 +250,7 @@ namespace _3PL_DAO
             {
                 string SqlCom = @" Select Top 1 ClassId ClassId,ClassName 
                                     From ClassInf with(nolock)
-                                    Where  ClassId != '000000' Order by ClassId Desc ";
+                                    Order by ClassId Desc ";
                 ds = IO.SqlQuery(DB, SqlCom, hs);
             }
             catch
@@ -276,8 +275,7 @@ namespace _3PL_DAO
                                 From ClassInf  CI with(nolock)
                                 Inner Join ClassRole CR with(nolock) On CR.ClassId=CI.ClassId
                                 Inner Join RoleInf RI with(nolock) On RI.RoleId= CR.RoleId
-                                Inner Join WareInf WI with(nolock) On WI.DC=CR.DC
-                                Where CI.ClassId != '000000' ";
+                                Inner Join WareInf WI with(nolock) On WI.DC=CR.DC ";
                 if (ClassId.Length>0)
                 {
                     SqlCom += " And CI.ClassId= @ClassId ";

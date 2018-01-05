@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -18,6 +19,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,6 +70,7 @@
     <Content Include="3PL_BaseCostSetSelect.aspx" />
     <Content Include="3PL_BaseCost_Modify.aspx" />
     <Content Include="3PL_Adjust_Modify.aspx" />
+    <Content Include="3PL_Other_edi_retn_price_Settings.aspx" />
     <Content Include="3PL_RoleInf_Edit.aspx" />
     <Content Include="3PL_BaseData.aspx" />
     <Content Include="3PL_download.aspx" />
@@ -75,12 +78,12 @@
     <Content Include="3PL_Quotation_Modify.aspx" />
     <Content Include="3PL_Other_edi_retn_price.aspx" />
     <Content Include="3PL_SupdSelect.aspx" />
-    <Content Include="3PL_ToExcel001.aspx" />
     <Content Include="AlartRp.aspx" />
     <Content Include="ChangePass.aspx" />
     <Content Include="ClassItem.aspx" />
     <Content Include="creinvlog\Main.aspx" />
     <Content Include="CSS\3PL_Quotation_Print.css" />
+    <Content Include="CSS\Style.jqGrid.css" />
     <Content Include="CSS\Style.css" />
     <Content Include="EmpItem.aspx" />
     <Content Include="EmpList.aspx" />
@@ -96,6 +99,130 @@
     <Content Include="js\bootstrap-3.3.7-dist\js\bootstrap.js" />
     <Content Include="js\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
     <Content Include="js\bootstrap-3.3.7-dist\js\npm.js" />
+    <Content Include="js\_3PL_DAO\CommonLib\CommonLib.js" />
+    <Content Include="js\CommonLoader.js" />
+    <Content Include="js\FileSaver.js" />
+    <Content Include="js\jqGrid\css\ui.jqgrid-bootstrap-ui.css" />
+    <Content Include="js\jqGrid\css\ui.jqgrid-bootstrap.css" />
+    <Content Include="js\jqGrid\css\ui.jqgrid.css" />
+    <Content Include="js\jqGrid\js\Changes.txt" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-ar.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-bg.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-ca.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-cn.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-cs.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-de.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-dk.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-el.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-en.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-es.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-fa.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-fi.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-fr.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-gl.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-he.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-hr.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-hu.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-id.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-is.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-it.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-ja.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-kr.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-lt.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-me.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-nl.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-no.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-pl.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-pt-br.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-pt.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-ro.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-ru.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-sk.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-sq.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-sr-latin.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-sr.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-sv.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-th.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-tr.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-tw.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-uk.js" />
+    <Content Include="js\jqGrid\js\i18n\grid.locale-vi.js" />
+    <Content Include="js\jqGrid\js\install.txt" />
+    <Content Include="js\jqGrid\js\jquery-1.11.0.min.js" />
+    <Content Include="js\jqGrid\js\jquery.jqGrid.min.js" />
+    <Content Include="js\jqGrid\plugins\grid.addons.js" />
+    <Content Include="js\jqGrid\plugins\grid.postext.js" />
+    <Content Include="js\jqGrid\plugins\grid.setcolumns.js" />
+    <Content Include="js\jqGrid\plugins\jquery.contextmenu.js" />
+    <Content Include="js\jqGrid\plugins\jquery.searchFilter.js" />
+    <Content Include="js\jqGrid\plugins\jquery.tablednd.js" />
+    <Content Include="js\jqGrid\plugins\searchFilter.css" />
+    <Content Include="js\jqGrid\plugins\ui.multiselect.css" />
+    <Content Include="js\jqGrid\plugins\ui.multiselect.js" />
+    <Content Include="js\jqGrid\src\css\ui.jqgrid-bootstrap-ui.css" />
+    <Content Include="js\jqGrid\src\css\ui.jqgrid-bootstrap.css" />
+    <Content Include="js\jqGrid\src\css\ui.jqgrid.css" />
+    <Content Include="js\jqGrid\src\css\ui.multiselect.css" />
+    <Content Include="js\jqGrid\src\grid.base.js" />
+    <Content Include="js\jqGrid\src\grid.celledit.js" />
+    <Content Include="js\jqGrid\src\grid.common.js" />
+    <Content Include="js\jqGrid\src\grid.export.js" />
+    <Content Include="js\jqGrid\src\grid.filter.js" />
+    <Content Include="js\jqGrid\src\grid.formedit.js" />
+    <Content Include="js\jqGrid\src\grid.grouping.js" />
+    <Content Include="js\jqGrid\src\grid.import.js" />
+    <Content Include="js\jqGrid\src\grid.inlinedit.js" />
+    <Content Include="js\jqGrid\src\grid.jqueryui.js" />
+    <Content Include="js\jqGrid\src\grid.pivot.js" />
+    <Content Include="js\jqGrid\src\grid.subgrid.js" />
+    <Content Include="js\jqGrid\src\grid.treegrid.js" />
+    <Content Include="js\jqGrid\src\grid.utils.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-ar.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-bg.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-ca.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-cn.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-cs.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-de.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-dk.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-el.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-en.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-es.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-fa.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-fi.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-fr.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-gl.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-he.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-hr.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-hu.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-id.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-is.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-it.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-ja.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-kr.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-lt.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-me.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-nl.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-no.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-pl.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-pt-br.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-pt.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-ro.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-ru.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-sk.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-sq.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-sr-latin.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-sr.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-sv.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-th.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-tr.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-tw.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-uk.js" />
+    <Content Include="js\jqGrid\src\i18n\grid.locale-vi.js" />
+    <Content Include="js\jqGrid\src\jqDnR.js" />
+    <Content Include="js\jqGrid\src\jqModal.js" />
+    <Content Include="js\jqGrid\src\jquery.fmatter.js" />
+    <Content Include="js\jqGrid\src\jquery.jqGrid.js" />
+    <Content Include="js\jqGrid\src\jquery.sortable.js" />
     <Content Include="js\jquery-ui-1.12.1\AUTHORS.txt" />
     <Content Include="js\jquery-ui-1.12.1\external\jquery\jquery.js" />
     <Content Include="js\jquery-ui-1.12.1\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -120,16 +247,36 @@
     <Content Include="js\jquery-ui-1.12.1\jquery-ui.theme.css" />
     <Content Include="js\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
     <Content Include="js\jquery-ui-1.12.1\LICENSE.txt" />
+    <Content Include="js\jquery.session.js" />
+    <Content Include="js\js.cookie.js" />
+    <Content Include="js\_3PL_DAO\CommonLib\CommonQuery.js" />
     <Content Include="LogIn.aspx" />
     <Content Include="Mark.JPG" />
     <Content Include="Menu.aspx" />
     <Content Include="3PL_Assign_New.aspx" />
+    <Content Include="Other\EDI_Retn_Price\EDI_Retn_Price.aspx" />
+    <Content Include="Other\EDI_Retn_Price\EDI_Retn_Price.css" />
+    <Content Include="Other\EDI_Retn_Price\EDI_Retn_Price.js" />
+    <Content Include="pages\_3PL_BaseCost_Formula\_3PL_BaseCost_Formula.aspx" />
+    <Content Include="pages\_3PL_BaseCost_Formula\_3PL_BaseCost_Formula.js" />
+    <Content Include="pages\_3PL_QuotationHead_Addon_00\_3PL_QuotationHead_Addon_00.aspx" />
+    <Content Include="pages\_3PL_QuotationHead_Addon_00\_3PL_QuotationHead_Addon_00.js" />
+    <Content Include="pages\_3PL_QuotationHead_Addon_02\_3PL_QuotationHead_Addon_02.js" />
+    <Content Include="pages\_3PL_QuotationHead_Addon_02\_3PL_QuotationHead_Addon_02.aspx" />
+    <Content Include="pages\_3PL_QuotationHead_Addon_01\_3PL_QuotationHead_Addon_01.aspx" />
+    <Content Include="pages\_3PL_QuotationHead_Addon_01\_3PL_QuotationHead_Addon_01.js" />
+    <Content Include="pages\_3PL_ToExcel001\_3PL_ToExcel001.aspx" />
+    <Content Include="pages\_3PL_ToExcel001\_3PL_ToExcel001.js" />
     <Content Include="PublicMemo.aspx" />
     <Content Include="PubModify.aspx" />
     <Content Include="PXMART.jpg" />
     <Content Include="RoleClassQuery.aspx" />
     <Content Include="SCError.aspx" />
     <Content Include="3PL_BaseCostSet_Modify.aspx" />
+    <Content Include="ScOffer\pages\Report001\Report001.aspx" />
+    <Content Include="ScOffer\pages\Report001\Report001.js" />
+    <Content Include="ScOffer\pages\SupMonthPriceMax\SupMonthPriceMax.aspx" />
+    <Content Include="ScOffer\pages\SupMonthPriceMax\SupMonthPriceMax.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -210,6 +357,13 @@
     <Compile Include="3PL_Adjust_Modify.aspx.designer.cs">
       <DependentUpon>3PL_Adjust_Modify.aspx</DependentUpon>
     </Compile>
+    <Compile Include="3PL_Other_edi_retn_price_Settings.aspx.cs">
+      <DependentUpon>3PL_Other_edi_retn_price_Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_Other_edi_retn_price_Settings.aspx.designer.cs">
+      <DependentUpon>3PL_Other_edi_retn_price_Settings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="3PL_RoleInf_Edit.aspx.cs">
       <DependentUpon>3PL_RoleInf_Edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -258,13 +412,6 @@
     </Compile>
     <Compile Include="3PL_SupdSelect.aspx.designer.cs">
       <DependentUpon>3PL_SupdSelect.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="3PL_ToExcel001.aspx.cs">
-      <DependentUpon>3PL_ToExcel001.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="3PL_ToExcel001.aspx.designer.cs">
-      <DependentUpon>3PL_ToExcel001.aspx</DependentUpon>
     </Compile>
     <Compile Include="AlartRp.aspx.cs">
       <DependentUpon>AlartRp.aspx</DependentUpon>
@@ -374,6 +521,11 @@
     <Compile Include="3PL_Quotation_Print.aspx.designer.cs">
       <DependentUpon>3PL_Quotation_Print.aspx</DependentUpon>
     </Compile>
+    <Compile Include="handler\httpService.ashx.cs">
+      <DependentUpon>httpService.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="handler\RF3_Excel.cs" />
+    <Compile Include="handler\RF3_PhotoControl.cs" />
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -415,6 +567,48 @@
     </Compile>
     <Compile Include="Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Other\EDI_Retn_Price\EDI_Retn_Price.aspx.cs">
+      <DependentUpon>EDI_Retn_Price.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Other\EDI_Retn_Price\EDI_Retn_Price.aspx.designer.cs">
+      <DependentUpon>EDI_Retn_Price.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\_3PL_BaseCost_Formula\_3PL_BaseCost_Formula.aspx.cs">
+      <DependentUpon>_3PL_BaseCost_Formula.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\_3PL_BaseCost_Formula\_3PL_BaseCost_Formula.aspx.designer.cs">
+      <DependentUpon>_3PL_BaseCost_Formula.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\_3PL_QuotationHead_Addon_00\_3PL_QuotationHead_Addon_00.aspx.cs">
+      <DependentUpon>_3PL_QuotationHead_Addon_00.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\_3PL_QuotationHead_Addon_00\_3PL_QuotationHead_Addon_00.aspx.designer.cs">
+      <DependentUpon>_3PL_QuotationHead_Addon_00.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\_3PL_QuotationHead_Addon_02\_3PL_QuotationHead_Addon_02.aspx.cs">
+      <DependentUpon>_3PL_QuotationHead_Addon_02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\_3PL_QuotationHead_Addon_02\_3PL_QuotationHead_Addon_02.aspx.designer.cs">
+      <DependentUpon>_3PL_QuotationHead_Addon_02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\_3PL_QuotationHead_Addon_01\_3PL_QuotationHead_Addon_01.aspx.cs">
+      <DependentUpon>_3PL_QuotationHead_Addon_01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\_3PL_QuotationHead_Addon_01\_3PL_QuotationHead_Addon_01.aspx.designer.cs">
+      <DependentUpon>_3PL_QuotationHead_Addon_01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\_3PL_ToExcel001\_3PL_ToExcel001.aspx.cs">
+      <DependentUpon>_3PL_ToExcel001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\_3PL_ToExcel001\_3PL_ToExcel001.aspx.designer.cs">
+      <DependentUpon>_3PL_ToExcel001.aspx</DependentUpon>
     </Compile>
     <Compile Include="PONotConfirm\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
@@ -501,6 +695,20 @@
     <Compile Include="3PL_ToExcel002_SendBox.aspx.designer.cs">
       <DependentUpon>3PL_ToExcel002_SendBox.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ScOffer\pages\Report001\Report001.aspx.cs">
+      <DependentUpon>Report001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ScOffer\pages\Report001\Report001.aspx.designer.cs">
+      <DependentUpon>Report001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScOffer\pages\SupMonthPriceMax\SupMonthPriceMax.aspx.cs">
+      <DependentUpon>SupMonthPriceMax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ScOffer\pages\SupMonthPriceMax\SupMonthPriceMax.aspx.designer.cs">
+      <DependentUpon>SupMonthPriceMax.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\3PL_DAO\3PL_DAO.csproj">
@@ -512,7 +720,7 @@
       <Name>3PL_LIB</Name>
     </ProjectReference>
     <ProjectReference Include="..\ExcelTool\ExcelTool.csproj">
-      <Project>{F9F7F049-078D-45F7-B5B4-63D643F26377}</Project>
+      <Project>{f9f7f049-078d-45f7-b5b4-63d643f26377}</Project>
       <Name>ExcelTool</Name>
     </ProjectReference>
     <ProjectReference Include="..\MD5\MD5.csproj">
@@ -534,6 +742,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ExcelFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\jquery-ui-1.12.1\package.json" />
@@ -551,11 +760,24 @@
   <ItemGroup>
     <Content Include="handler\Handler_Log.ashx" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="handler\httpService.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="js\_3PL_DAO\CommonLib\Settings.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CSS\Style.jquery.css" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

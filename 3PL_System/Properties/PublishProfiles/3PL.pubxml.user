@@ -13,43 +13,43 @@
       <publishTime>08/01/2017 09:37:40</publishTime>
     </File>
     <File Include="3PLMasterPage.Master">
-      <publishTime>06/23/2017 13:05:53</publishTime>
+      <publishTime>11/28/2017 17:21:46</publishTime>
     </File>
     <File Include="3PL_Addition.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>11/03/2017 16:50:29</publishTime>
     </File>
     <File Include="3PL_Adjust_Modify.aspx">
-      <publishTime>07/31/2017 11:56:29</publishTime>
+      <publishTime>11/28/2017 16:50:28</publishTime>
     </File>
     <File Include="3PL_Adjust_Query.aspx">
-      <publishTime>08/31/2017 10:56:44</publishTime>
+      <publishTime>11/29/2017 11:01:29</publishTime>
     </File>
     <File Include="3PL_Assign_Modify.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>11/28/2017 16:56:46</publishTime>
     </File>
     <File Include="3PL_Assign_New.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>11/29/2017 16:21:25</publishTime>
     </File>
     <File Include="3PL_Assign_Query.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>12/13/2017 17:03:38</publishTime>
     </File>
     <File Include="3PL_BaseAccounting.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>11/03/2017 17:52:39</publishTime>
     </File>
     <File Include="3PL_BaseCost.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>12/13/2017 17:03:58</publishTime>
     </File>
     <File Include="3PL_BaseCostSet.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>11/29/2017 10:01:55</publishTime>
     </File>
     <File Include="3PL_BaseCostSetSelect.aspx">
       <publishTime>08/01/2017 09:36:53</publishTime>
     </File>
     <File Include="3PL_BaseCostSet_Modify.aspx">
-      <publishTime>03/10/2017 14:17:53</publishTime>
+      <publishTime>11/29/2017 10:04:45</publishTime>
     </File>
     <File Include="3PL_BaseCost_Modify.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>12/13/2017 17:06:38</publishTime>
     </File>
     <File Include="3PL_BaseData.aspx">
       <publishTime>08/01/2017 09:36:53</publishTime>
@@ -64,19 +64,22 @@
       <publishTime>08/11/2015 11:31:11</publishTime>
     </File>
     <File Include="3PL_Other_edi_retn_price.aspx">
-      <publishTime>08/31/2017 11:08:13</publishTime>
+      <publishTime>10/13/2017 11:03:11</publishTime>
+    </File>
+    <File Include="3PL_Other_edi_retn_price_Settings.aspx">
+      <publishTime>11/01/2017 15:38:05</publishTime>
     </File>
     <File Include="3PL_Quotation_Modify.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>11/29/2017 16:22:09</publishTime>
     </File>
     <File Include="3PL_Quotation_Print.aspx">
       <publishTime>04/20/2017 14:56:16</publishTime>
     </File>
     <File Include="3PL_Quotation_Query.aspx">
-      <publishTime>08/01/2017 09:36:53</publishTime>
+      <publishTime>11/29/2017 16:21:58</publishTime>
     </File>
     <File Include="3PL_Quotation_Stamp.aspx">
-      <publishTime>08/01/2017 09:36:52</publishTime>
+      <publishTime>11/29/2017 16:21:47</publishTime>
     </File>
     <File Include="3PL_RoleInf_Edit.aspx">
       <publishTime>08/01/2017 09:36:52</publishTime>
@@ -85,43 +88,43 @@
       <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="3PL_SignOffPermission.aspx">
-      <publishTime>08/01/2017 09:36:52</publishTime>
+      <publishTime>11/29/2017 10:14:11</publishTime>
     </File>
     <File Include="3PL_SignOffStatus.aspx">
-      <publishTime>08/01/2017 09:36:52</publishTime>
+      <publishTime>11/29/2017 10:00:36</publishTime>
     </File>
     <File Include="3PL_SupdSelect.aspx">
-      <publishTime>08/01/2017 09:36:52</publishTime>
+      <publishTime>11/28/2017 16:43:02</publishTime>
     </File>
     <File Include="3PL_ToExcel001.aspx">
-      <publishTime>08/01/2017 09:36:52</publishTime>
+      <publishTime>11/10/2017 11:05:58</publishTime>
     </File>
     <File Include="3PL_ToExcel002_SendBox.aspx">
       <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="AlartRp.aspx">
-      <publishTime>08/01/2017 09:36:52</publishTime>
+      <publishTime>09/29/2017 09:29:21</publishTime>
     </File>
     <File Include="bin/3PL_DAO.dll">
-      <publishTime>09/06/2017 11:05:24</publishTime>
+      <publishTime>01/03/2018 13:23:14</publishTime>
     </File>
     <File Include="bin/3PL_DAO.pdb">
       <publishTime>07/28/2015 11:21:12</publishTime>
     </File>
     <File Include="bin/3PL_LIB.dll">
-      <publishTime>07/21/2017 13:37:38</publishTime>
+      <publishTime>01/03/2018 13:23:13</publishTime>
     </File>
     <File Include="bin/3PL_LIB.pdb">
       <publishTime>08/07/2015 16:00:34</publishTime>
     </File>
     <File Include="bin/3PL_System.dll">
-      <publishTime>09/06/2017 11:05:25</publishTime>
+      <publishTime>01/03/2018 13:23:17</publishTime>
     </File>
     <File Include="bin/3PL_System.pdb">
       <publishTime>08/12/2015 16:00:33</publishTime>
     </File>
     <File Include="bin/ExcelTool.dll">
-      <publishTime>06/15/2017 11:03:48</publishTime>
+      <publishTime>12/13/2017 16:35:49</publishTime>
     </File>
     <File Include="bin/ExcelTool.pdb">
       <publishTime>07/14/2015 10:55:31</publishTime>
@@ -130,7 +133,10 @@
       <publishTime>02/15/2012 21:59:34</publishTime>
     </File>
     <File Include="bin/MD5.dll">
-      <publishTime>07/21/2017 13:37:37</publishTime>
+      <publishTime>11/02/2017 16:32:51</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/13/2017 11:40:22</publishTime>
     </File>
     <File Include="bin/NPOI.dll">
       <publishTime>05/04/2012 19:57:10</publishTime>
@@ -178,7 +184,13 @@
       <publishTime>01/23/2015 18:00:33</publishTime>
     </File>
     <File Include="CSS/Style.css">
-      <publishTime>06/19/2017 09:59:58</publishTime>
+      <publishTime>11/22/2017 11:13:08</publishTime>
+    </File>
+    <File Include="CSS/Style.jqGrid.css">
+      <publishTime>12/08/2017 17:02:56</publishTime>
+    </File>
+    <File Include="CSS/Style.jquery.css">
+      <publishTime>12/25/2017 15:50:14</publishTime>
     </File>
     <File Include="CSS/validationEngine.jquery.css">
       <publishTime>01/23/2015 18:00:34</publishTime>
@@ -190,19 +202,22 @@
       <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="EmpList.aspx">
-      <publishTime>08/01/2017 09:36:52</publishTime>
+      <publishTime>11/29/2017 10:18:25</publishTime>
     </File>
     <File Include="Err404.jpg">
       <publishTime>01/23/2015 18:00:44</publishTime>
     </File>
     <File Include="FunList.aspx">
-      <publishTime>08/01/2017 09:36:52</publishTime>
+      <publishTime>11/29/2017 09:57:06</publishTime>
     </File>
     <File Include="FunListSet.aspx">
       <publishTime>08/01/2017 09:36:52</publishTime>
     </File>
     <File Include="handler/Handler_Log.ashx">
       <publishTime>03/15/2017 10:57:16</publishTime>
+    </File>
+    <File Include="handler/httpService.ashx">
+      <publishTime>10/13/2017 11:30:26</publishTime>
     </File>
     <File Include="Index.aspx">
       <publishTime>06/15/2017 16:56:56</publishTime>
@@ -270,17 +285,392 @@
     <File Include="js/comfirm.js">
       <publishTime>01/23/2015 18:00:36</publishTime>
     </File>
+    <File Include="js/CommonLib/CommonLib.js">
+      <publishTime>12/12/2017 17:08:46</publishTime>
+    </File>
+    <File Include="js/CommonLib/Settings.js">
+      <publishTime>11/29/2017 17:01:15</publishTime>
+    </File>
+    <File Include="js/CommonLoader.js">
+      <publishTime>01/02/2018 14:34:22</publishTime>
+    </File>
     <File Include="js/Control.js">
       <publishTime>01/23/2015 18:00:36</publishTime>
     </File>
     <File Include="js/csshover3.htc">
       <publishTime>01/23/2015 18:00:36</publishTime>
     </File>
+    <File Include="js/FileSaver.js">
+      <publishTime>11/14/2017 14:49:23</publishTime>
+    </File>
     <File Include="js/fullcalendar.css">
       <publishTime>01/23/2015 18:00:35</publishTime>
     </File>
     <File Include="js/fullcalendar.js">
       <publishTime>01/23/2015 18:00:36</publishTime>
+    </File>
+    <File Include="js/jqGrid/css/ui.jqgrid-bootstrap-ui.css">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/css/ui.jqgrid-bootstrap.css">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/css/ui.jqgrid.css">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/Changes.txt">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-ar.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-bg.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-ca.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-cn.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-cs.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-de.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-dk.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-el.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-en.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-es.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-fa.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-fi.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-fr.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-gl.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-he.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-hr.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-hu.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-id.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-is.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-it.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-ja.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-kr.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-lt.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-me.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-nl.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-no.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-pl.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-pt-br.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-pt.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-ro.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-ru.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-sk.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-sq.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-sr-latin.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-sr.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-sv.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-th.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-tr.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-tw.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-uk.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/i18n/grid.locale-vi.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/install.txt">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/jquery-1.11.0.min.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/js/jquery.jqGrid.min.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/grid.addons.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/grid.postext.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/grid.setcolumns.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/jquery.contextmenu.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/jquery.searchFilter.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/jquery.tablednd.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/searchFilter.css">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/ui.multiselect.css">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/plugins/ui.multiselect.js">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/css/ui.jqgrid-bootstrap-ui.css">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/css/ui.jqgrid-bootstrap.css">
+      <publishTime>09/07/2017 15:01:51</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/css/ui.jqgrid.css">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/css/ui.multiselect.css">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.base.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.celledit.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.common.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.export.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.filter.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.formedit.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.grouping.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.import.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.inlinedit.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.jqueryui.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.pivot.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.subgrid.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.treegrid.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/grid.utils.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-ar.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-bg.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-ca.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-cn.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-cs.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-de.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-dk.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-el.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-en.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-es.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-fa.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-fi.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-fr.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-gl.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-he.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-hr.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-hu.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-id.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-is.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-it.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-ja.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-kr.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-lt.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-me.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-nl.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-no.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-pl.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-pt-br.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-pt.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-ro.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-ru.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-sk.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-sq.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-sr-latin.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-sr.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-sv.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-th.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-tr.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-tw.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-uk.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/i18n/grid.locale-vi.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/jqDnR.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/jqModal.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/jquery.fmatter.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/jquery.jqGrid.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
+    </File>
+    <File Include="js/jqGrid/src/jquery.sortable.js">
+      <publishTime>09/07/2017 15:01:52</publishTime>
     </File>
     <File Include="js/jquery-1.4.2.js">
       <publishTime>01/23/2015 18:00:36</publishTime>
@@ -369,6 +759,9 @@
     <File Include="js/jquery.datepick.js">
       <publishTime>01/23/2015 18:00:36</publishTime>
     </File>
+    <File Include="js/jquery.session.js">
+      <publishTime>09/30/2016 18:10:47</publishTime>
+    </File>
     <File Include="js/jquery.timeentry-zh-CN.js">
       <publishTime>01/23/2015 18:00:35</publishTime>
     </File>
@@ -387,6 +780,9 @@
     <File Include="js/jquery.validationEngine.js">
       <publishTime>01/23/2015 18:00:36</publishTime>
     </File>
+    <File Include="js/js.cookie.js">
+      <publishTime>10/03/2016 14:16:21</publishTime>
+    </File>
     <File Include="js/js.printer.js">
       <publishTime>01/23/2015 18:00:36</publishTime>
     </File>
@@ -399,8 +795,17 @@
     <File Include="js/validationEngine.jquery.css">
       <publishTime>01/23/2015 18:00:35</publishTime>
     </File>
+    <File Include="js/_3PL_DAO/CommonLib/CommonLib.js">
+      <publishTime>01/02/2018 15:17:58</publishTime>
+    </File>
+    <File Include="js/_3PL_DAO/CommonLib/CommonQuery.js">
+      <publishTime>01/02/2018 15:18:12</publishTime>
+    </File>
+    <File Include="js/_3PL_DAO/CommonLib/Settings.js">
+      <publishTime>12/18/2017 10:19:51</publishTime>
+    </File>
     <File Include="LogIn.aspx">
-      <publishTime>03/09/2017 13:13:07</publishTime>
+      <publishTime>12/13/2017 16:47:25</publishTime>
     </File>
     <File Include="Mark.JPG">
       <publishTime>01/23/2015 18:00:40</publishTime>
@@ -409,19 +814,61 @@
       <publishTime>08/26/2015 10:24:33</publishTime>
     </File>
     <File Include="MD5test.aspx">
-      <publishTime>06/19/2017 13:19:13</publishTime>
+      <publishTime>12/22/2017 15:12:35</publishTime>
     </File>
     <File Include="Menu.aspx">
-      <publishTime>07/26/2017 10:11:25</publishTime>
+      <publishTime>11/22/2017 10:38:31</publishTime>
     </File>
     <File Include="MenuSwitch.aspx">
       <publishTime>08/11/2015 09:42:07</publishTime>
+    </File>
+    <File Include="Other/EDI_Retn_Price/EDI_Retn_Price.aspx">
+      <publishTime>11/29/2017 17:14:40</publishTime>
+    </File>
+    <File Include="Other/EDI_Retn_Price/EDI_Retn_Price.css">
+      <publishTime>11/29/2017 17:06:30</publishTime>
+    </File>
+    <File Include="Other/EDI_Retn_Price/EDI_Retn_Price.js">
+      <publishTime>11/30/2017 09:24:08</publishTime>
+    </File>
+    <File Include="pages/_3PL_BaseCost_Formula/_3PL_BaseCost_Formula.aspx">
+      <publishTime>12/28/2017 17:28:25</publishTime>
+    </File>
+    <File Include="pages/_3PL_BaseCost_Formula/_3PL_BaseCost_Formula.js">
+      <publishTime>12/29/2017 16:55:42</publishTime>
+    </File>
+    <File Include="pages/_3PL_QuotationHead_Addon_00/_3PL_QuotationHead_Addon_00.aspx">
+      <publishTime>12/29/2017 10:26:04</publishTime>
+    </File>
+    <File Include="pages/_3PL_QuotationHead_Addon_00/_3PL_QuotationHead_Addon_00.js">
+      <publishTime>12/29/2017 10:28:12</publishTime>
+    </File>
+    <File Include="pages/_3PL_QuotationHead_Addon_01/_3PL_QuotationHead_Addon_01.aspx">
+      <publishTime>12/28/2017 17:27:25</publishTime>
+    </File>
+    <File Include="pages/_3PL_QuotationHead_Addon_01/_3PL_QuotationHead_Addon_01.js">
+      <publishTime>12/27/2017 15:35:35</publishTime>
+    </File>
+    <File Include="pages/_3PL_QuotationHead_Addon_02/_3PL_QuotationHead_Addon_02.aspx">
+      <publishTime>12/28/2017 17:27:44</publishTime>
+    </File>
+    <File Include="pages/_3PL_QuotationHead_Addon_02/_3PL_QuotationHead_Addon_02.js">
+      <publishTime>12/27/2017 15:36:19</publishTime>
+    </File>
+    <File Include="pages/_3PL_ToExcel001/_3PL_ToExcel001.aspx">
+      <publishTime>12/28/2017 17:26:09</publishTime>
+    </File>
+    <File Include="pages/_3PL_ToExcel001/_3PL_ToExcel001.css">
+      <publishTime>12/08/2017 17:12:35</publishTime>
+    </File>
+    <File Include="pages/_3PL_ToExcel001/_3PL_ToExcel001.js">
+      <publishTime>12/29/2017 10:26:58</publishTime>
     </File>
     <File Include="PONotConfirm/Main.aspx">
       <publishTime>03/13/2017 09:30:36</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/06/2017 11:05:30</publishTime>
+      <publishTime>11/28/2017 11:21:25</publishTime>
     </File>
     <File Include="PublicMemo.aspx">
       <publishTime>08/01/2017 09:36:51</publishTime>
@@ -433,16 +880,52 @@
       <publishTime>01/23/2015 18:00:45</publishTime>
     </File>
     <File Include="RoleClassQuery.aspx">
-      <publishTime>08/01/2017 09:36:51</publishTime>
+      <publishTime>11/29/2017 10:16:58</publishTime>
     </File>
     <File Include="SCError.aspx">
       <publishTime>03/09/2017 13:13:07</publishTime>
+    </File>
+    <File Include="ScOffer/pages/Report001/Report001.aspx">
+      <publishTime>12/22/2017 13:27:50</publishTime>
+    </File>
+    <File Include="ScOffer/pages/Report001/Report001.css">
+      <publishTime>11/15/2017 18:52:32</publishTime>
+    </File>
+    <File Include="ScOffer/pages/Report001/Report001.js">
+      <publishTime>12/28/2017 17:23:51</publishTime>
+    </File>
+    <File Include="ScOffer/pages/SupMonthPriceMax/SupMonthPriceMax.aspx">
+      <publishTime>12/22/2017 13:32:05</publishTime>
+    </File>
+    <File Include="ScOffer/pages/SupMonthPriceMax/SupMonthPriceMax.css">
+      <publishTime>11/23/2017 11:09:37</publishTime>
+    </File>
+    <File Include="ScOffer/pages/SupMonthPriceMax/SupMonthPriceMax.js">
+      <publishTime>12/26/2017 11:52:57</publishTime>
+    </File>
+    <File Include="ScOffer/Report001.aspx">
+      <publishTime>11/29/2017 11:56:26</publishTime>
+    </File>
+    <File Include="ScOffer/Report001.css">
+      <publishTime>11/15/2017 18:52:32</publishTime>
+    </File>
+    <File Include="ScOffer/Report001.js">
+      <publishTime>12/11/2017 13:21:49</publishTime>
+    </File>
+    <File Include="ScOffer/SupMonthPriceMax.aspx">
+      <publishTime>11/29/2017 17:10:29</publishTime>
+    </File>
+    <File Include="ScOffer/SupMonthPriceMax.css">
+      <publishTime>11/23/2017 11:09:37</publishTime>
+    </File>
+    <File Include="ScOffer/SupMonthPriceMax.js">
+      <publishTime>12/11/2017 13:34:22</publishTime>
     </File>
     <File Include="Top.aspx">
       <publishTime>08/26/2015 10:36:36</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/17/2017 13:33:10</publishTime>
+      <publishTime>12/22/2017 15:20:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

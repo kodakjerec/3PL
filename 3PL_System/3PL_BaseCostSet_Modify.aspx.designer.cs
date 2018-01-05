@@ -13,15 +13,6 @@ namespace _3PL_System {
     public partial class _3PL_BaseCostSet_Modify {
         
         /// <summary>
-        /// lbl_PriceSet 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_PriceSet;
-        
-        /// <summary>
         /// lbl_PriceSet_Query 控制項。
         /// </summary>
         /// <remarks>
@@ -29,24 +20,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_PriceSet_Query;
-        
-        /// <summary>
-        /// Label1 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// lbl_SiteNo 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_SiteNo;
         
         /// <summary>
         /// CheckBoxList1 控制項。
@@ -58,24 +31,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
         
         /// <summary>
-        /// lbl_TypeIdIm 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm;
-        
-        /// <summary>
-        /// lbl_TypeId 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeId;
-        
-        /// <summary>
         /// ddl_TypeId 控制項。
         /// </summary>
         /// <remarks>
@@ -83,24 +38,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_TypeId;
-        
-        /// <summary>
-        /// Lbl_CostNameIm 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_CostNameIm;
-        
-        /// <summary>
-        /// Lbl_CostName 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_CostName;
         
         /// <summary>
         /// Txb_CostName 控制項。
@@ -112,24 +49,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox Txb_CostName;
         
         /// <summary>
-        /// Lbl_PriceIm 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_PriceIm;
-        
-        /// <summary>
-        /// Lbl_Price 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_Price;
-        
-        /// <summary>
         /// Txb_Price 控制項。
         /// </summary>
         /// <remarks>
@@ -137,24 +56,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Txb_Price;
-        
-        /// <summary>
-        /// Lbl_UnitIdIm 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_UnitIdIm;
-        
-        /// <summary>
-        /// Lbl_UnitId 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_UnitId;
         
         /// <summary>
         /// ddl_UnitId 控制項。
@@ -166,24 +67,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.DropDownList ddl_UnitId;
         
         /// <summary>
-        /// Lbl_AccIdIm 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_AccIdIm;
-        
-        /// <summary>
-        /// Lbl_AccId 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_AccId;
-        
-        /// <summary>
         /// ddl_AccId 控制項。
         /// </summary>
         /// <remarks>
@@ -191,15 +74,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_AccId;
-        
-        /// <summary>
-        /// Label3 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// DDL_ClassList 控制項。

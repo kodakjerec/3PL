@@ -4,8 +4,6 @@ using System.Web.UI.WebControls;
 using _3PL_LIB;
 using _3PL_DAO;
 using System.Data;
-using System.Threading;
-using System.Collections.Generic;
 
 namespace _3PL_System
 {
@@ -17,8 +15,6 @@ namespace _3PL_System
         _3PL_BaseCostSet_DAO _3PLBCS = new _3PL_BaseCostSet_DAO();
         _3PL_SignOff_DAO _3PLSignOff = new _3PL_SignOff_DAO();
         EmpInf _3PLEmpInf = new EmpInf();
-
-        List<Thread> myAnswerThreads = new List<Thread>();
 
         ControlBind CB = new ControlBind();
         Check _3PL_Check = new Check();
@@ -43,7 +39,10 @@ namespace _3PL_System
 
         #region Head
 
-        //預先載入派工單
+        /// <summary>
+        /// 預先載入派工單
+        /// </summary>
+        /// <param name="I_qthe_seq"></param>
         private void Query_Head(string I_qthe_seq)
         {
             DataTable dt_head = _3PLAssign.GetAssignList(hidTotal_Wk_Id.Value, UI);
@@ -96,23 +95,33 @@ namespace _3PL_System
             //帶出明細資訊
             BringDetail();
 
-            int PageStep = Convert.ToInt32(dr["Step"].ToString());
-            if (PageStep <= 1)  //建單階段
-            {
-                GV_Quotation_HideCells(true);
-            }
-            else
-            {
-                GV_Quotation_HideCells(false);
-            }
+            //Refresh
+            GVBind_Quotation_Detail();
+
+            //根據簽核步驟, 切換顯示欄位
+            GV_Quotation_HideCells();
         }
 
         /// <summary>
         /// 單據狀態不同,顯示欄位有差別
         /// </summary>
         /// <param name="CellVisible"></param>
-        private void GV_Quotation_HideCells(bool CellVisible)
+        private void GV_Quotation_HideCells()
         {
+            DataTable dt_head = (DataTable)Session["Quotation_head"];
+            int PageStep = Convert.ToInt32(dt_head.Rows[0]["Step"].ToString());
+            bool CellVisible = false;
+            switch (PageStep)
+            {
+                case 0:
+                case 1:
+                    CellVisible=true;
+                    break;
+                default:
+                    CellVisible=false;
+                    break;
+            }
+
             //預計完工日
             Txb_EtaDate.Enabled = CellVisible;
             //派工數量,完工數量顯示
@@ -146,7 +155,9 @@ namespace _3PL_System
         #endregion
 
         #region Detail
-        //帶出明細資訊
+        /// <summary>
+        /// 帶出明細資訊
+        /// </summary>
         private void BringDetail()
         {
             //原始的派工單明細
@@ -154,34 +165,37 @@ namespace _3PL_System
             //帶出顯示用的派工單明細,最終結果
             DataTable Quotation_Detail = AssignDetail_Origin.Copy();
 
+            //根據簽核步驟, 帶出實績 2017/11/09
+            BringDetail_TakingRealQty(Quotation_Detail);
+
             Session["Quotation_Detail"] = Quotation_Detail;
-            GVBind_Quotation_Detail();
 
             DIV_Quotation_Detail_New_POItem.Visible = true;
             DIV_Quotation_Detail_New.Visible = true;
+        }
+        /// <summary>
+        /// 帶出明細資訊_實績量
+        /// </summary>
+        private void BringDetail_TakingRealQty(DataTable Quotation_Detail)
+        {
+            DataTable dt_head = (DataTable)Session["Quotation_head"];
+            string DC = dt_head.Rows[0]["DC"].ToString();
+            int PageStep = Convert.ToInt32(dt_head.Rows[0]["Step"].ToString());
+            if (PageStep != 4)
+                return;
 
-            //帶出派工單原始價格設定, 已有派工單的情況
-            DataTable dt_detail = AssignDetail_Origin.Clone();
-            if (AssignDetail_Origin.Rows.Count > 0)
+            foreach (DataRow dr in Quotation_Detail.Rows)
             {
-                string PO_NO = AssignDetail_Origin.Rows[0]["PONO"].ToString();
-                string item_no = AssignDetail_Origin.Rows[0]["itemno"].ToString();
-
-                Session["MaxSeq"] = 0;
-                foreach (DataRow dr in AssignDetail_Origin.Rows)
+                if (dr["PONO"].ToString() != string.Empty)
                 {
-                    dr["RealQty"] = DBNull.Value;
-                    if (dr["PONO"].ToString() == PO_NO && dr["itemno"].ToString() == item_no)
-                    {
-                        dt_detail.ImportRow(dr);
-                    }
-                    if (Convert.ToInt32(dr["Seq"]) > (int)Session["MaxSeq"])
-                        Session["MaxSeq"] = Convert.ToInt32(dr["Seq"]);
+                    dr["RealQty_WMS"] = _3PLAssign.AssignDetail_TakingRealQty(DC, dr["PONO"].ToString(), dr["itemno"].ToString(), dr["Unit"].ToString());
                 }
             }
-            Session["dt_detail"] = dt_detail;
         }
-        //重新綁定
+
+        /// <summary>
+        /// 重新綁定
+        /// </summary>
         private void GVBind_Quotation_Detail()
         {
             DataTable Quotation_Detail = (DataTable)Session["Quotation_Detail"];
@@ -460,12 +474,18 @@ namespace _3PL_System
         //產生明細
         protected void Btn_Query_Click(object sender, EventArgs e)
         {
-            DataTable Quotation_Detail = (DataTable)Session["Quotation_Detail"];
-            DataTable dt_detail = (DataTable)Session["dt_detail"];
+            DataTable dt_head = (DataTable)Session["Quotation_head"];
+            DataTable Quotation_Detail = (DataTable)Session["Quotation_Detail"];    //主要的Detail
 
-            string PO_NO = txb_D_qthe_ContractS_Qry.Text;
-            string item_no = txb_D_qthe_ContractE_Qry.Text;
-            string site_no = DDL_DC.SelectedValue;
+            string PO_NO = txb_PO_No_CreateAssignDetail.Text;
+            string item_no = txb_Item_No_CreateAssignDetail.Text;
+            string site_no = dt_head.Rows[0]["DC"].ToString(),
+                   Wk_Id = dt_head.Rows[0]["Wk_Id"].ToString(),
+                   PLNO = dt_head.Rows[0]["FreeId"].ToString(),
+                   TypeId = dt_head.Rows[0]["Wk_Class"].ToString(),
+                   ClassId = dt_head.Rows[0]["Wk_Unit"].ToString();
+
+            DataTable dt_OriginalPriceList = _3pa.getCostlist(PLNO, site_no, TypeId, ClassId);  //原始計價項目
 
             #region 檢查目的地有沒有相同key值
             foreach (DataRow dr in Quotation_Detail.Rows)
@@ -496,27 +516,52 @@ namespace _3PL_System
                 ((_3PLMasterPage)Master).ShowMessage("查無指定PO單及貨號");
                 return;
             }
-
-            foreach (DataRow dr in dt_detail.Rows)
+            int MaxSeq = 0;
+            foreach (DataRow dr in Quotation_Detail.Rows) {
+                if (Convert.ToInt32(dr["Seq"]) > MaxSeq) {
+                    MaxSeq = Convert.ToInt32(dr["Seq"]);
+                }
+            }
+            foreach (DataRow dr in dt_OriginalPriceList.Rows)
             {
-                dr["PONO"] = PO_NO;
-                dr["itemno"] = item_no;
+                //新增 Row 進 Quotation_Detail
+                DataRow dr_detail_Final = Quotation_Detail.NewRow();
+
+                //費用
+                dr_detail_Final["Wk_Class"] = dr["I_bcse_Seq"];
+                dr_detail_Final["Wk_ClassNm"] = dr["S_bcse_CostName"];
+                dr_detail_Final["Unit"] = dr["S_bsda_FieldName"];
+
+
+                //使用者自訂
+                dr_detail_Final["PONO"] = PO_NO;
+                dr_detail_Final["itemno"] = item_no;
+
                 //帶入數量
-                dr["Qty"] = _3PLAssign.GetDetailNeedQty(POlist.Rows[0], dr["Unit"].ToString());
+                dr_detail_Final["Qty"] = _3PLAssign.GetDetailNeedQty(POlist.Rows[0], dr["S_bsda_FieldName"].ToString());
+                dr_detail_Final["RealQty"] = DBNull.Value;
+                dr_detail_Final["RealQty_WMS"] = DBNull.Value;
 
                 //帶入序號
-                Session["MaxSeq"] = (int)Session["MaxSeq"] + 1;
-                dr["Seq"] = Session["MaxSeq"];
+                dr_detail_Final["Seq"] = ++MaxSeq;
+
                 //新增資料不會有Sn
-                dr["Sn"] = -1;
-                dr["UIStatus"] = "Added";
+                dr_detail_Final["Sn"] = -1;
+                dr_detail_Final["UIStatus"] = "Added";
+
+                //預設值
+                dr_detail_Final["Wk_Id"] = Wk_Id;
+                dr_detail_Final["DC"] = site_no;
+
+                Quotation_Detail.Rows.Add(dr_detail_Final);
             }
-            dt_detail.AcceptChanges();
             #endregion
 
-            Quotation_Detail.Merge(dt_detail);
-
+            //Refresh
             GVBind_Quotation_Detail();
+
+            //根據簽核步驟, 切換顯示欄位
+            GV_Quotation_HideCells();
         }
         //選擇要刪除的row
         protected void GV_Quotation_Detail_New_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -545,7 +590,11 @@ namespace _3PL_System
                     }
             }
 
+            //Refresh
             GVBind_Quotation_Detail();
+
+            //根據簽核步驟, 切換顯示欄位
+            GV_Quotation_HideCells();
         }
         #endregion
     }

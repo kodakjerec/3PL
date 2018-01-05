@@ -13,15 +13,6 @@ namespace _3PL_System {
     public partial class _3PL_Quotation_Stamp {
         
         /// <summary>
-        /// lbl_Quotation 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Quotation;
-        
-        /// <summary>
         /// lbl_Quotation_Query 控制項。
         /// </summary>
         /// <remarks>
@@ -56,15 +47,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_S_qthe_SupdId;
-        
-        /// <summary>
-        /// Label3 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// DDL_S_qthe_SiteNo 控制項。

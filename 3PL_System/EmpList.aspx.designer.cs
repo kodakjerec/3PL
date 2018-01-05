@@ -13,24 +13,6 @@ namespace _3PL_System {
     public partial class EmpList {
         
         /// <summary>
-        /// lbl_CustInf 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_CustInf;
-        
-        /// <summary>
-        /// lbl_WorkId 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_WorkId;
-        
-        /// <summary>
         /// txb_WorkId 控制項。
         /// </summary>
         /// <remarks>
@@ -40,15 +22,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox txb_WorkId;
         
         /// <summary>
-        /// lbl_Class 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Class;
-        
-        /// <summary>
         /// ddl_Class 控制項。
         /// </summary>
         /// <remarks>
@@ -56,15 +29,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Class;
-        
-        /// <summary>
-        /// lbl_Name 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Name;
         
         /// <summary>
         /// txb_Name 控制項。

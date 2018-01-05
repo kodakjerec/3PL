@@ -30,6 +30,7 @@ namespace _3PL_System
                 CB.DropDownListBind(ref ddl_TypeId, _3PLCQ.GetFieldList(Login_Server, "TypeId"), "S_bsda_FieldId", "S_bsda_FieldName", "請選擇", "");
                 CB.CheckBoxListBind(ref CheckBoxList_Quotation, _3PLCQ.GetFieldList(Login_Server, "SiteNo"), "S_bsda_FieldId", "S_bsda_FieldName");
                 CB.CheckBoxListBind(ref CheckBoxList_Detail, _3PLCQ.GetFieldList(Login_Server, "SiteNo"), "S_bsda_FieldId", "S_bsda_FieldName");
+                CB.DropDownListBind(ref ddl_HaveMinimum, _3PLCQ.GetFieldList(Login_Server,"Minimum"), "S_bsda_FieldId", "S_bsda_FieldName");
 
 
                 hidTotal_I_qthe_seq.Value = Request.QueryString["I_qthe_Seq"] == null ? "" : Request.QueryString["I_qthe_Seq"].ToString();
@@ -50,6 +51,36 @@ namespace _3PL_System
 
             }
         }
+
+        #region Page functions
+
+        //帶出供應商代號
+        protected void Btn_S_qthe_SupdId_New_Click(object sender, EventArgs e)
+        {
+            string Path = "3PL_SupdSelect.aspx?ReturnLocation=" + Txb_S_qthe_SupdId_New.ClientID +
+                "&ReturnLocation2=" + Txb_S_qthe_SupdName_New.ClientID +
+                "&btnCloseID=" + ((_3PLMasterPage)Master).FindControl("btn_Close_div_URL").ClientID; ;
+            ((_3PLMasterPage)Master).ShowURL(Path);
+        }
+
+        //其他議價單的欄位要Disable
+        protected void Chk_IsSpecial_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Chk_IsSpecial.Checked == true)
+            {
+                Txb_Price.Enabled = true;
+                //Txb_PriceMemo.Enabled = true;
+                //Chk_IsBaseCost.Enabled = true;
+            }
+            else
+            {
+                Txb_Price.Enabled = false;
+                //Txb_PriceMemo.Enabled = false;
+                //Chk_IsBaseCost.Enabled = false;
+            }
+        }
+
+        #endregion
 
         #region Head
 
@@ -180,9 +211,9 @@ namespace _3PL_System
             txb_S_qthe_TEL.Text = dr["S_qthe_TEL"].ToString();
             txb_S_qthe_BOSS.Text = dr["S_qthe_BOSS"].ToString();
             txb_S_qthe_FAX.Text = dr["S_qthe_FAX"].ToString();
-            CheckBoxList_Quotation.Items[0].Selected = dr["Flag_DC1"].ToString() == "1" ? true : false;
-            CheckBoxList_Quotation.Items[1].Selected = dr["Flag_DC2"].ToString() == "1" ? true : false;
-            CheckBoxList_Quotation.Items[2].Selected = dr["Flag_DC3"].ToString() == "1" ? true : false;
+            CheckBoxList_Quotation.Items[0].Selected = (dr["Flag_DC1"].ToString() == "1" ? true : false);
+            CheckBoxList_Quotation.Items[1].Selected = (dr["Flag_DC2"].ToString() == "1" ? true : false);
+            CheckBoxList_Quotation.Items[2].Selected = (dr["Flag_DC3"].ToString() == "1" ? true : false);
 
 
             Session["Quotation_head"] = dt_head;
@@ -224,6 +255,11 @@ namespace _3PL_System
         #endregion
 
         #region Detail
+        /// <summary>
+        /// 換頁
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GV_Quotation_Detail_New_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GV_Quotation_Detail_New.PageIndex = e.NewPageIndex;
@@ -240,7 +276,11 @@ namespace _3PL_System
         }
 
         #region Detail-Controler
-        //選定報價主類別後，帶出計價費用
+        /// <summary>
+        /// 選定報價主類別後，帶出計價費用
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void ddl_TypeId_SelectedIndexChanged(object sender, EventArgs e)
         {
             string SiteNo = "";
@@ -262,7 +302,11 @@ namespace _3PL_System
             }
         }
 
-        //選定計價費用，帶出明細
+        /// <summary>
+        /// 選定計價費用，帶出明細
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void DDL_bcseseq_SelectedIndexChanged(object sender, EventArgs e)
         {
             string I_bcseSeq = DDL_bcseseq.SelectedValue;
@@ -273,6 +317,28 @@ namespace _3PL_System
             Txb_Price.Text = string.Format("{0:N2}", dr["I_bcse_Price"]);
             Lbl_DollarUnit.Text = dr["S_bcse_DollarUnit"].ToString();
             Lbl_Unit2.Text = dr["UnitName"].ToString();
+        }
+
+        /// <summary>
+        /// 最低收費
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddl_HaveMinimum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (((DropDownList)sender).SelectedIndex)
+            {
+                case 0:
+                    Txb_Memo.Text.Replace("每倉每次作業不足新台幣壹仟元以壹仟元計。", "");
+                    Txb_Memo.Text.Replace("每次作業不足新台幣壹仟元以壹仟元計。", "");
+                    break;
+                case 1:
+                    Txb_Memo.Text += "每倉每次作業不足新台幣壹仟元以壹仟元計。";
+                    break;
+                case 2:
+                    Txb_Memo.Text += "每次作業不足新台幣壹仟元以壹仟元計。";
+                    break;
+            }
         }
         #endregion
 
@@ -376,8 +442,8 @@ namespace _3PL_System
             #endregion
 
             dr["S_qtde_Memo"] = Txb_Memo.Text;
-            dr["I_qtde_IsBaseCost"] = Chk_IsBaseCost.Checked == true ? 1 : 0;
-            dr["S_qtde_PriceMemo"] = Txb_PriceMemo.Text;
+            //dr["I_qtde_IsBaseCost"] = Chk_IsBaseCost.Checked == true ? 1 : 0;
+            //dr["S_qtde_PriceMemo"] = Txb_PriceMemo.Text;
             dr["I_qtde_DelFlag"] = 0;
             dr["S_qtde_CreateId"] = UI.UserID;
             dr["S_qtde_UpdId"] = UI.UserID;
@@ -394,25 +460,25 @@ namespace _3PL_System
                 return;
             }
 
-            DataTable dt = (DataTable)Session["Quotation_Detail"];
-            object[] objParam = { hidTotal_I_qtde_seq.Value, hidTotal_I_qtde_Detailseq.Value };
-            DataRow dr = dt.Rows.Find(objParam);
+            DataRow dr = GV_Quotation_Detail_getSelectedRow();
 
-            dr["I_qtde_TypeId"] = ddl_TypeId.SelectedValue;
+            dr["I_qtde_TypeId"] = ddl_TypeId.SelectedValue;     //報價主類別
             dr["S_bsda_FieldName"] = ddl_TypeId.SelectedItem;
 
-            dr["I_qtde_bcseseq"] = DDL_bcseseq.SelectedValue;
+            dr["I_qtde_bcseseq"] = DDL_bcseseq.SelectedValue;   //計價費用
             string[] Costnamelist = DDL_bcseseq.SelectedItem.Text.ToString().Split(',');
             dr["S_bcse_CostName"] = Costnamelist[1];
             dr["S_bcse_DollarUnit"] = Lbl_DollarUnit.Text;
-            dr["I_qtde_Price"] = Txb_Price.Text;
-
-            dr["S_qtde_Memo"] = Txb_Memo.Text;
-            dr["I_qtde_IsBaseCost"] = Chk_IsBaseCost.Checked == true ? 1 : 0;
-            dr["S_qtde_PriceMemo"] = Txb_PriceMemo.Text;
+            dr["I_qtde_Price"] = Txb_Price.Text;                //單價
+            dr["S_qtde_Memo"] = Txb_Memo.Text;                  //備註
             dr["S_qtde_UpdId"] = UI.UserID;
 
-            #region 明細倉別
+            dr["I_qtde_HaveMinimum"] = ddl_HaveMinimum.SelectedValue;   //最低收費
+
+            //dr["I_qtde_IsBaseCost"] = Chk_IsBaseCost.Checked == true ? 1 : 0;
+            //dr["S_qtde_PriceMemo"] = Txb_PriceMemo.Text;
+
+            #region Save 明細倉別
             string SiteNo = "";
             foreach (ListItem item in CheckBoxList_Detail.Items)
             {
@@ -425,9 +491,31 @@ namespace _3PL_System
             if (dr["UIStatus"].ToString() != "Added")
                 dr["UIStatus"] = "Modified";
 
-            ((_3PLMasterPage)Master).ShowMessage("明細修改完成");
-            //ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert('明細修改完成')", true);
+            ((_3PLMasterPage)Master).ShowMessage("明細修改完成，最後記得提交更新");
+
+            change_div_Detail_Upd(0);
+
             GVBind_Quotation_Detail();
+        }
+        //取消更新明細
+        protected void Btn_Detail_Upd_Cancel_Click(object sender, EventArgs e)
+        {
+            change_div_Detail_Upd(0);
+        }
+        private void change_div_Detail_Upd(int Mode) {
+            if (Mode == 0)
+            {
+                CheckBoxList_Detail.Enabled = true;
+                Btn_Detail_New.Visible = true;
+                Btn_Detail_Upd.Visible = false;
+                Btn_Detail_Upd_Cancel.Visible = false;
+            }
+            else {
+                CheckBoxList_Detail.Enabled = false;
+                Btn_Detail_New.Visible = false;
+                Btn_Detail_Upd.Visible = true;
+                Btn_Detail_Upd_Cancel.Visible = true;
+            }
         }
 
         //刪除明細
@@ -439,9 +527,6 @@ namespace _3PL_System
             dr["S_qtde_UpdId"] = UI.UserID;
             dr["UIStatus"] = "Deleted";
             dr["I_qtde_DelFlag"] = true;
-
-            Btn_Detail_Del.Visible = false;
-            Btn_Detail_Upd.Visible = false;
 
             GVBind_Quotation_Detail();
         }
@@ -460,73 +545,69 @@ namespace _3PL_System
                 hidTotal_I_qtde_Detailseq.Value = Detail_Seq;
                 Btn_Detail_Del_Click(sender, e);
             }
-            else
+            else if (e.CommandName == "UpdateButton")
             {
                 //更新
                 if (e.CommandArgument.ToString() == string.Empty)
                 {
+                    //定位明細
                     GridViewRow Row = ((GridViewRow)((WebControl)(e.CommandSource)).NamingContainer);
                     DataTable dt = (DataTable)Session["Quotation_Detail"];
                     string qtde_seq = ((HiddenField)Row.Cells[0].FindControl("hid_I_qtde_seq")).Value;
                     String Detail_Seq = ((LinkButton)Row.Cells[0].FindControl("Txb_I_qtde_Detailseq")).Text;
-                    object[] objParam = { qtde_seq, Detail_Seq };
-                    DataRow dr = dt.Rows.Find(objParam);
+                    hidTotal_I_qtde_seq.Value = qtde_seq;
+                    hidTotal_I_qtde_Detailseq.Value = Detail_Seq;
 
-                    #region 明細倉別
+                    //決定明細Row
+                    DataRow dr = GV_Quotation_Detail_getSelectedRow();
+
+                    #region 帶出明細倉別
                     string SiteNo = dr["S_qtde_SiteNo"].ToString();
                     foreach (ListItem item in CheckBoxList_Detail.Items)
                     {
                         if (item.Value == SiteNo)
                             item.Selected = true;
+                        else
+                            item.Selected = false;
                     }
                     #endregion
 
+                    //報價主類別
                     ddl_TypeId.SelectedValue = dr["I_qtde_TypeId"].ToString();
                     ddl_TypeId_SelectedIndexChanged(sender, e);
 
+                    //計價費用
                     if (DDL_bcseseq.Items.FindByValue(dr["I_qtde_bcseseq"].ToString()) != null)
                         DDL_bcseseq.SelectedValue = dr["I_qtde_bcseseq"].ToString();
-                    Txb_Memo.Text = dr["S_qtde_Memo"].ToString();
-                    Txb_Price.Text = dr["I_qtde_Price"].ToString();
-                    Chk_IsBaseCost.Checked = dr["I_qtde_IsBaseCost"].ToString() == "1" ? true : false;
-                    Txb_PriceMemo.Text = dr["S_qtde_PriceMemo"].ToString();
-                    hidTotal_I_qtde_seq.Value = dr["I_qtde_seq"].ToString();
-                    hidTotal_I_qtde_Detailseq.Value = dr["I_qtde_Detailseq"].ToString();
+                    
+                    Txb_Memo.Text = dr["S_qtde_Memo"].ToString();   //備註
+                    Txb_Price.Text = dr["I_qtde_Price"].ToString(); //單價
+                    string str_HaveMinimum = dr["I_qtde_HaveMinimum"].ToString();
+                    if (str_HaveMinimum.Length <= 0)
+                        str_HaveMinimum = "0";
+                    ddl_HaveMinimum.SelectedValue = str_HaveMinimum;    //最低費用
 
-                    Btn_Detail_Del.Visible = true;
-                    Btn_Detail_Upd.Visible = true;
+                    //Chk_IsBaseCost.Checked = dr["I_qtde_IsBaseCost"].ToString() == "1" ? true : false;
+                    //Txb_PriceMemo.Text = dr["S_qtde_PriceMemo"].ToString();
+
+                    change_div_Detail_Upd(1);
                 }
             }
         }
+        private DataRow GV_Quotation_Detail_getSelectedRow()
+        {
+            string qtde_seq = hidTotal_I_qtde_seq.Value;
+            string Detail_Seq = hidTotal_I_qtde_Detailseq.Value;
+
+            DataTable dt = (DataTable)Session["Quotation_Detail"];
+            object[] objParam = { qtde_seq, Detail_Seq };
+            DataRow dr = dt.Rows.Find(objParam);
+
+            return dr;
+        }
         #endregion
 
         #endregion
-
-        //帶出供應商代號
-        protected void Btn_S_qthe_SupdId_New_Click(object sender, EventArgs e)
-        {
-            string Path = "3PL_SupdSelect.aspx?ReturnLocation=" + Txb_S_qthe_SupdId_New.ClientID +
-                "&ReturnLocation2=" + Txb_S_qthe_SupdName_New.ClientID +
-                "&btnCloseID=" + ((_3PLMasterPage)Master).FindControl("btn_Close_div_URL").ClientID; ;
-            ((_3PLMasterPage)Master).ShowURL(Path);
-        }
-
-        //其他議價單的欄位要Disable
-        protected void Chk_IsSpecial_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Chk_IsSpecial.Checked == true)
-            {
-                Txb_Price.Enabled = true;
-                Txb_PriceMemo.Enabled = true;
-                Chk_IsBaseCost.Enabled = true;
-            }
-            else
-            {
-                Txb_Price.Enabled = false;
-                Txb_PriceMemo.Enabled = false;
-                Chk_IsBaseCost.Enabled = false;
-            }
-        }
 
         #region 單據修改完成,按下確定
         //回寫資料
@@ -539,7 +620,7 @@ namespace _3PL_System
             #region 檢查明細內容有沒有重複
             //一個倉別+一個派工類別，只有一個計價費用
             var Result = from r1 in dt_Detail.AsEnumerable()
-                         where r1.Field<string>("UIStatus")== "Added"|| r1.Field<string>("UIStatus") == "Modified"
+                         where r1.Field<string>("UIStatus") == "Added" || r1.Field<string>("UIStatus") == "Modified"
                          group r1 by new
                          {
                              TypeId = r1.Field<Byte>("I_qtde_TypeId"),
@@ -714,5 +795,6 @@ namespace _3PL_System
             }
         }
         #endregion
+
     }
 }

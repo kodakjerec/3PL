@@ -13,22 +13,13 @@ namespace _3PL_System {
     public partial class _3PL_Assign_Query {
         
         /// <summary>
-        /// lbl_Quotation 控制項。
+        /// UpdPanel_Assign_HeadList 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Quotation;
-        
-        /// <summary>
-        /// lbl_Quotation_Query 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Quotation_Query;
+        protected global::System.Web.UI.UpdatePanel UpdPanel_Assign_HeadList;
         
         /// <summary>
         /// Pan_Quotation_Query 控制項。
@@ -56,15 +47,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_S_qthe_SupdId;
-        
-        /// <summary>
-        /// Label3 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// DDL_S_qthe_SiteNo 控制項。
@@ -112,13 +94,31 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.DropDownList DDL_AssignStatusList;
         
         /// <summary>
-        /// Chk_ShowStatusIsZero 控制項。
+        /// btn_chkList_ShowHide 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Chk_ShowStatusIsZero;
+        protected global::System.Web.UI.WebControls.Button btn_chkList_ShowHide;
+        
+        /// <summary>
+        /// div_chkList_ShowHide 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_chkList_ShowHide;
+        
+        /// <summary>
+        /// chkList_StatusList 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkList_StatusList;
         
         /// <summary>
         /// Btn_Query 控制項。
@@ -128,15 +128,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_Query;
-        
-        /// <summary>
-        /// UpdPanel_Assign_HeadList 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdPanel_Assign_HeadList;
         
         /// <summary>
         /// GV_Quotation_Query 控制項。

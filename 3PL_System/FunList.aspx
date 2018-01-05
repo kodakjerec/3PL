@@ -12,23 +12,23 @@
             </tr>
             <tr>
                 <td class="HeaderStyle ">
-                    <asp:Label ID="lbl_CustInf" runat="server" Text="選單管理"></asp:Label>
+                    選單管理
                 </td>
             </tr>
         </table>
         <table class="tborder" width="60%">
             <tr>
-                <td class="EditTD1" width="15%">
-                    <asp:Label ID="lbl_RoleId" runat="server" Text="權限角色"></asp:Label>
+                <td class="EditTD1" style="width:15%">
+                    權限角色
                 </td>
-                <td width="15%">
+                <td style="width:15%">
                     <asp:DropDownList ID="ddl_Role" runat="server">
                     </asp:DropDownList>
                 </td>
-                <td class="EditTD1" width="15%">
-                    <asp:Label ID="lbl_Fun" runat="server" Text="主功能名稱:"></asp:Label>
+                <td class="EditTD1" style="width:15%">
+                    主功能名稱:
                 </td>
-                <td width="15%">
+                <td style="width:15%">
                     <asp:TextBox ID="txb_Fun" runat="server" MaxLength="10"></asp:TextBox>
                 </td>
             </tr>
@@ -39,11 +39,15 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="60%">
+        <table class="tborder" style="width:60%">
             <tr>
                 <td>
                     <asp:GridView ID="gv_List" runat="server" AutoGenerateColumns="False" CssClass="GVStyle"
-                        Width="100%" OnRowDataBound="gv_List_RowDataBound" AllowPaging="True" OnPageIndexChanging="gv_List_PageIndexChanging">
+                        Width="100%" 
+                        OnRowDataBound="gv_List_RowDataBound" 
+                        AllowPaging="True" 
+                        OnPageIndexChanging="gv_List_PageIndexChanging"
+                        PageSize="20">
                         <HeaderStyle CssClass="GVHead" />
                         <RowStyle CssClass="one" />
                         <PagerStyle CssClass="GVPage" />
@@ -69,7 +73,7 @@
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="60%">
+        <table class="tborder" style="width:60%">
             <tr>
                 <td align="center">
                     <asp:Button ID="btn_Submit" runat="server" Text="更新本頁資訊" OnClick="btn_Submit_Click" />

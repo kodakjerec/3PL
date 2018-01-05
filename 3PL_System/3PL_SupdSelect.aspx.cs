@@ -18,10 +18,14 @@ namespace SC_Offer
             string strSupName = string.Empty;
             try
             {
-                strSupNo = txb_ObjNo.Text.Trim();
-                strSupName = txb_ObjName.Text.Trim();
-                dtSup = _3PLCQ.GetSupdId("3PL", 0, strSupNo, strSupName);
-                Session["Sup"] = dtSup;
+                dtSup = (DataTable)Session["Sup"];
+                if (dtSup == null)
+                {
+                    strSupNo = txb_ObjNo.Text.Trim();
+                    strSupName = txb_ObjName.Text.Trim();
+                    dtSup = _3PLCQ.GetSupdId("3PL", 0, strSupNo, strSupName);
+                    Session["Sup"] = dtSup;
+                }
                 BindGV();
             }
             catch

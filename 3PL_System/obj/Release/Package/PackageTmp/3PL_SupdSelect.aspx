@@ -16,15 +16,15 @@
             <ContentTemplate>
                 <table class="tborder" style="width:100%">
                     <tr>
-                        <td class="EditTD1" width="15%">對象代碼：
+                        <td class="EditTD1" style="width:15%">對象代碼：
                         </td>
-                        <td width="35%">
+                        <td style="width:35%">
                             <asp:TextBox ID="txb_ObjNo" runat="server" AutoPostBack="True" OnTextChanged="txb_ObjNo_TextChanged"></asp:TextBox>
                         </td>
-                        <td class="EditTD1" width="15%">對象名稱：
+                        <td class="EditTD1" style="width:15%">對象名稱：
                         </td>
-                        <td width="35%">
-                            <asp:TextBox ID="txb_ObjName" runat="server" AutoPostBack="True" OnTextChanged="txb_ObjNo_TextChanged"></asp:TextBox>
+                        <td style="width:35%">
+                            <asp:TextBox ID="txb_ObjName" runat="server" AutoPostBack="True" OnTextChanged="txb_ObjNo_TextChanged" placeholder="輸入文字可查詢"></asp:TextBox>
                         </td>
                     </tr>
                 </table>

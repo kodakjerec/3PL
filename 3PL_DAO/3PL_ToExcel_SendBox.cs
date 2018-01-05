@@ -133,15 +133,15 @@ namespace _3PL_DAO
                                     group a by new { a.發票日期, a.元廠商代號, a.元廠商名稱, a.單價 } into b
                                     orderby b.Key.發票日期, b.Key.元廠商代號, b.Key.元廠商名稱
                                     select new colTotal
-                        {
-                            發票日期 = b.Key.發票日期,
-                            廠商代碼 = b.Key.元廠商代號,
-                            廠商名稱 = b.Key.元廠商名稱,
-                            驗收總箱數 = b.Sum(a => a.元驗收總箱數),
-                            發票數量 = b.Sum(a => a.現場輸入數量),
-                            單價 = b.Key.單價,
-                            金額 = b.Sum(a => a.含稅金額)
-                        }
+                                    {
+                                        發票日期 = b.Key.發票日期,
+                                        廠商代碼 = b.Key.元廠商代號,
+                                        廠商名稱 = b.Key.元廠商名稱,
+                                        驗收總箱數 = b.Sum(a => a.元驗收總箱數),
+                                        發票數量 = b.Sum(a => a.現場輸入數量),
+                                        單價 = b.Key.單價,
+                                        金額 = b.Sum(a => a.含稅金額)
+                                    }
                         ).ToList<colTotal>();
             DataTable dt2 = ConvertToDataTable(query);
             return dt2;
@@ -325,11 +325,16 @@ group by a.ID, b.DOCK_MODE
                 obj.單價 = dr0["UPRC"].ToString();
                 obj.含稅金額 = Convert.ToInt32(dr0["LTTLAMT"]);
 
+                foreach (DataRow dr1 in dt1.Rows)
+                {
+                    string a = dr0["PORDNO"].ToString().Replace("/r","").Replace("/n","");
+                    string b = dr1["po_no"].ToString();
+                }
                 var dr1s = (from a in dt1.AsEnumerable()
-                               where a.Field<string>("po_no") == dr0["PORDNO"].ToString()
-                               select a);
+                            where a.Field<string>("po_no") == dr0["PORDNO"].ToString()
+                            select a);
 
-                if (dr1s.Count()>0)
+                if (dr1s.Count() > 0)
                 {
                     DataRow dr1 = dr1s.First();
                     obj.驗收單號 = dr1["rv_no"].ToString();

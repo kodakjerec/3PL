@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using System.Collections;
 using _3PL_DAO;
 using _3PL_LIB;
 
@@ -36,7 +31,7 @@ namespace _3PL_System
             string Role_ID = string.Empty;
             DataSet dsFunList = new DataSet();
             DataTable dtFunList = new DataTable();
-            RoleInf RI= new RoleInf();
+            RoleInf RI = new RoleInf();
 
             try
             {
@@ -49,7 +44,7 @@ namespace _3PL_System
                 }
                 if (ErrMsg.Length != 0)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert('" + ErrMsg + "');", true);
+                    ((_3PLMasterPage)Master).ShowMessage(ErrMsg);
                     return;
                 }
                 else
@@ -66,7 +61,8 @@ namespace _3PL_System
             }
             catch
             {
-                ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 系統異常，請洽資訊部 !!!');", true);
+                ErrMsg = "系統異常，請洽資訊部 !!!";
+                ((_3PLMasterPage)Master).ShowMessage(ErrMsg);
             }
         }
 
@@ -89,7 +85,7 @@ namespace _3PL_System
                 {
                     CheckBox ck = (CheckBox)row.Cells[0].FindControl("cbk_FunList");
                     HiddenField hidRoleID = (HiddenField)row.Cells[0].FindControl("hid_RoleId");
-                   
+
                     string strRole = hidRoleID.Value;
                     if (ck.Checked && strRole.Length == 0)//增加
                     {
@@ -97,7 +93,7 @@ namespace _3PL_System
                         HiddenField hidPgId = (HiddenField)row.Cells[0].FindControl("hid_PgId");
                         string strFunId = hidFunId.Value;
                         string strPgId = hidPgId.Value;
-                        boRole=AddFunList(Role_ID, strFunId, strPgId);
+                        boRole = AddFunList(Role_ID, strFunId, strPgId);
                         //((HiddenField)row.Cells[0].FindControl("hid_RoleId")).Value = Role_ID;
                     }
                     else if (!ck.Checked && strRole.Length > 0) //移除
@@ -107,7 +103,7 @@ namespace _3PL_System
                         string strFunId = hidFunId.Value;
                         string strPgId = hidPgId.Value;
                         //((HiddenField)row.Cells[0].FindControl("hid_RoleId")).Value = string.Empty;
-                        boRole=RemoveFunList(Role_ID, strFunId, strPgId);
+                        boRole = RemoveFunList(Role_ID, strFunId, strPgId);
                     }
                 }
                 dsFunList = RI.dsFunRoleList("3PL", Role_ID, string.Empty);
@@ -116,16 +112,16 @@ namespace _3PL_System
                 BindGV(dtFunList);
                 if (boRole)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 更新成功 !!!');", true);
+                    ((_3PLMasterPage)Master).ShowMessage("更新成功 !!!");
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 更新失敗 !!!');", true);
+                    ((_3PLMasterPage)Master).ShowMessage("更新失敗 !!!");
                 }
             }
             catch
             {
-                ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 系統異常，請洽資訊部 !!!');", true);
+                ((_3PLMasterPage)Master).ShowMessage("系統異常，請洽資訊部 !!!");
             }
         }
 
@@ -178,7 +174,7 @@ namespace _3PL_System
             }
             catch
             {
-                ScriptManager.RegisterClientScriptBlock(this, typeof(string), "alert", "alert(' 系統異常，請洽資訊部 !!!');", true);
+                ((_3PLMasterPage)Master).ShowMessage("系統異常，請洽資訊部 !!!");
             }
         }
 
@@ -190,7 +186,7 @@ namespace _3PL_System
             RoleInf RI = new RoleInf();
             string UserId = UI.UserID;
             bool blIns = RI.AddRoleFun("3PL", RoleId, FunId, PgID, UserId);
-            return blIns; 
+            return blIns;
         }
 
         /// <summary>
@@ -198,7 +194,7 @@ namespace _3PL_System
         /// </summary>
         private bool RemoveFunList(string RoleId, string FunId, string PgID)
         {
-            
+
             RoleInf RI = new RoleInf();
             string UserId = UI.UserID;
             bool blIns = RI.RemoveRoleFun("3PL", RoleId, FunId, PgID, UserId);

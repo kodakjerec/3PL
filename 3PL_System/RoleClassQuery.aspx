@@ -13,28 +13,29 @@
             </tr>
             <tr>
                 <td class="HeaderStyle ">
-                    <asp:Label ID="lbl_CustInf" runat="server" Text="身分類別查詢"></asp:Label>
+                    身分類別查詢
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="35%">
+        <table class="tborder" style="width:40%">
             <tr>
-                <td class="EditTD1" width="15%" align="right">
-                    <asp:Label ID="lbl_ClassName" runat="server" Text="身分類別:"></asp:Label>
+                <td class="EditTD1">
+                    身分類別：
                 </td>
-                <td width="20%">
+                <td>
                     <asp:TextBox ID="txb_Class" runat="server" MaxLength="20"></asp:TextBox>
                 </td>
-                <td width="5%">
+                <td>
                     <asp:Button ID="btn_Query" runat="server" Text="查詢" OnClick="btn_Query_Click" />
                 </td>
             </tr>
         </table>
-        <table class="tborder" width="35%">
+        <table class="tborder" style="width:40%">
             <tr>
                 <td>
                     <asp:GridView ID="gv_List" runat="server" AutoGenerateColumns="False" CssClass="GVStyle"
                         Width="100%" AllowPaging="True" OnPageIndexChanging="gv_List_PageIndexChanging"
+                        PageSize="20"
                         OnRowCommand="gv_List_RowCommand">
                         <HeaderStyle CssClass="GVHead" />
                         <RowStyle CssClass="one" />

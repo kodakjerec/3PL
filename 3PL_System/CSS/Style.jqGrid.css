@@ -1,0 +1,79 @@
+﻿/* GridView Style */
+/*標題列*/
+.ui-jqgrid-htable thead tr th.ui-th-column {
+    font-size: medium;
+    border: 1px solid #BA9;
+    font-weight: bold;
+    background: #9291FF repeat-x top left;
+    vertical-align: top;
+    text-align: center;
+    color: White;
+}
+
+    .ui-jqgrid-htable thead tr th.ui-th-column .ui-th-div {
+        height: 100%;
+    }
+
+/*底部分頁表*/
+.ui-jqgrid .ui-jqgrid-pager {
+    height: 35px;
+}
+
+.ui-pager-table {
+    font-weight: bold;
+    background: #9291FF;
+    vertical-align: top;
+}
+
+    .ui-pager-table #input_jqGridPager input {
+        height: auto;
+        font-size: large;
+    }
+
+    .ui-pager-table .ui-pg-selbox {
+        height: auto;
+        font-size:medium;
+    }
+
+    .ui-pager-table a {
+        text-decoration: none;
+        font-size: large;
+    }
+
+    .ui-pager-table span {
+        font-size: x-large;
+        color: white;
+    }
+
+    .ui-pager-table a:hover {
+        text-decoration: underline;
+    }
+
+/* column內部樣式*/
+.ui-jqgrid-btable th {
+    color: #ffffff;
+}
+
+.ui-jqgrid-btable tbody tr td {
+    border-color: #BA9;
+    border-width: 1px;
+    border-style: solid;
+}
+
+/*row 樣式*/
+.ui-jqgrid-btable tr {
+    font-size: medium;
+    background-color: #e5f1f4;
+}
+    /* 偶數行*/
+    .ui-jqgrid-btable tr.ui-priority-secondary {
+        background-color: #f8fbfc;
+    }
+    /* 點選到的行*/
+    .ui-jqgrid-btable tr.ui-state-highlight {
+        background: #FFF4DA;
+    }
+    /* Inline-edit 取得焦點 */
+    .ui-jqgrid-btable tr td *.editable {
+        font-size: large;
+    }

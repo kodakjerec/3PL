@@ -12,20 +12,20 @@
             </tr>
             <tr>
                 <td class="HeaderStyle ">
-                    <asp:Label ID="lbl_CustInf" runat="server" Text="使用者管理"></asp:Label>
+                   使用者管理
                 </td>
             </tr>
         </table>
         <table class="tborder" style="width:100%">
             <tr>
                 <td class="EditTD1" width="15%">
-                    <asp:Label ID="lbl_WorkId" runat="server" Text="帳號:"></asp:Label>
+                    帳號：
                 </td>
                 <td width="35%">
                     <asp:TextBox ID="txb_WorkId" runat="server" MaxLength="10"></asp:TextBox>
                 </td>
                 <td class="EditTD1" width="15%">
-                    <asp:Label ID="lbl_Class" runat="server" Text="身分類別:"></asp:Label>
+                    身分類別：
                 </td>
                 <td width="35%">
                     <asp:DropDownList ID="ddl_Class" runat="server">
@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td class="EditTD1" width="15%">
-                    <asp:Label ID="lbl_Name" runat="server" Text="姓名:"></asp:Label>
+                    姓名：
                 </td>
                 <td width="35%">
                     <asp:TextBox ID="txb_Name" runat="server" MaxLength="10"></asp:TextBox>
@@ -51,6 +51,7 @@
         <table class="tborder" style="width:100%" align="center">
             <asp:GridView ID="gv_List" runat="server" AutoGenerateColumns="False" CssClass="GVStyle"
                 Width="60%" AllowPaging="True" OnPageIndexChanging="gv_List_PageIndexChanging"
+                PageSize="20"
                 OnRowCommand="gv_List_RowCommand">
                 <HeaderStyle CssClass="GVHead" />
                 <RowStyle CssClass="one" />

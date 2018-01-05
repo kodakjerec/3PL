@@ -8,3 +8,5 @@
 /MD5/obj/*
 /ExcelTool/bin/*
 /ExcelTool/obj/*
+/.vs/*
+*.sln

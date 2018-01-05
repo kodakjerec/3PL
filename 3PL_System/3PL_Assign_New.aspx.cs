@@ -93,12 +93,12 @@ namespace _3PL_System
         //帶出明細資訊
         private void bringDetail(string PLNO, string site_no, string TypeId, string ClassId)
         {
-            DataTable dt1 = _3pa.getCostlist(PLNO, site_no, TypeId, ClassId);
-            Session["dt_detail"] = dt1;
-            GV_Quotation_Detail_New.DataSource = dt1;
+            DataTable dt_OriginalPriceList = _3pa.getCostlist(PLNO, site_no, TypeId, ClassId);
+            Session["dt_detail"] = dt_OriginalPriceList;
+            GV_Quotation_Detail_New.DataSource = dt_OriginalPriceList;
             GV_Quotation_Detail_New.DataBind();
 
-            DataTable dt_detail_Final = dt1.Clone();
+            DataTable dt_detail_Final = dt_OriginalPriceList.Clone();
             Session["dt_detail_Final"] = dt_detail_Final;
             GridView1.DataSource = dt_detail_Final;
             GridView1.DataBind();
@@ -110,7 +110,7 @@ namespace _3PL_System
         protected void Btn_Query_Click(object sender, EventArgs e)
         {
             DataTable dt_detail_Final = (DataTable)Session["dt_detail_Final"];
-            DataTable dt1 = (DataTable)Session["dt_detail"];
+            DataTable dt_OriginalPriceList = (DataTable)Session["dt_detail"];
             string PO_NO = txb_D_qthe_ContractS_Qry.Text;
             string item_no = txb_D_qthe_ContractE_Qry.Text;
             string site_no = DDL_DC.SelectedValue;
@@ -143,7 +143,8 @@ namespace _3PL_System
                 return;
             }
 
-            foreach (DataRow dr in dt1.Rows)
+            //根據原始計價項目, 帶入數量
+            foreach (DataRow dr in dt_OriginalPriceList.Rows)
             {
                 dr["PONO"] = PO_NO;
                 dr["itemno"] = item_no;
@@ -153,9 +154,10 @@ namespace _3PL_System
                 //帶入數量
                 dr["Ordqty"] = _3PLAssign.GetDetailNeedQty(POlist.Rows[0], dr["S_bsda_FieldName"].ToString());
 
+                //新增進dr_detail_Final
                 DataRow dr_detail_Final = dt_detail_Final.NewRow();
                 int i = 0;
-                foreach (DataColumn dc in dt1.Columns)
+                foreach (DataColumn dc in dt_OriginalPriceList.Columns)
                 {
                     dr_detail_Final[i] = dr[i];
                     i++;

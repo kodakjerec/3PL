@@ -10,26 +10,33 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            加密前文字<asp:TextBox ID="TextBox1" runat="server" Width="80%"></asp:TextBox>
+            MD5_Encode 文字<asp:TextBox ID="TextBox1" runat="server" Width="80%"></asp:TextBox>
             <br />
             <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
             <br />
-            加密後文字<asp:TextBox ID="TextBox2" runat="server" Width="80%"></asp:TextBox>
+            加密後<asp:TextBox ID="TextBox2" runat="server" Width="80%"></asp:TextBox>
             <br />
-
+            <p></p>
             <br />
-            密文文字<asp:TextBox ID="TextBox3" runat="server" Width="80%"></asp:TextBox>
+            MD5_Decode 密文<asp:TextBox ID="TextBox3" runat="server" Width="80%"></asp:TextBox>
             <br />
             <asp:Button ID="Button2" runat="server" Text="Button" OnClick="Button2_Click" />
             <br />
-            解密後文字<asp:TextBox ID="TextBox4" runat="server" Width="80%"></asp:TextBox>
-
+            解密後<asp:TextBox ID="TextBox4" runat="server" Width="80%"></asp:TextBox>
+            <p></p>
             <br />
-            AES_Decode 密文文字<asp:TextBox ID="TextBox5" runat="server" Width="80%"></asp:TextBox>
+            AES_Eecode 文字<asp:TextBox ID="TextBox7" runat="server" Width="80%"></asp:TextBox>
+            <br />
+            <asp:Button ID="Button4" runat="server" Text="Button" OnClick="Button4_Click" />
+            <br />
+            加密後<asp:TextBox ID="TextBox8" runat="server" Width="80%"></asp:TextBox>
+            <p></p>
+            <br />
+            AES_Decode 密文<asp:TextBox ID="TextBox5" runat="server" Width="80%"></asp:TextBox>
             <br />
             <asp:Button ID="Button3" runat="server" Text="Button" OnClick="Button3_Click" />
             <br />
-            解密後文字<asp:TextBox ID="TextBox6" runat="server" Width="80%"></asp:TextBox>
+            解密後<asp:TextBox ID="TextBox6" runat="server" Width="80%"></asp:TextBox>
         </div>
     </form>
 </body>

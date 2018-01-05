@@ -6,14 +6,14 @@
             $('iframe').css('height', $(window).height() - $('nav').height());
 
             $('#dialog_alarm').dialog({
-                height: 600,
-                width: 500,
+                height: $(window).height() * 0.8,
+                width: $(window).width() * 0.8,
                 title: '未完成單據'
             });
             $('#dialog_Settings').dialog({
                 autoOpen: false,
-                height: 600,
-                width: 500,
+                height: $(window).height()*0.8,
+                width: $(window).width()*0.8,
                 title: '網頁設定'
             });
 
@@ -28,7 +28,7 @@
                     type: "POST",
                     dataType: 'text/plain',
                     url: 'handler/Handler_Log.ashx',
-                    data: 'UserID=' + getCookie('UserID') + '&MenuID=' + $(this).attr('id') + '&MenuName=' + $(this).text() + '&Active=' + 'Click',
+                    data: 'UserID=' + Cookies.get('UserID') + '&MenuID=' + $(this).attr('id') + '&MenuName=' + $(this).text() + '&Active=' + 'Click',
                     cache: false,
                     async: false
                 });
@@ -39,7 +39,7 @@
                     type: "POST",
                     dataType: 'text/plain',
                     url: 'handler/Handler_Log.ashx',
-                    data: 'UserID=' + getCookie('UserID') + '&MenuID=' + $(this).attr('id') + '&MenuName=' + $(this).text() + '&Active=' + 'Logout',
+                    data: 'UserID=' + Cookies.get('UserID') + '&MenuID=' + $(this).attr('id') + '&MenuName=' + $(this).text() + '&Active=' + 'Logout',
                     cache: false,
                     async: false
                 });
@@ -52,34 +52,13 @@
             $('#dialog_alarm').dialog('close');
         };
         function dialog_Settings_open() {
-            $('#txb_Settings_CloseTimer').val(getCookie('CloseTimer'));
+            $('#txb_Settings_CloseTimer').val(Cookies.get('CloseTimer'));
             $('#dialog_Settings').dialog('open');
         };
         function dialog_Settings_close() {
-            setCookie('CloseTimer', $('#txb_Settings_CloseTimer').val(), 365);
+            Cookies.set('CloseTimer', $('#txb_Settings_CloseTimer').val(), { expires: 365 });
             $('#dialog_Settings').dialog('close');
         };
-        function setCookie(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = "expires=" + d.toUTCString();
-            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-        }
-        function getCookie(cname) {
-            var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
     </script>
     <style>
         body {

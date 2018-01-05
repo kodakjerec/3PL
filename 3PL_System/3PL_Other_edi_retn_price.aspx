@@ -12,23 +12,6 @@
     <title>逆物流費用設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="dialog_Settings" class="myDIV" runat="server">
-        <div class="myBackDIV">
-            <div class="myMainSubject">
-                <asp:Button ID="btn_close_dialog_Settings" runat="server" class="btn btn-default btn-block" Text="儲存並關閉" OnClick="Btn_CloseSetting_Click" />
-                <div class="input-group">
-                    <span class="input-group-addon">廠商編號</span>
-                    <input id="txb_Settings_SupNo" type="text" class="form-control" name="msg" placeholder="請輸入廠商編號">
-                    (請用","分隔，例如：0888,0123)
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">貨&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;號</span>
-                    <input id="txb_Settings_ItemNo" type="text" class="form-control" name="msg" placeholder="請輸入貨號">
-                    (請用","分隔，例如：20310392,20310781)
-                </div>
-            </div>
-        </div>
-    </div>
     <table class="tborder" style="width: 100%">
         <tr>
             <td class="PageTitle">
@@ -109,11 +92,11 @@
                 </td>
             </tr>
         </table>
-        禁止修改關帳日
-        <asp:Label ID="lbl_CloseDate" runat="server" Style="color: red"></asp:Label>
-        之前的資料
     </asp:Panel>
     <div id="div_Content" runat="server">
+        <asp:Button ID="btn_CloseDateConfirm" runat="server" Text="更新本頁資訊" OnClick="btn_CloseDateConfirm_Click" />
+        <asp:Button ID="btn_OutputExcel" runat="server" Text="匯出EXCEL" OnClick="btn_OutputExcel_Click" />
+
         <table class="tborder" style="width: 100%">
             <tr>
                 <asp:GridView ID="GV_BaseAccounting" runat="server" AllowPaging="True" AutoGenerateColumns="False"
@@ -151,6 +134,11 @@
                                 <asp:Label ID="lbl_back_date" runat="server" Text='<%# Bind("back_date","{0:yyyy/MM/dd}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="關帳日">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_lock_date" runat="server" Text='<%# Bind("lock_date","{0:yyyy/MM/dd}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="退廠單號">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_back_id" runat="server" Text='<%# Bind("back_id") %>'></asp:Label>
@@ -159,6 +147,13 @@
                         <asp:TemplateField HeaderText="計費類別">
                             <ItemTemplate>
                                 <asp:DropDownList ID="ddl_kind" runat="server" Width="100px" OnSelectedIndexChanged="ddl_kind_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:HiddenField ID="hid_kind" runat="server" Value='<%# Bind("kind") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="大類">
+                            <ItemTemplate>
+                                <asp:DropDownList ID="ddl_charge_kind" runat="server" Width="100px" OnSelectedIndexChanged="ddl_charge_kind_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:HiddenField ID="hid_charge_kind" runat="server" Value='<%# Bind("charge_kind") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="退廠箱號">
@@ -190,7 +185,5 @@
                 </asp:GridView>
             </tr>
         </table>
-        <asp:Button ID="btn_CloseDateConfirm" runat="server" Text="更新本頁資訊" OnClick="btn_CloseDateConfirm_Click" />
-        <asp:Button ID="btn_OutputExcel" runat="server" Text="匯出EXCEL" OnClick="btn_OutputExcel_Click" />
     </div>
 </asp:Content>

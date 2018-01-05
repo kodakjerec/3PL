@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
   <PropertyGroup>
-    <ProjectView>ProjectFiles</ProjectView>
+    <ProjectView>ShowAllFiles</ProjectView>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -14,7 +14,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <StartPageUrl>LogIn.aspx</StartPageUrl>
+          <StartPageUrl>pages/_3PL_QuotationHead_Addon_00/_3PL_QuotationHead_Addon_00.aspx</StartPageUrl>
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
           <SilverlightDebugging>False</SilverlightDebugging>
@@ -35,7 +35,9 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>1683</DevelopmentServerPort>
           <DevelopmentServerVPath>/3PL/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1684/3PL/</IISUrl>
+          <IISUrl>http://localhost:1683/3PL/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:1683/3PL/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

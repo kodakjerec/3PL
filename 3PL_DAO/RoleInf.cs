@@ -88,7 +88,7 @@ namespace _3PL_DAO
             Hashtable hs = new Hashtable();
             try
             {
-                string SqlCom = @"Select RoleId,RoleNm From RoleInf Where RoleId !='admin' ";
+                string SqlCom = @"Select RoleId,RoleNm=RoleId+','+RoleNm From RoleInf with(nolock)";
                 if (RoleID.Length > 0)
                 {
                     SqlCom += " RoleId=@RoleId ";

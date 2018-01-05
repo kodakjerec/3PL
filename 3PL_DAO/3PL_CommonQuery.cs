@@ -18,13 +18,13 @@ namespace _3PL_DAO
         /// <param name="Wk_ID"></param>
         /// <param name="qthe_seq"></param>
         /// <returns></returns>
-        public string Page_AssignQuery(string sup_no, string site_no_select, string Wk_ID, string qthe_seq,string Bdate, string Edate)
+        public string Page_AssignQuery(string sup_no, string site_no_select, string Wk_ID, string qthe_seq, string Bdate, string Edate)
         {
             string VarString = "";
             VarString += sup_no + ",";
             VarString += site_no_select + ",";
             VarString += Wk_ID + ",";
-            VarString += qthe_seq+",";
+            VarString += qthe_seq + ",";
             VarString += Bdate + ",";
             VarString += Edate;
             return VarString;
@@ -103,7 +103,7 @@ namespace _3PL_DAO
             string Sql_cmd = @"Select S_bsda_CateId,S_bsda_CateName,S_bsda_FieldId, S_bsda_FieldName
                                     From [3PL_baseData] with(nolock)
                                    Where S_bsda_CateId=@CateId and I_bsda_DelFlag=0";
-            Sql_cmd += GetDCList(UI.Class, "[S_bsda_FieldId]", 0);
+            Sql_cmd += GetDCList(UI.DCList, "[S_bsda_FieldId]", 0);
             Hashtable ht1 = new Hashtable();
             ht1.Add("@CateId", CateId);
             DataSet ds = IO.SqlQuery(DBlink, Sql_cmd, ht1);
@@ -125,27 +125,11 @@ namespace _3PL_DAO
             string Sql_cmd = "";
             DataSet ds = new DataSet();
 
-            if (SelectType == 0)
-            {
-                Sql_cmd =
-                @"Select Distinct ID,ALIAS From DRP.dbo.DRP_SUPPLIER with(nolock)
-                 where ID like '%'+@SupdId+'%' and ALIAS like '%'+@SupdName+'%' ";
-                Hashtable ht1 = new Hashtable();
-                ht1.Add("@SupdId", SupdId);
-                ht1.Add("@SupdName", SupdName);
-                ds = IO.SqlQuery(DBlink, Sql_cmd, ht1);
-                SupdIdList = ds.Tables[0];
-            }
-            else if (SelectType == 1)
-            {
-                Sql_cmd = @"Select Distinct ID, ALIAS, Bl_No, BOSS, TEL, TEL2, FAX, MAIL, ADDRESS
-                                    From v_Supplier
-                                   Where ID=@ID";
-                Hashtable ht1 = new Hashtable();
-                ht1.Add("@ID", SupdId);
-                ds = IO.SqlQuery(DBlink, Sql_cmd, ht1);
-                SupdIdList = ds.Tables[0];
-            }
+            Sql_cmd = @"Select Distinct ID, ALIAS, Bl_No, BOSS, TEL, TEL2, FAX, MAIL, ADDRESS
+                                    From v_Supplier";
+            Hashtable ht1 = new Hashtable();
+            ds = IO.SqlQuery(DBlink, Sql_cmd, ht1);
+            SupdIdList = ds.Tables[0];
 
             return SupdIdList;
         }
@@ -199,7 +183,7 @@ namespace _3PL_DAO
         {
             DataTable AccIdList = new DataTable();
 
-            string Sql_cmd = @"Select ClassId,Classname From [ClassInf] with(nolock) where ClassId!='000000' ";
+            string Sql_cmd = @"Select ClassId,Classname From [ClassInf] with(nolock) ";
             Hashtable ht1 = new Hashtable();
             DataSet ds = IO.SqlQuery(DBlink, Sql_cmd, ht1);
             AccIdList = ds.Tables[0];
@@ -221,16 +205,16 @@ namespace _3PL_DAO
 
 	            SELECT @CNT0=COUNT(1)
 	              FROM [v_未完成報價單]
-	               where [工號]=@UserId" + GetDCList(UI.Class, "[寄倉倉別代號]", 1) + " GROUP BY 工號";
-            Sql_cmd+= @"
+	               where [工號]=@UserId" + GetDCList(UI.DCList, "[寄倉倉別代號]", 1) + " GROUP BY 工號";
+            Sql_cmd += @"
 	            SELECT @CNT1=COUNT(1)
 	              FROM [v_未完成派工單]
-	               where [工號]=@UserId" + GetDCList(UI.Class, "[寄倉倉別代號]", 1) + " GROUP BY 工號";
+	               where [工號]=@UserId" + GetDCList(UI.DCList, "[寄倉倉別代號]", 1) + " GROUP BY 工號";
             Sql_cmd += @"
 	            SELECT @CNT2=COUNT(1)
 	              FROM [v_未完成調整單]
 	               where [工號]=@UserId GROUP BY 工號";
-            Sql_cmd +=@"
+            Sql_cmd += @"
 	        select 'Quotation'=@CNT0,'Assign'=@CNT1,'Adjust'=@CNT2";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserId", UI.UserID);
@@ -257,7 +241,7 @@ namespace _3PL_DAO
                   ,[I_qthe_IsSpecial]
                   ,[I_qthe_Status]
               FROM [v_未完成報價單] where [工號]=@UserId";
-            Sql_cmd += GetDCList(UI.Class, "[寄倉倉別代號]", 1);
+            Sql_cmd += GetDCList(UI.DCList, "[寄倉倉別代號]", 1);
             Sql_cmd += "order by [報價單號]";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserId", UI.UserID);
@@ -284,7 +268,7 @@ namespace _3PL_DAO
                   ,[Status]
                   ,[EtaDate]
               FROM [v_未完成派工單] where [工號]=@UserId";
-            Sql_cmd += GetDCList(UI.Class, "[寄倉倉別代號]", 0);
+            Sql_cmd += GetDCList(UI.DCList, "[寄倉倉別代號]", 0);
             Sql_cmd += "order by [派工單號]";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserId", UI.UserID);
@@ -377,6 +361,7 @@ namespace _3PL_DAO
             dt1.Rows.Add(new object[] { "全部", "0" });
             dt1.Rows.Add(new object[] { "未完成", "1" });
             dt1.Rows.Add(new object[] { "已完成", "2" });
+            dt1.Rows.Add(new object[] { "作廢", "3" });
             return dt1;
         }
 
@@ -433,9 +418,10 @@ namespace _3PL_DAO
             {
                 IO.SqlUpdate(DBlink, Sql_cmd, ht1, ref Counts);
             }
-            catch {
+            catch
+            {
             }
-            
+
         }
         #endregion
     }

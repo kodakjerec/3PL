@@ -5,10 +5,10 @@
     <title>計價費用設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" id="table_Detail" width="100%">
+    <table class="tborder" id="table_Detail" style="width:100%">
         <tr>
             <td class="PageTitle">
-                <asp:Label ID="lbl_PriceSet" runat="server" Text="計價費用設定"></asp:Label>
+                計價費用設定
             </td>
         </tr>
         <tr>
@@ -20,8 +20,8 @@
     <table class="tborder">
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="Label1" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                <asp:Label ID="lbl_SiteNo" runat="server" Text="寄倉倉別："></asp:Label>
+                <span style="color:red">*</span>
+                寄倉倉別：
             </td>
             <td>
                 <asp:CheckBoxList ID="CheckBoxList1" runat="server" RepeatDirection="Horizontal">
@@ -30,8 +30,8 @@
         </tr>
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="lbl_TypeIdIm" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                <asp:Label ID="lbl_TypeId" runat="server" Text="報價主類別："></asp:Label>
+                <span style="color:red">*</span>
+                報價主類別：
             </td>
             <td>
                 <asp:DropDownList ID="ddl_TypeId" runat="server" AutoPostBack="True">
@@ -40,8 +40,8 @@
         </tr>
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="Lbl_CostNameIm" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                <asp:Label ID="Lbl_CostName" runat="server" Text="費用名稱："></asp:Label>
+                <span style="color:red">*</span>
+               費用名稱：
             </td>
             <td>
                 <asp:TextBox ID="Txb_CostName" runat="server"></asp:TextBox>
@@ -49,8 +49,8 @@
         </tr>
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="Lbl_PriceIm" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                <asp:Label ID="Lbl_Price" runat="server" Text="單價："></asp:Label>
+                <span style="color:red">*</span>
+                單價：
             </td>
             <td>
                 <asp:TextBox ID="Txb_Price" runat="server"></asp:TextBox>
@@ -58,8 +58,8 @@
         </tr>
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="Lbl_UnitIdIm" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                <asp:Label ID="Lbl_UnitId" runat="server" Text="計價單位："></asp:Label>
+                <span style="color:red">*</span>
+                計價單位：
             </td>
             <td>
                 <asp:DropDownList ID="ddl_UnitId" runat="server" AutoPostBack="True">
@@ -68,8 +68,8 @@
         </tr>
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="Lbl_AccIdIm" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                <asp:Label ID="Lbl_AccId" runat="server" Text="會計項目："></asp:Label>
+                <span style="color:red">*</span>
+                會計項目：
             </td>
             <td>
                 <asp:DropDownList ID="ddl_AccId" runat="server" AutoPostBack="True">
@@ -78,7 +78,7 @@
         </tr>
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="Label3" runat="server" Text="新增處理單位："></asp:Label>
+                新增處理單位：
             </td>
             <td>
                 <asp:DropDownList ID="DDL_ClassList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DDL_ClassList_SelectedIndexChanged">
@@ -113,7 +113,7 @@
             </asp:GridView>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <table class="tborder" id="OtherCommand" width="100%" visible="false">
+    <table class="tborder" id="OtherCommand" style="width:100%" visible="false">
         <tr>
             <td>
                 <asp:CheckBox ID="Chk_IsDBLink" runat="server" Visible="False" />
@@ -133,7 +133,7 @@
             </td>
         </tr>
     </table>
-    <table class="tborder" id="Command" width="100%">
+    <table class="tborder" id="Command" style="width:100%">
         <tr>
             <td>
                 <asp:Button ID="Btn_Upd" runat="server" Text="確定" OnClick="Btn_Upd_Click" />

@@ -45,6 +45,7 @@ namespace _3PL_DAO
             return QuotationList;
         }
 
+
         /// <summary>
         /// 取得報價單單頭
         /// </summary>
@@ -240,10 +241,12 @@ namespace _3PL_DAO
             DataTable QuotationDetail = new DataTable();
 
             string Sql_cmd =
-            @"  SELECT a.*,b.S_bsda_FieldName,c.S_bcse_CostName,c.S_bcse_DollarUnit,[UIStatus]='Unchanged'
-                FROM [3PL_QuotationDetail] a
-                left join [3PL_BaseData] b on a.I_qtde_TypeId=b.S_bsda_FieldId and b.S_bsda_CateId='TypeId'
-                left join [3PL_BaseCostSet] c on a.I_qtde_bcseSeq=c.I_bcse_Seq
+            @"  SELECT a.*
+                , b.S_bsda_FieldName,I_qtde_HaveMinimum_Name=b1.S_bsda_FieldName, c.S_bcse_CostName, c.S_bcse_DollarUnit, [UIStatus]='Unchanged'
+                FROM [3PL_QuotationDetail] a with(nolock)
+                LEFT join [3PL_BaseData] b with(nolock) on a.I_qtde_TypeId=b.S_bsda_FieldId and b.S_bsda_CateId='TypeId'
+                LEFT join [3PL_BaseData] b1 with(nolock) on a.I_qtde_HaveMinimum=b1.S_bsda_FieldId and b1.S_bsda_CateId='Minimum'
+                LEFT join [3PL_BaseCostSet] c with(nolock) on a.I_qtde_bcseSeq=c.I_bcse_Seq
                 where I_qtde_DelFlag=0 and S_qtde_qthePLNO=@PLNO
                 order by I_qtde_Detailseq";
             Hashtable ht1 = new Hashtable();
@@ -429,9 +432,9 @@ namespace _3PL_DAO
         {
             int SuccessCount = 0, SuccessCount_Detail = 0;
             string Insertcmd_Detail = @"Insert Into [3PL_QuotationDetail](S_qtde_qthePLNO,I_qtde_Detailseq,I_qtde_TypeId
-            ,I_qtde_bcseSeq,S_qtde_Memo,I_qtde_Price,I_qtde_IsBaseCost,S_qtde_PriceMemo,S_qtde_CreateId,S_qtde_UpdId,S_qtde_SiteNo)
+            ,I_qtde_bcseSeq,S_qtde_Memo,I_qtde_Price,I_qtde_IsBaseCost,S_qtde_PriceMemo,S_qtde_CreateId,S_qtde_UpdId,S_qtde_SiteNo, I_qtde_HaveMinimum)
             values(@S_qtde_qthePLNO,@I_qtde_Detailseq,@I_qtde_TypeId
-            ,@I_qtde_bcseSeq,@S_qtde_Memo,@I_qtde_Price,@I_qtde_IsBaseCost,@S_qtde_PriceMemo,@S_qtde_CreateId,@S_qtde_UpdId,@S_qtde_SiteNo)";
+            ,@I_qtde_bcseSeq,@S_qtde_Memo,@I_qtde_Price,@I_qtde_IsBaseCost,@S_qtde_PriceMemo,@S_qtde_CreateId,@S_qtde_UpdId,@S_qtde_SiteNo, @I_qtde_HaveMinimum)";
 
             Hashtable ht1 = new Hashtable();
             ht1.Add("@S_qtde_qthePLNO", dr["S_qtde_qthePLNO"]);
@@ -445,6 +448,7 @@ namespace _3PL_DAO
             ht1.Add("@S_qtde_CreateId", dr["S_qtde_CreateId"]);
             ht1.Add("@S_qtde_UpdId", dr["S_qtde_UpdId"]);
             ht1.Add("@S_qtde_Siteno", dr["S_qtde_Siteno"]);
+            ht1.Add("@I_qtde_HaveMinimum", dr["I_qtde_HaveMinimum"]);
 
             IO.SqlUpdate(Login_Server, Insertcmd_Detail, ht1, ref SuccessCount_Detail);
             SuccessCount += SuccessCount_Detail;
@@ -455,9 +459,9 @@ namespace _3PL_DAO
         {
             int SuccessCount = 0, SuccessCount_Detail = 0;
             string Updcmd_Detail =
-            @"Update [3PL_QuotationDetail] set I_qtde_Detailseq=@I_qtde_Detailseq,I_qtde_TypeId=@I_qtde_TypeId,
-            I_qtde_bcseSeq=@I_qtde_bcseSeq,S_qtde_Memo=@S_qtde_Memo,I_qtde_Price=@I_qtde_Price,I_qtde_IsBaseCost=@I_qtde_IsBaseCost,
-            S_qtde_PriceMemo=@S_qtde_PriceMemo,S_qtde_UpdId=@S_qtde_UpdId,S_qtde_Siteno=@S_qtde_Siteno
+            @"Update [3PL_QuotationDetail] set I_qtde_Detailseq=@I_qtde_Detailseq, I_qtde_TypeId=@I_qtde_TypeId
+            , I_qtde_bcseSeq=@I_qtde_bcseSeq, S_qtde_Memo=@S_qtde_Memo, I_qtde_Price=@I_qtde_Price, I_qtde_IsBaseCost=@I_qtde_IsBaseCost
+            , S_qtde_PriceMemo=@S_qtde_PriceMemo, S_qtde_UpdId=@S_qtde_UpdId, S_qtde_Siteno=@S_qtde_Siteno, I_qtde_HaveMinimum=@I_qtde_HaveMinimum 
             where I_qtde_seq=@I_qtde_seq";
 
             Hashtable ht1 = new Hashtable();
@@ -471,6 +475,7 @@ namespace _3PL_DAO
             ht1.Add("@S_qtde_UpdId", dr["S_qtde_UpdId"]);
             ht1.Add("@I_qtde_seq", dr["I_qtde_seq"]);
             ht1.Add("@S_qtde_Siteno", dr["S_qtde_Siteno"]);
+            ht1.Add("@I_qtde_HaveMinimum", dr["I_qtde_HaveMinimum"]);
 
             IO.SqlUpdate(Login_Server, Updcmd_Detail, ht1, ref SuccessCount_Detail);
             SuccessCount += SuccessCount_Detail;

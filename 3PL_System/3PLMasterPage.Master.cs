@@ -4,6 +4,7 @@ using System;
 using System.Data;
 using System.Threading;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 
 namespace _3PL_System
@@ -36,8 +37,7 @@ namespace _3PL_System
         {
             if (Session["UserInf"] == null)
             {
-                Response.Redirect("Login.aspx");
-                return;
+                FormsAuthentication.RedirectToLoginPage();
             }
             else
             {
@@ -59,7 +59,7 @@ namespace _3PL_System
                 DataSet ds = new DataSet();
                 ds = Emp.dsRoleClass_EI("3PL", UI.UserID, string.Empty, string.Empty);
                 dt = ds.Tables[0];
-                UI.Class = dt;
+                UI.DCList = dt;
                 Session["UserInf"] = UI;
             }
             else
@@ -84,11 +84,12 @@ namespace _3PL_System
             div_URL.Style.Add("display", "inline");
             frame_MessageBox.Attributes["src"] = Path;
             UpdPanel_Message.Update();
-            Timer1.Enabled = true;
+            //Timer1.Enabled = true;
         }
         public void ShowURL(string Path, string Mode)
         {
-            switch (Mode.ToLower()) {
+            switch (Mode.ToLower())
+            {
                 case "download":
                     frame_MessageBox.Attributes["src"] = Path;
                     UpdPanel_Message.Update();

@@ -3,6 +3,9 @@ using System.Data;
 using _3PL_DAO;
 using _3PL_LIB;
 using System.Web;
+using System.Web.Security;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace _3PL_System
 {
@@ -10,33 +13,38 @@ namespace _3PL_System
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            FormsAuthentication.SignOut();
+
             //Clear Session1
-            Session.Clear();
+            Session.RemoveAll();
 
             //Clear Cookie
-            //ClearCookies();
+            ClearCookies();
         }
 
-        private void ClearCookies() {
-            int limit = Request.Cookies.Count; //Get the number of cookies and 
-                                               //use that as the limit.
-            HttpCookie aCookie;   //Instantiate a cookie placeholder
-            string cookieName;
-
-            //Loop through the cookies
-            for (int i = 0; i < limit; i++)
+        private void ClearCookies()
+        {
+            if (HttpContext.Current != null)
             {
-                cookieName = Request.Cookies[i].Name;    //get the name of the current cookie
-                if (cookieName!= "ASP.NET_SessionId")
+                int cookieCount = Request.Cookies.Count;
+                for (var i = 0; i < cookieCount; i++)
                 {
-                    aCookie = new HttpCookie(cookieName);    //create a new cookie with the same
-                                                             // name as the one you're deleting
-                    aCookie.Value = "";    //set a blank value to the cookie 
-                    aCookie.Expires = DateTime.Now.AddDays(-1);    //Setting the expiration date
-                                                                   //in the past deletes the cookie
-
-                    Response.Cookies.Add(aCookie);    //Set the cookie to delete it.
+                    var cookie = Request.Cookies[i];
+                    if (cookie != null)
+                    {
+                        switch (cookie.Name) {
+                            case "UserID":
+                            case "UserClassID":
+                                var cookieName = cookie.Name;
+                                var expiredCookie = new HttpCookie(cookieName) { Expires = DateTime.Now.AddDays(-1) };
+                                Response.Cookies.Add(expiredCookie); // overwrite it
+                                break;
+                        }
+                    }
                 }
+
+                // clear cookies server side
+                HttpContext.Current.Request.Cookies.Clear();
             }
         }
 
@@ -44,7 +52,6 @@ namespace _3PL_System
         {
             string strAccount = string.Empty;
             string strPsw = string.Empty;
-            UserInf UI = new UserInf();
             ACE_EnCode ACE = new ACE_EnCode();
             DataTable dtUser = new DataTable();
             try
@@ -68,20 +75,28 @@ namespace _3PL_System
                 dtUser = GetUser(strAccount, strPsw);
                 if (dtUser.Rows.Count > 0)
                 {
+                    UserInf UI = new UserInf();
                     UI.UserID = strAccount;
                     UI.IP = Request.UserHostAddress;
                     UI.LoginTime = DateTime.Now;
+                    UI.ClassId = dtUser.Rows[0]["ClassId"].ToString();
                     UI.UserName = dtUser.Rows[0]["WorkName"] == null ? "" : dtUser.Rows[0]["WorkName"].ToString();
-                    UI.Class = GetClass(strAccount);
+                    UI.DCList = GetDCList(strAccount);
                     Session["UserInf"] = UI;
 
                     //Cookies
-                    //紀錄UserID
-                    HttpCookie myCookie = new HttpCookie("UserID",UI.UserID);
-                    myCookie.Expires= DateTime.Now.AddDays(1);
-                    Response.Cookies.Add(myCookie);
+                    //記錄登入資訊
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1
+                        , strAccount
+                        , DateTime.Now
+                        , DateTime.Now.AddMinutes(30)
+                        , true
+                        , ""
+                        , FormsAuthentication.FormsCookiePath);
 
-                    Response.Redirect("Menu.aspx");
+                    Response.Cookies.Add(new HttpCookie("UserID", strAccount));
+                    //Response.Cookies.Add(new HttpCookie("UserClassID", UI.ClassId));
+                    FormsAuthentication.RedirectFromLoginPage(ticket.Name, false);
                 }
                 else
                 {
@@ -116,24 +131,36 @@ namespace _3PL_System
         }
 
         /// <summary>
-        /// 取得身分類別
+        /// 取得所歸屬的倉別
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        private DataTable GetClass(string Id)
+        private DataTable GetDCList(string Id)
         {
             EmpInf Emp = new EmpInf();
             DataTable dt = new DataTable();
+            dt.Columns.Add("DC", typeof(string));
+
             DataSet ds = new DataSet();
             try
             {
                 ds = Emp.dsRoleClass_EI("3PL", Id, string.Empty, string.Empty);
-                dt = ds.Tables[0];
+
+                List<DCList> query = (from a in ds.Tables[0].AsEnumerable()
+                                      group a by new { DC = a.Field<string>("DC") } into b
+                                      orderby b.Key.DC
+                                      select new DCList { DC = b.Key.DC }).ToList<DCList>();
+                dt = JSONconvert.ListToDataTable<DCList>(query);
             }
             catch
             {
             }
             return dt;
+        }
+
+        public class DCList
+        {
+            public string DC { get; set; }
         }
     }
 }

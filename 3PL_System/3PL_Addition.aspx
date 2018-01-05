@@ -3,8 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#txb_CloseDate").datepicker({ dateFormat: 'yy/mm/dd' });
-            $("#TextBox1").datepicker({ dateFormat: 'yy/mm/dd' });
+            $("#<%=txb_CloseDate.ClientID %>").datepicker({ dateFormat: 'yy/mm/dd' });
         });
     </script>
     <title>3PL額外功能</title>
@@ -13,12 +12,12 @@
     <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
-                <asp:Label ID="lbl_Quotation" runat="server" Text="3PL額外功能"></asp:Label>
+                3PL額外功能
             </td>
         </tr>
         <tr>
             <td class="HeaderStyle ">
-                <asp:Label ID="lbl_Quotation_Query" runat="server" Text="關帳日期"></asp:Label>
+               關帳日期
             </td>
         </tr>
     </table>
@@ -26,8 +25,7 @@
         <table class="tborder">
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="label1" runat="server" Text="關帳日期："></asp:Label>
-
+                    關帳日期：
                 </td>
                 <td>
                     <asp:TextBox ID="txb_CloseDate" runat="server"></asp:TextBox>

@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>JSON\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -53,6 +57,7 @@
     <Compile Include="Check.cs" />
     <Compile Include="ControlBind.cs" />
     <Compile Include="DB_IO.cs" />
+    <Compile Include="JSON\JSONconvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInf.cs" />
   </ItemGroup>
@@ -61,6 +66,11 @@
       <Project>{47A0B6D1-7C3F-4402-89D1-C3D101ADB0C8}</Project>
       <Name>MD5</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="JSON\Newtonsoft.Json.dll" />
+    <Content Include="JSON\Newtonsoft.Json.pdb" />
+    <Content Include="JSON\Newtonsoft.Json.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -24,12 +24,12 @@ namespace _3PL_LIB
             set { _UserName = value; }
         }
 
-        //權限
-        private string _RoleId;
-        public string RoleId
+        //身分類別
+        private string _ClassId;
+        public string ClassId
         {
-            get { return _RoleId; }
-            set { _RoleId = value; }
+            get { return _ClassId; }
+            set { _ClassId = value; }
         }
 
         //登入IP
@@ -53,11 +53,11 @@ namespace _3PL_LIB
         /// <summary>
         /// 倉別
         /// </summary>
-        private DataTable _Class;
-        public DataTable Class
+        private DataTable _DCList;
+        public DataTable DCList
         {
-            get { return _Class; }
-            set { _Class = value; }
+            get { return _DCList; }
+            set { _DCList = value; }
         }
     }
 }

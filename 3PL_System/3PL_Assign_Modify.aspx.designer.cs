@@ -13,15 +13,6 @@ namespace _3PL_System {
     public partial class _3PL_Assign_Modify {
         
         /// <summary>
-        /// lbl_Quotation 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Quotation;
-        
-        /// <summary>
         /// lbl_Quotation_Query 控制項。
         /// </summary>
         /// <remarks>
@@ -67,15 +58,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox Txb_S_qthe_PLNO;
         
         /// <summary>
-        /// lbl_TypeIdIm0 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm0;
-        
-        /// <summary>
         /// Txb_Wk_Date 控制項。
         /// </summary>
         /// <remarks>
@@ -83,15 +65,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Txb_Wk_Date;
-        
-        /// <summary>
-        /// lbl_TypeIdIm1 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm1;
         
         /// <summary>
         /// Txb_Wk_ClassName 控制項。
@@ -103,15 +76,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox Txb_Wk_ClassName;
         
         /// <summary>
-        /// lbl_TypeIdIm2 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm2;
-        
-        /// <summary>
         /// DDL_DC 控制項。
         /// </summary>
         /// <remarks>
@@ -119,15 +83,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDL_DC;
-        
-        /// <summary>
-        /// lbl_TypeIdIm5 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm5;
         
         /// <summary>
         /// Txb_EtaDate 控制項。
@@ -139,15 +94,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox Txb_EtaDate;
         
         /// <summary>
-        /// lbl_TypeIdIm4 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm4;
-        
-        /// <summary>
         /// Txb_CreateUser 控制項。
         /// </summary>
         /// <remarks>
@@ -157,15 +103,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox Txb_CreateUser;
         
         /// <summary>
-        /// lbl_TypeIdIm3 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm3;
-        
-        /// <summary>
         /// Txb_Wk_Unit 控制項。
         /// </summary>
         /// <remarks>
@@ -173,15 +110,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Txb_Wk_Unit;
-        
-        /// <summary>
-        /// lbl_TypeIdIm6 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TypeIdIm6;
         
         /// <summary>
         /// Txb_SupID 控制項。
@@ -247,22 +175,22 @@ namespace _3PL_System {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DIV_Quotation_Detail_New_POItem;
         
         /// <summary>
-        /// txb_D_qthe_ContractS_Qry 控制項。
+        /// txb_PO_No_CreateAssignDetail 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txb_D_qthe_ContractS_Qry;
+        protected global::System.Web.UI.WebControls.TextBox txb_PO_No_CreateAssignDetail;
         
         /// <summary>
-        /// txb_D_qthe_ContractE_Qry 控制項。
+        /// txb_Item_No_CreateAssignDetail 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txb_D_qthe_ContractE_Qry;
+        protected global::System.Web.UI.WebControls.TextBox txb_Item_No_CreateAssignDetail;
         
         /// <summary>
         /// Btn_Query 控制項。

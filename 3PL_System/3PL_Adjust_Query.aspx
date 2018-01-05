@@ -13,7 +13,7 @@
     <table class="tborder" style="width: 100%">
         <tr>
             <td class="PageTitle">
-                <asp:Label ID="lbl_Quotation" runat="server" Text="調整單設定"></asp:Label>
+                調整單設定
             </td>
         </tr>
         <tr>
@@ -63,7 +63,7 @@
                     <td>
                         <asp:GridView ID="GV_Quotation_Query" runat="server" Width="100%" AutoGenerateColumns="False"
                             CssClass="GVStyle" OnRowCommand="GV_Quotation_Query_RowCommand" OnRowDataBound="GV_Quotation_Query_RowDataBound"
-                            PageSize="5" AllowPaging="True" OnPageIndexChanging="GV_Quotation_Query_PageIndexChanging">
+                            PageSize="10" AllowPaging="True" OnPageIndexChanging="GV_Quotation_Query_PageIndexChanging">
                             <HeaderStyle CssClass="GVHead" />
                             <RowStyle CssClass="one" />
                             <AlternatingRowStyle CssClass="two" />
@@ -103,7 +103,7 @@
     <asp:UpdatePanel ID="UpdPanel_Assgin_Detail" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div id="Div_Assign_New" runat="server" visible="false">
-                <hr style="color: blue; border-width: 5px" />
+                <hr style="border-top: 5px solid blue;"/>
                 <asp:Label ID="Label5" Text="調整單單頭" runat="server" ForeColor="Blue"></asp:Label>
                 <table class="tborder" id="AssignHead" style="width: 100%">
                     <tr>
@@ -158,7 +158,7 @@
                         </td>
                     </tr>
                 </table>
-                <hr style="color: blue; border-width: 5px" />
+                <hr style="border-top: 5px solid blue;"/>
                 <asp:Label ID="Label6" Text="調整單內容" runat="server" ForeColor="Blue"></asp:Label>
                 <table class="tborder" id="AssignClass" style="width: 100%">
                     <tr>

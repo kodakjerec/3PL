@@ -13,6 +13,7 @@ namespace _3PL_DAO
         public string Login_Server = "3PL";
         DB_IO IO = new DB_IO();
 
+        #region 3PL_ToExcel001
         /// <summary>
         /// 取得報價單
         /// </summary>
@@ -26,8 +27,8 @@ namespace _3PL_DAO
             報價單號,
             供應商編號,
             [倉別(寄倉倉別)],
-            報價日期起=convert(varchar,報價日期起,111),  
-            報價日期迄=convert(varchar,報價日期迄,111),  
+            報價日期起=convert(varchar,報價日期起),  
+            報價日期迄=convert(varchar,報價日期迄),  
             建單人員=b.S_qthe_CreateId+', '+ISNULL(c.WorkName,''),
             建單時間=b.D_qthe_CreateDate,
             派工類別,
@@ -38,21 +39,21 @@ namespace _3PL_DAO
             備註=b.S_qthe_Memo,
             明細備註,
             狀態,
-            廠商用印日期=convert(varchar,廠商用印日期,111)
+            廠商用印日期=convert(varchar,廠商用印日期)
             FROM (
             select
             報價單號,
             供應商編號=供應商代號+','+供應商名稱,
             [倉別(寄倉倉別)]=倉別,
-            報價日期起=convert(varchar,合約起日),
-            報價日期迄=convert(varchar,合約迄日),
+            報價日期起=合約起日,
+            報價日期迄=合約迄日,
             派工類別=報價主類別,
             計價費用=計價費用名稱,
-            單價=convert(varchar,單價),
+            單價,
             單位=計價單位,
             明細備註=報價明細memo,
             狀態=報價單狀態,
-            廠商用印日期=ISNULL(convert(varchar,廠商用印日期),'')
+            廠商用印日期=ISNULL(廠商用印日期,'')
             from v_報價實收明細表
             group by 報價單號, 倉別,供應商代號,供應商名稱,合約起日,合約迄日,報價主類別,計價費用名稱,單價,計價單位,報價明細memo,報價單狀態,廠商用印日期) a
             inner join [3PL_QuotationHead] b with(nolock) on a.報價單號=b.S_qthe_PLNO
@@ -127,9 +128,9 @@ namespace _3PL_DAO
             供應商代號,
             供應商名稱,
             倉別, 
-            派工日期=convert(varchar,派工日期,111), 
-            預定完工日=convert(varchar,預定完工日,111), 
-            實際完工日=convert(varchar,實際完工日,111),  
+            派工日期=convert(varchar,派工日期),
+            預定完工日=convert(varchar,預定完工日),
+            實際完工日=convert(varchar,實際完工日),
             報價主類別, 
             計價費用名稱, 
             派工數量, 
@@ -192,22 +193,18 @@ namespace _3PL_DAO
             DataTable QuotationList = new DataTable();
 
             string Sql_cmd =
-            @"Select 
-            派工單號,
-            供應商代號,
-            供應商名稱,
-            倉別=報價倉別,
-            實際完工日=convert(varchar,實際完工日,111),  
-            派工類別=報價主類別,
-            派工單分類名稱=計價費用名稱,
-            派工數量,
-            完工數量=實際數量,
-            單位=計價單位,
-            報價單號,
-            單價,
-            成本金額=(select sum(Total) from CostList where Wk_Id=派工單號),
-            收入金額=金額
-            from [v_報價實收明細表]
+            @"select
+                [帳務月份]=LEFT(convert(varchar,實際完工日,112),6)
+                ,供應商代號
+                ,供應商名稱
+                ,派工單號
+                ,倉別
+                ,會計科目代號
+                ,會計科目名稱
+                ,實際數量=SUM(實際數量)
+                ,金額=SUM(金額)
+                ,應收=SUM(實際數量*金額)
+            from v_報價實收明細表 with(nolock)
             where [Status]=20";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserID", UI.UserID);
@@ -239,12 +236,25 @@ namespace _3PL_DAO
                 Sql_cmd += " and 實際完工日<= @Edate ";
                 ht1.Add("@Edate", Edate);
             }
-            Sql_cmd += " order by 報價單號, 派工單號";
+            Sql_cmd += 
+             @" group by
+                    LEFT(convert(varchar, 實際完工日, 112), 6)
+	                ,供應商代號
+	                ,供應商名稱
+	                ,派工單號
+	                ,倉別
+	                ,會計科目代號
+	                ,會計科目名稱
+                order by
+                    [帳務月份]
+	                ,供應商代號
+	                ,派工單號";
 
             DataSet ds = IO.SqlQuery(Login_Server, Sql_cmd, ht1);
             QuotationList = ds.Tables[0];
 
             return QuotationList;
         }
+        #endregion
     }
 }

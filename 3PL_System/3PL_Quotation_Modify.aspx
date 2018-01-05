@@ -17,10 +17,9 @@
     <title>報價單修改</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" style="width:100%">
+    <table class="tborder" style="width: 100%">
         <tr>
-            <td class="PageTitle">
-                <asp:Label ID="lbl_Quotation" runat="server" Text="報價單設定"></asp:Label>
+            <td class="PageTitle">報價單設定
             </td>
         </tr>
         <tr>
@@ -30,7 +29,7 @@
         </tr>
     </table>
     <div id="Quotation_Head_New" runat="server">
-        <table class="tborder" style="width:100%">
+        <table class="tborder" style="width: 100%">
             <tr>
                 <td class="EditTD1">報價單號
                 </td>
@@ -40,7 +39,7 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="Label2" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     供應商編號
                 </td>
                 <td>
@@ -51,14 +50,11 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="Label3" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     寄倉倉別
                 </td>
                 <td>
                     <asp:CheckBoxList ID="CheckBoxList_Quotation" runat="server" RepeatDirection="Horizontal">
-                        <asp:ListItem>觀音</asp:ListItem>
-                        <asp:ListItem>岡山</asp:ListItem>
-                        <asp:ListItem>台中</asp:ListItem>
                     </asp:CheckBoxList>
                 </td>
             </tr>
@@ -81,14 +77,14 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="Label5" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     報價日期起
                 </td>
                 <td>
                     <asp:TextBox ID="Txb_D_qthe_ContractS" runat="server"></asp:TextBox>
                 </td>
                 <td class="EditTD1">
-                    <asp:Label ID="Label4" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     報價日期迄
                 </td>
                 <td>
@@ -111,11 +107,12 @@
     </div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
         <ContentTemplate>
-            <asp:Button ID="Btn_QuotationHead_Delete" runat="server" Text="作廢" OnClick="Btn_QuotationHead_Delete_Click" Visible="false" />
+            <asp:Button ID="Btn_QuotationHead_Delete" runat="server" CssClass="btn-danger" Text="作廢" OnClick="Btn_QuotationHead_Delete_Click" Visible="false" />
+            <hr style="border-top: 5px solid blue;" />
             <div id="DIV_Quotation_Detail_New" runat="server" visible="false">
                 <asp:GridView ID="GV_Quotation_Detail_New" runat="server" Width="100%" AutoGenerateColumns="False"
                     CssClass="GVStyle" OnRowCommand="GV_Quotation_Detail_New_RowCommand" AllowPaging="true"
-                    PageSize="5" OnPageIndexChanging="GV_Quotation_Detail_New_PageIndexChanging">
+                    PageSize="10" OnPageIndexChanging="GV_Quotation_Detail_New_PageIndexChanging">
                     <HeaderStyle CssClass="GVHead" />
                     <RowStyle CssClass="one" />
                     <AlternatingRowStyle CssClass="two" />
@@ -134,20 +131,20 @@
                                 <asp:HiddenField ID="hid_I_qtde_seq" runat="server" Value='<%# Bind("I_qtde_seq") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="S_bsda_FieldName" HeaderText="派工類別" />
+                        <asp:BoundField DataField="S_bsda_FieldName" HeaderText="報價主類別" />
                         <asp:BoundField DataField="S_bcse_CostName" HeaderText="計價費用" />
                         <asp:BoundField DataField="I_qtde_Price" HeaderText="單價" DataFormatString="{0:0.##}" />
                         <asp:BoundField DataField="S_bcse_DollarUnit" HeaderText="單位" />
-                        <asp:CheckBoxField DataField="I_qtde_IsBaseCost" HeaderText="V" Visible="False" />
-                        <asp:BoundField DataField="S_qtde_PriceMemo" HeaderText="單價備註" Visible="False" />
-                        <asp:BoundField DataField="S_qtde_Memo" HeaderText="明細備註" />
+                        <asp:BoundField DataField="S_qtde_PriceMemo" HeaderText="公式" Visible="False" />
+                        <asp:BoundField DataField="S_qtde_Memo" HeaderText="備註" />
                         <asp:BoundField DataField="S_qtde_SiteNo" HeaderText="倉別" />
+                        <asp:BoundField DataField="I_qtde_HaveMinimum_Name" HeaderText="最低收費" />
                     </Columns>
                 </asp:GridView>
-                <table class="tborder" style="width:100%">
+                <table class="tborder" style="width: 100%">
                     <tr>
                         <td class="EditTD1">
-                            <asp:Label ID="lbl_TypeIdIm" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                            <span style="color: red">*</span>
                             報價主類別：
                         </td>
                         <td>
@@ -155,7 +152,7 @@
                             </asp:DropDownList>
                         </td>
                         <td class="EditTD1">
-                            <asp:Label ID="Lbl_bcseseqIm" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                            <span style="color: red">*</span>
                             計價費用：
                         </td>
                         <td>
@@ -166,7 +163,7 @@
                     </tr>
                     <tr>
                         <td class="EditTD1">
-                            <asp:Label ID="Lbl_PriceIm" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                            <span style="color: red">*</span>
                             單價：
                         </td>
                         <td>
@@ -179,22 +176,31 @@
                             <asp:Label ID="Lbl_Unit2" runat="server" Text="PCS"></asp:Label>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="EditTD1">單價備註：
+                    <%--<tr>
+                        <td class="EditTD1">公式：
                         </td>
                         <td>
                             <asp:TextBox ID="Txb_PriceMemo" runat="server" Enabled="False" MaxLength="100"></asp:TextBox>
                         </td>
                         <td>
-                            <asp:CheckBox ID="Chk_IsBaseCost" runat="server" Text="不採用單價    "
+                            <asp:CheckBox ID="Chk_IsBaseCost" runat="server" Text="套用公式"
                                 Enabled="False" />
+                        </td>
+                    </tr>--%>
+                    <tr>
+                        <td class="EditTD1">
+                            <span style="color: red">*</span>
+                            最低收費：
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddl_HaveMinimum" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl_HaveMinimum_SelectedIndexChanged"></asp:DropDownList>
                         </td>
                     </tr>
                     <tr>
                         <td class="EditTD1">備註：
                         </td>
                         <td>
-                            <asp:TextBox ID="Txb_Memo" runat="server" MaxLength="100"></asp:TextBox>
+                            <asp:TextBox ID="Txb_Memo" Width="100%" Height="48px" TextMode="MultiLine" runat="server" MaxLength="50"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -209,10 +215,11 @@
                         </td>
                     </tr>
                 </table>
-                <asp:Button ID="Btn_Detail_New" runat="server" Text="新增" OnClick="Btn_Detail_New_Click" />
-                <asp:Button ID="Btn_Detail_Upd" runat="server" Text="更新" OnClick="Btn_Detail_Upd_Click"
-                    Visible="False" />
-                <asp:Button ID="Btn_Detail_Del" runat="server" Text="刪除" Visible="False" OnClick="Btn_Detail_Del_Click" />
+                <div id="div_Detail_Upd">
+                    <asp:Button ID="Btn_Detail_New" runat="server" Text="新增" OnClick="Btn_Detail_New_Click" />
+                    <asp:Button ID="Btn_Detail_Upd" runat="server" Text="更新" Visible="False" OnClick="Btn_Detail_Upd_Click" />
+                    <asp:Button ID="Btn_Detail_Upd_Cancel" runat="server" Text="取消" Visible="False" OnClick="Btn_Detail_Upd_Cancel_Click" />
+                </div>
                 <asp:HiddenField ID="hidTotal_I_qthe_seq" runat="server" />
                 <asp:HiddenField ID="hidTotal_I_qtde_seq" runat="server" />
                 <asp:HiddenField ID="hidTotal_I_qtde_Detailseq" runat="server" />

@@ -13,7 +13,7 @@
     <table class="tborder" style="width: 100%">
         <tr>
             <td class="PageTitle">
-                <asp:Label ID="lbl_Quotation" runat="server" Text="調整單設定"></asp:Label>
+                調整單設定
             </td>
         </tr>
         <tr>
@@ -33,7 +33,7 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="Label8" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                    <span style="color: red">*</span>
                     調整單類別：
                 </td>
                 <td>
@@ -41,7 +41,7 @@
                     </asp:DropDownList>
                 </td>
                 <td class="EditTD1">
-                    <asp:Label ID="Label2" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                    <span style="color: red">*</span>
                     異動單號
                 </td>
                 <td>
@@ -61,7 +61,7 @@
     </div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
         <ContentTemplate>
-            <asp:Button ID="Btn_QuotationHead_Delete" runat="server" Text="作廢" OnClick="Btn_QuotationHead_Delete_Click" Visible="false" />
+            <asp:Button ID="Btn_QuotationHead_Delete" runat="server" CssClass="btn-danger" Text="作廢" OnClick="Btn_QuotationHead_Delete_Click" Visible="false" />
             <div id="DIV_Quotation_Detail_New" runat="server" visible="false">
                 <asp:GridView ID="GV_Quotation_Detail_New" runat="server" Width="100%" AutoGenerateColumns="False"
                     CssClass="GVStyle" OnRowCommand="GV_Quotation_Detail_New_RowCommand" AllowPaging="true"

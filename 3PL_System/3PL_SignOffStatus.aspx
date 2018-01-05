@@ -5,10 +5,9 @@
     <title>簽核流程設定</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" style="width:100%">
+    <table class="tborder" style="width: 100%">
         <tr>
-            <td class="PageTitle">
-                <asp:Label ID="lbl_BaseAccounting" runat="server" Text="簽核流程設定"></asp:Label>
+            <td class="PageTitle">簽核流程設定
             </td>
         </tr>
         <tr>
@@ -16,6 +15,7 @@
                 CssClass="GVStyle" OnPageIndexChanging="GV_BaseAccounting_PageIndexChanging"
                 OnRowCancelingEdit="GV_BaseAccounting_RowCancelingEdit" OnRowEditing="GV_BaseAccounting_RowEditing"
                 OnRowUpdating="GV_BaseAccounting_RowUpdating" AllowSorting="True" ShowFooter="True"
+                PageSize="20"
                 Width="100%">
                 <HeaderStyle CssClass="GVHead" />
                 <RowStyle CssClass="one" />
@@ -82,4 +82,5 @@
                 </Columns>
             </asp:GridView>
         </tr>
+    </table>
 </asp:Content>

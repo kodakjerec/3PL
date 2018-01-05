@@ -20,7 +20,7 @@ namespace _3PL_DAO
         /// <param name="SupdId">供應商</param>
         /// <param name="SiteNo">倉別</param>
         /// <returns></returns>
-        public DataTable GetAssignList(string SupdId, string SiteNo, string Wk_ID, UserInf UI, bool bol_Chk_ShowStatusIsZero, string BDate, string EDate, string AssignStatusType)
+        public DataTable GetAssignList(string SupdId, string SiteNo, string Wk_ID, UserInf UI, string BDate, string EDate, string AssignStatusList)
         {
             DataTable QuotationList = new DataTable();
 
@@ -36,7 +36,7 @@ namespace _3PL_DAO
             left join ClassInf f with(nolock) on a.Wk_Unit=f.ClassId
             inner join [3PL_BaseData] c2 with(nolock) on a.DC=c2.S_bsda_FieldId and c2.S_bsda_CateId='SiteNo'
             where 1=1 ";
-            Sql_cmd += _3PLCQ.GetDCList(UI.Class, "[DC]", 0);
+            Sql_cmd += _3PLCQ.GetDCList(UI.DCList, "[DC]", 0);
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserID", UI.UserID);
             //有選擇SiteNo
@@ -57,31 +57,21 @@ namespace _3PL_DAO
                 Sql_cmd += " and Wk_ID like @Wk_ID+'%'";
                 ht1.Add("@Wk_ID", Wk_ID);
             }
-            //有選擇bol_Chk_ShowStatusIsZero
-            if (bol_Chk_ShowStatusIsZero == false)
-            {
-                Sql_cmd += " and a.[Status]>0";
-            }
-            if(BDate!="")
+            if(BDate.Length>0)
             {
                 Sql_cmd+=" and EtaDate>=@BDate ";
                 ht1.Add("@BDate", BDate);
             }
-            if(EDate!="")
+            if(EDate.Length>0)
             {
                 Sql_cmd+=" and EtaDate<=@EDate ";
                 ht1.Add("@EDate", EDate);
             }
-            switch (AssignStatusType)
+            if (AssignStatusList.Length > 0)
             {
-                case "0": break;
-                case "1":
-                    Sql_cmd += " and a.[Status]>0 and a.[Status]<20";
-                    break;
-                case "2":
-                    Sql_cmd += " and a.[Status]=20";
-                    break;
+                Sql_cmd += " and a.[Status] in ("+AssignStatusList+")";
             }
+
             Sql_cmd += " order by FreeId DESC, Wk_Date DESC, Wk_Id";
             DataSet ds = IO.SqlQuery(Login_Server, Sql_cmd, ht1);
             QuotationList = ds.Tables[0];
@@ -133,7 +123,7 @@ namespace _3PL_DAO
             DataTable QuotationDetail = new DataTable();
 
             string Sql_cmd =
-            @"select Seq=ROW_NUMBER() OVER(PARTITION by Wk_Id order by Wk_Id,Sn),Wk_Id,Sn,Wk_Class,Wk_ClassNm,Qty,RealQty,Unit,UpdUser,PONO,itemno,[UIStatus]='Unchanged'
+            @"select Seq=ROW_NUMBER() OVER(PARTITION by Wk_Id order by Wk_Id,Sn),Wk_Id,Sn,Wk_Class,Wk_ClassNm,Qty,RealQty,RealQty_WMS,Unit,UpdUser,PONO,itemno,DC,[UIStatus]='Unchanged'
             from AssignClass with(nolock)
             where Wk_Id=@Wk_Id";
             Hashtable ht1 = new Hashtable();
@@ -148,6 +138,50 @@ namespace _3PL_DAO
             QuotationDetail.PrimaryKey = keys;
 
             return QuotationDetail;
+        }
+        /// <summary>
+        /// 取得PO驗收實績量
+        /// </summary>
+        /// <param name="site_no"></param>
+        /// <param name="Po_No"></param>
+        /// <param name="Item_No"></param>
+        /// <returns></returns>
+        public string AssignDetail_TakingRealQty(string site_no, string Po_No, string Item_No, string Unit) {
+            string ReturnQty = "";
+            DataTable dt = new DataTable();
+
+            string Sql_cmd =
+            @"select TQty=ISNULL(sum(final.Tqty),0), TBox=ISNULL(sum(final.TBox),0), TPallet=ISNULL(Ceiling(sum(final.Tpallet)),0)
+            from (
+            select Tqty=b.L_reci_takeqty,
+	            TBox=b.L_reci_takeqty/ISNULL(c.I_merp_1qty,1),
+	            Tpallet=b.L_reci_takeqty/(ISNULL(c.I_merp_1qty,1)*c.I_merp_pacti*c.I_merp_pachi*1.00),
+				c.I_merp_1qty
+            from reci_head a with(nolock)
+            inner join reci_item b with(nolock)
+            on a.L_rech_id=b.L_reci_rechid
+            left join mer_package c with(nolock) on b.L_reci_merdsysno=c.L_merp_merdsysno and c.I_merp_boxflag=1
+            where a.S_rech_erpid=@Po_No
+	            and b.S_reci_merdid like '%'+@Item_No+'%'
+            ) final";
+            Hashtable ht1 = new Hashtable();
+            ht1.Add("@Po_No", Po_No);
+            ht1.Add("@Item_No", Item_No);
+            DataSet ds = IO.SqlQuery(site_no, Sql_cmd, ht1);
+            if (ds.Tables.Count > 0)
+            {
+                int i = GetDetailNeedQty(ds.Tables[0].Rows[0], Unit);
+                if (i != 0)
+                    ReturnQty = i.ToString();
+                else
+                    ReturnQty = "";
+            }
+            else
+            {
+                ReturnQty = "";
+            }
+
+            return ReturnQty;
         }
         #endregion
 
@@ -232,7 +266,7 @@ namespace _3PL_DAO
         {
             int SuccessCount = 0, SuccessCount_Detail = 0;
             string Updcmd_Detail =
-            @"Update [AssignClass] set Qty=@Qty,RealQty=@RealQty,UpdUser=@UpdUser, UpdDate=getdate()
+            @"Update [AssignClass] set Qty=@Qty,RealQty=@RealQty,RealQty_WMS=@RealQty_WMS,UpdUser=@UpdUser, UpdDate=getdate()
             where Sn=@Sn";
 
             Hashtable ht1 = new Hashtable();
@@ -240,6 +274,7 @@ namespace _3PL_DAO
             ht1.Add("@RealQty", dr["RealQty"]);
             ht1.Add("@UpdUser", dr["UpdUser"]);
             ht1.Add("@Sn", dr["Sn"]);
+            ht1.Add("@RealQty_WMS", dr["RealQty_WMS"]);
 
             IO.SqlUpdate(Login_Server, Updcmd_Detail, ht1, ref SuccessCount_Detail);
             SuccessCount += SuccessCount_Detail;

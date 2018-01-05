@@ -13,24 +13,6 @@ namespace _3PL_System {
     public partial class RoleClassQuery {
         
         /// <summary>
-        /// lbl_CustInf 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_CustInf;
-        
-        /// <summary>
-        /// lbl_ClassName 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ClassName;
-        
-        /// <summary>
         /// txb_Class 控制項。
         /// </summary>
         /// <remarks>

@@ -19,7 +19,7 @@
     <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
-                <asp:Label ID="lbl_Quotation" runat="server" Text="報價單設定"></asp:Label>
+                報價單設定
             </td>
         </tr>
         <tr>
@@ -40,7 +40,7 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="Label3" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                    <span style="color: red">*</span>
                     寄倉倉別：
                 </td>
                 <td>
@@ -82,8 +82,8 @@
                     <tr>
                         <td>
                             <asp:GridView ID="GV_Quotation_Query" runat="server" Width="100%" AutoGenerateColumns="False"
-                                CssClass="GVStyle" AllowPaging="True" PageSize="5" OnPageIndexChanging="GV_Quotation_Query_PageIndexChanging"
-                                BorderColor="Gray" OnRowCommand="GV_Quotation_Query_RowCommand">
+                                CssClass="GVStyle" AllowPaging="True" PageSize="10" OnPageIndexChanging="GV_Quotation_Query_PageIndexChanging"
+                                BorderColor="Gray" OnRowCommand="GV_Quotation_Query_RowCommand" OnRowDataBound="GV_Quotation_Query_RowDataBound">
                                 <HeaderStyle CssClass="GVHead" />
                                 <RowStyle CssClass="one" />
                                 <AlternatingRowStyle CssClass="two" />
@@ -92,7 +92,7 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="廠商用印時間">
                                         <ItemTemplate>
-                                            <asp:Label ID="Label_StampDate" runat="server" Text='<%# Bind("D_qthe_StampDate", "{0:yyyy/MM/dd}") %>'></asp:Label>
+                                            <asp:Button ID="Btn_StampDate" runat="server" Text='<%# Bind("D_qthe_StampDate", "{0:yyyy/MM/dd}") %>' CommandName="UseStamp"></asp:Button>
                                             <asp:Button ID="Btn_Stamp" runat="server" Text='設定時間' CommandName="UseStamp"></asp:Button>
                                             <asp:HiddenField ID="IsOK" runat="server" Value='<%# Bind("IsOK") %>' />
                                             <asp:HiddenField ID="Status" runat="server" Value='<%# Bind("I_qthe_Status") %>' />
@@ -133,7 +133,7 @@
     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div id="div_Detail" runat="server" visible="false">
-                <hr size="5" color="Blue" />
+                <hr style="border-top: 5px solid blue;"/>
                 <asp:Label ID="Label6" Text="報價單內容" runat="server" ForeColor="Blue"></asp:Label>
                 <table class="tborder" style="width:100%">
                     <tr>
@@ -223,7 +223,7 @@
                                 <PagerStyle CssClass="GVPage" />
                                 <EmptyDataRowStyle HorizontalAlign="Center" />
                                 <Columns>
-                                    <asp:BoundField DataField="S_bsda_FieldName" HeaderText="派工類別" />
+                                    <asp:BoundField DataField="S_bsda_FieldName" HeaderText="報價主類別" />
                                     <asp:BoundField DataField="S_bcse_CostName" HeaderText="計價費用" />
                                     <asp:BoundField DataField="I_qtde_Price" HeaderText="單價" DataFormatString="{0:0.##}" />
                                     <asp:BoundField DataField="S_bcse_DollarUnit" HeaderText="單位" />
@@ -248,18 +248,18 @@
                     <table class="myMainSubject">
                         <tr>
                             <td class="PageTitle" colspan="4">
-                                <asp:Label ID="lbl_TypeFee" runat="server" Text="報價單設定廠商用印時間"></asp:Label>
+                                報價單設定廠商用印時間
                             </td>
                         </tr>
                         <tr>
                             <td class="EditTD1">
-                                <asp:Label ID="lbl_ObjNo" runat="server" Text="報價單號:"></asp:Label>
+                                報價單號:
                             </td>
                             <td>
                                 <asp:Label ID="txb_ObjNo" runat="server"></asp:Label>
                             </td>
                             <td class="EditTD1">
-                                <asp:Label ID="Label12" runat="server" Text="狀態:"></asp:Label>
+                               狀態:
                             </td>
                             <td>
                                 <asp:Label ID="txb_Status" runat="server" Visible="false"></asp:Label>
@@ -268,7 +268,7 @@
                         </tr>
                         <tr>
                             <td class="EditTD1">
-                                <asp:Label ID="lbl_ObjName" runat="server" Text="廠商用印時間:"></asp:Label>
+                                廠商用印時間:
                             </td>
                             <td colspan="3">
                                 <asp:TextBox ID="txb_ObjName" runat="server"></asp:TextBox>

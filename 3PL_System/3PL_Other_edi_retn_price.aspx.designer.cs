@@ -13,24 +13,6 @@ namespace _3PL_System {
     public partial class _3PL_Other_edi_retn_price {
         
         /// <summary>
-        /// dialog_Settings 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dialog_Settings;
-        
-        /// <summary>
-        /// btn_close_dialog_Settings 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_close_dialog_Settings;
-        
-        /// <summary>
         /// lbl_Quotation 控制項。
         /// </summary>
         /// <remarks>
@@ -157,15 +139,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.Button Btn_ShowSetting;
         
         /// <summary>
-        /// lbl_CloseDate 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_CloseDate;
-        
-        /// <summary>
         /// div_Content 控制項。
         /// </summary>
         /// <remarks>
@@ -173,15 +146,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Content;
-        
-        /// <summary>
-        /// GV_BaseAccounting 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GV_BaseAccounting;
         
         /// <summary>
         /// btn_CloseDateConfirm 控制項。
@@ -200,5 +164,14 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_OutputExcel;
+        
+        /// <summary>
+        /// GV_BaseAccounting 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GV_BaseAccounting;
     }
 }

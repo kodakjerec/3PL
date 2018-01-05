@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
-using System.Data.Sql;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Configuration;
 using System.Collections;
 
@@ -13,6 +8,8 @@ namespace _3PL_LIB
 {
     public class DB_IO
     {
+        int ConnectTimeOut = 0;
+
         /// <summary>
         /// 資料庫連結字串
         /// </summary>
@@ -21,7 +18,9 @@ namespace _3PL_LIB
         {
             string strConn = string.Empty;
             strConn = ConfigurationManager.AppSettings[DB];
-            strConn = MD5.MD5Crypt.Decrypt(strConn, "pxmart", true);
+            ACE_EnCode ace = new ACE_EnCode();
+            //strConn = ace.AESDc(strConn,"SCSystem");
+            //strConn = MD5.MD5Crypt.Decrypt(strConn, "pxmart", true);
             return strConn;
         }
 
@@ -40,12 +39,11 @@ namespace _3PL_LIB
             try
             {
                 SqlCommand com = new SqlCommand(sqlcom, Conn);
-                com.CommandTimeout = 0;
+                com.CommandTimeout = ConnectTimeOut;
                 foreach (DictionaryEntry entry in Prm)
                 {
                     string strKey = entry.Key.ToString();
-                    SqlParameter P = new SqlParameter(strKey, SqlDbType.VarChar);
-                    P.Value = entry.Value;
+                    SqlParameter P = transferSqlParameter(strKey, entry.Value);
                     com.Parameters.Add(P);
                 }
                 Conn.Open();
@@ -81,22 +79,21 @@ namespace _3PL_LIB
             try
             {
                 SqlCommand com = new SqlCommand(sqlcom, Conn);
-                com.CommandTimeout = 0;
+                com.CommandTimeout = ConnectTimeOut;
                 foreach (DictionaryEntry entry in Prm)
                 {
                     string strKey = entry.Key.ToString();
-                    SqlParameter P = new SqlParameter(strKey, SqlDbType.VarChar);
-                    P.Value = entry.Value;
+                    SqlParameter P = transferSqlParameter(strKey, entry.Value);
                     com.Parameters.Add(P);
                 }
                 Conn.Open();
                 intItems = com.ExecuteNonQuery();
                 booUpdate = true;
             }
-            catch (Exception ex)
+            catch
             {
                 booUpdate = false;
-                throw ex;
+                throw;
             }
             finally
             {
@@ -121,9 +118,9 @@ namespace _3PL_LIB
             Conn.Open();
             SqlTransaction Trans = Conn.BeginTransaction();
             SqlCommand com = new SqlCommand();
+            com.CommandTimeout = ConnectTimeOut;
             com.Connection = Conn;
             com.Transaction = Trans;
-            com.CommandTimeout = 0;
 
             try
             {
@@ -133,8 +130,7 @@ namespace _3PL_LIB
                     foreach (DictionaryEntry entry in Prm[i])
                     {
                         string strKey = entry.Key.ToString();
-                        SqlParameter P = new SqlParameter(strKey, SqlDbType.VarChar);
-                        P.Value = entry.Value;
+                        SqlParameter P = transferSqlParameter(strKey, entry.Value);
                         com.Parameters.Add(P);
                     }
                     com.ExecuteNonQuery();
@@ -149,7 +145,7 @@ namespace _3PL_LIB
                 booBeginTran = false;
                 throw ex;
             }
-            finally 
+            finally
             {
                 Conn.Close();
                 Conn.Dispose();
@@ -171,16 +167,18 @@ namespace _3PL_LIB
             string str_Conn = strCon(strDB);
             SqlConnection Conn = new SqlConnection(str_Conn);
             SqlCommand com = new SqlCommand(SpName, Conn);
-            com.CommandTimeout = 0;
+            com.CommandTimeout = ConnectTimeOut;
+            com.CommandType = CommandType.StoredProcedure;
+
             try
             {
                 ArrayList arrKey = new ArrayList();
-                com.CommandType = CommandType.StoredProcedure;
+
                 foreach (DictionaryEntry entry in Prm)
                 {
                     string strKey = entry.Key.ToString();
-                    com.Parameters.Add(strKey, SqlDbType.VarChar);
-                    com.Parameters[strKey].Value = entry.Value;
+                    SqlParameter P = transferSqlParameter(strKey, entry.Value);
+                    com.Parameters.Add(P);
                 }
                 foreach (DictionaryEntry entry in OutPrm)
                 {
@@ -214,6 +212,40 @@ namespace _3PL_LIB
                 Conn.Dispose();
             }
             return Ds;
+        }
+
+        private SqlParameter transferSqlParameter(string strKey, object strValue)
+        {
+            string strName = strValue.GetType().Name.ToUpper();
+            SqlParameter P;
+            switch (strName)
+            {
+                case "BYTE[]":
+                    P = new SqlParameter(strKey, SqlDbType.VarBinary);
+                    P.Value = strValue;
+                    break;
+                case "DATETIME":
+                    P = new SqlParameter(strKey, SqlDbType.DateTime);
+                    P.Value = strValue;
+                    break;
+                case "DATATABLE":
+                    P = new SqlParameter(strKey, SqlDbType.Structured);
+                    P.Value = strValue;
+                    break;
+                default:
+                    P = new SqlParameter(strKey, SqlDbType.NVarChar);
+                    if (strValue.ToString() == "NULL")
+                    {
+                        P.IsNullable = true;
+                        P.Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        P.Value = strValue;
+                    }
+                    break;
+            }
+            return P;
         }
     }
 }

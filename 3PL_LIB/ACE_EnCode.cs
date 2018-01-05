@@ -11,7 +11,7 @@ namespace _3PL_LIB
         /// </summary>
         /// <param name="plainText">加密文字</param>
         /// <param name="key">加密金鑰</param>
-        /// <returns></returns>
+        /// <returns>加密字串</returns>
         public string AESEn(string EnText, string key)
         {
             RijndaelManaged AES = new RijndaelManaged();
@@ -29,7 +29,7 @@ namespace _3PL_LIB
         /// </summary>
         /// <param name="DcText">解密文字</param>
         /// <param name="key">加密金鑰</param>
-        /// <returns></returns>
+        /// <returns>解密文字</returns>
         public string AESDc(string DcText, string key)
         {
             RijndaelManaged AES = new RijndaelManaged();

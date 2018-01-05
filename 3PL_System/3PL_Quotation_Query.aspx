@@ -41,7 +41,7 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="Label3" runat="server" ForeColor="Red" Text="*"></asp:Label>
+                    <span style="color: red">*</span>
                     寄倉倉別：
                 </td>
                 <td>
@@ -83,7 +83,7 @@
                     <tr>
                         <td>
                             <asp:GridView ID="GV_Quotation_Query" runat="server" Width="100%" AutoGenerateColumns="False"
-                                CssClass="GVStyle" AllowPaging="True" PageSize="5" OnPageIndexChanging="GV_Quotation_Query_PageIndexChanging"
+                                CssClass="GVStyle" AllowPaging="True" PageSize="10" OnPageIndexChanging="GV_Quotation_Query_PageIndexChanging"
                                 OnRowDataBound="GV_Quotation_Query_RowDataBound" OnRowCommand="GV_Quotation_Query_RowCommand">
                                 <HeaderStyle CssClass="GVHead" />
                                 <RowStyle CssClass="one" />
@@ -136,7 +136,7 @@
     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div id="div_Detail" runat="server" visible="false">
-                <hr size="5" color="Blue" />
+                <hr style="border-top: 5px solid blue;"/>
                 <asp:Label ID="Label6" Text="報價單內容" runat="server" ForeColor="Blue"></asp:Label>
                 <table class="tborder" style="width:100%">
                     <tr>
@@ -226,14 +226,14 @@
                                 <PagerStyle CssClass="GVPage" />
                                 <EmptyDataRowStyle HorizontalAlign="Center" />
                                 <Columns>
-                                    <asp:BoundField DataField="S_bsda_FieldName" HeaderText="派工類別" />
+                                    <asp:BoundField DataField="S_bsda_FieldName" HeaderText="報價主類別" />
                                     <asp:BoundField DataField="S_bcse_CostName" HeaderText="計價費用" />
                                     <asp:BoundField DataField="I_qtde_Price" HeaderText="單價" DataFormatString="{0:0.##}" />
                                     <asp:BoundField DataField="S_bcse_DollarUnit" HeaderText="單位" />
-                                    <asp:CheckBoxField DataField="I_qtde_IsBaseCost" HeaderText="V" />
-                                    <asp:BoundField DataField="S_qtde_PriceMemo" HeaderText="單價備註" />
-                                    <asp:BoundField DataField="S_qtde_Memo" HeaderText="明細備註" />
+                                    <asp:BoundField DataField="S_qtde_PriceMemo" HeaderText="公式" />
+                                    <asp:BoundField DataField="S_qtde_Memo" HeaderText="備註" />
                                     <asp:BoundField DataField="S_qtde_SiteNo" HeaderText="倉別" />
+                                    <asp:BoundField DataField="I_qtde_HaveMinimum_Name" HeaderText="最低收費" />
                                 </Columns>
                             </asp:GridView>
                         </td>

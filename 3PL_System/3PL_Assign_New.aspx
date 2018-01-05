@@ -77,7 +77,7 @@
                                 <asp:Label ID="lbl_SCData_sc_date_e" runat="server" Text='<%# Bind("D_qthe_ContractE", "{0:yyyy/MM/dd}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="派工類別">
+                        <asp:TemplateField HeaderText="報價主類別">
                             <ItemTemplate>
                                 <asp:Label ID="lbl_SCData_TypeIdname" runat="server" Text='<%# Bind("S_bsda_FieldName") %>'></asp:Label>
                                 <asp:HiddenField runat="server" ID="Sel_TypeId" Value='<%# Bind("I_qtde_TypeId") %>' />
@@ -103,12 +103,12 @@
     <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div id="div_AssignClass_Demo" runat="server" visible="false">
-                <hr size="5" color="Blue" />
+                <hr style="border-top: 5px solid blue;"/>
                 <asp:Label runat="server" Text="派工單單頭" ForeColor="Blue"></asp:Label>
                 <asp:HiddenField runat="server" ID="hid_PLNO" Value="" />
                 <asp:HiddenField runat="server" ID="hid_TypeId" Value="" />
                 <asp:HiddenField runat="server" ID="hid_ClassId" Value="" />
-                <table class="tborder" id="AssignHead" width="100%">
+                <table class="tborder" id="AssignHead" style="width:100%">
                     <tr>
                         <td class="EditTD1">
                             派工日期
@@ -117,7 +117,7 @@
                             <asp:TextBox ID="Txb_Wk_Date" runat="server" Enabled="False"></asp:TextBox>
                         </td>
                         <td class="EditTD1">
-                            派工類別
+                            報價主類別
                         </td>
                         <td>
                             <asp:TextBox ID="Txb_Wk_ClassName" runat="server" Enabled="False"></asp:TextBox>
@@ -197,7 +197,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div id="div_AssignClass_Detail_Demo" runat="server" visible="false">
-                <hr size="5" color="Blue" />
+                <hr style="border-top: 5px solid blue;"/>
                 <asp:Label runat="server" Text="派工單明細" ForeColor="Blue"></asp:Label>
                 <table class="tborder">
                     <tr>

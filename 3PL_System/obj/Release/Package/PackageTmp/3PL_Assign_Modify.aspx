@@ -19,7 +19,7 @@
     <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle">
-                <asp:Label ID="lbl_Quotation" runat="server" Text="派工單設定"></asp:Label>
+               派工單設定
             </td>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
         </tr>
     </table>
     <div id="Quotation_Head_New" runat="server">
-        <hr size="5" color="Blue" />
+        <hr style="border-top: 5px solid blue;"/>
         <asp:Label ID="Label5" Text="派工單單頭" runat="server" ForeColor="Blue"></asp:Label>
         <table class="tborder" id="AssignHead" style="width:100%">
             <tr>
@@ -46,21 +46,21 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="lbl_TypeIdIm0" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     派工日期
                 </td>
                 <td>
                     <asp:TextBox ID="Txb_Wk_Date" runat="server" Enabled="False"></asp:TextBox>
                 </td>
                 <td class="EditTD1">
-                    <asp:Label ID="lbl_TypeIdIm1" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     派工類別
                 </td>
                 <td>
                     <asp:TextBox ID="Txb_Wk_ClassName" runat="server" Enabled="False"></asp:TextBox>
                 </td>
                 <td class="EditTD1">
-                    <asp:Label ID="lbl_TypeIdIm2" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     倉別
                 </td>
                 <td>
@@ -70,21 +70,21 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="lbl_TypeIdIm5" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     預計完工日
                 </td>
                 <td>
                     <asp:TextBox ID="Txb_EtaDate" runat="server"></asp:TextBox>
                 </td>
                 <td class="EditTD1">
-                    <asp:Label ID="lbl_TypeIdIm4" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     派工部門/人員
                 </td>
                 <td>
                     <asp:TextBox ID="Txb_CreateUser" runat="server" Enabled="False"></asp:TextBox>
                 </td>
                 <td class="EditTD1">
-                    <asp:Label ID="lbl_TypeIdIm3" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     處理單位
                 </td>
                 <td>
@@ -93,7 +93,7 @@
             </tr>
             <tr>
                 <td class="EditTD1">
-                    <asp:Label ID="lbl_TypeIdIm6" runat="server" Text="*" ForeColor="Red"></asp:Label>
+                    <span style="color: red">*</span>
                     供應商編號
                 </td>
                 <td>
@@ -117,8 +117,8 @@
     </div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
         <ContentTemplate>
-            <asp:Button ID="Btn_Assign_Delete" runat="server" Text="作廢" OnClick="Btn_Assign_Delete_Click" />
-            <hr size="5" color="Blue" />
+            <asp:Button ID="Btn_Assign_Delete" runat="server" CssClass="btn-danger" Text="作廢" OnClick="Btn_Assign_Delete_Click" />
+            <hr style="border-top: 5px solid blue;"/>
             <asp:Label ID="Label1" Text="派工單明細" runat="server" ForeColor="Blue"></asp:Label>
             <div id="DIV_Quotation_Detail_New_POItem" runat="server" visible="false">
                 <table class="tborder">
@@ -126,12 +126,12 @@
                         <td class="EditTD1">PO單
                         </td>
                         <td>
-                            <asp:TextBox ID="txb_D_qthe_ContractS_Qry" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txb_PO_No_CreateAssignDetail" runat="server"></asp:TextBox>
                         </td>
                         <td class="EditTD1">貨號
                         </td>
                         <td>
-                            <asp:TextBox ID="txb_D_qthe_ContractE_Qry" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txb_Item_No_CreateAssignDetail" runat="server"></asp:TextBox>
                         </td>
                         <td>
                             <asp:Button ID="Btn_Query" runat="server" Text="產生明細" OnClick="Btn_Query_Click" />
@@ -175,6 +175,11 @@
                                         <ItemTemplate>
                                             <asp:Label ID="Lbl_RealQty" runat="server" Text='<%# Bind("RealQty") %>'></asp:Label>
                                             <asp:TextBox ID="Txb_RealQty" runat="server" Text='<%# Bind("RealQty") %>'></asp:TextBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="實績量">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Lbl_RealQty_WMS" runat="server" Text='<%# Bind("RealQty_WMS") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="單位">

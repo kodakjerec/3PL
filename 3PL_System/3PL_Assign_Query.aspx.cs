@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using _3PL_LIB;
 using _3PL_DAO;
 using System.Data;
+using System.Web.Security;
 
 namespace _3PL_System
 {
@@ -31,9 +32,17 @@ namespace _3PL_System
                 txb_D_qthe_ContractE_Qry.Text = tmp.ToString("yyyy/MM/dd");
 
                 //產生作業大類下拉式選單
-                CB.DropDownListBind(ref DDL_DC, _3PLCQ.GetFieldList(Login_Server, "SiteNo",UI), "S_bsda_FieldId", "S_bsda_FieldName", "請選擇", "");
+                CB.DropDownListBind(ref DDL_DC, _3PLCQ.GetFieldList(Login_Server, "SiteNo", UI), "S_bsda_FieldId", "S_bsda_FieldName", "請選擇", "");
                 CB.DropDownListBind(ref DDL_S_qthe_SiteNo, _3PLCQ.GetFieldList(Login_Server, "SiteNo", UI), "S_bsda_FieldId", "S_bsda_FieldName", "ALL", "");
                 CB.DropDownListBind(ref DDL_AssignStatusList, _3PLCQ.GetAssignStatusList(), "Value", "Name");
+
+                //產生CheckBoxList
+                DataTable dt_SOStatus = _3PLSignOff.GetSOStatus(Login_Server, "2", UI.ClassId);
+                foreach (DataRow dr in dt_SOStatus.Rows)
+                {
+                    chkList_StatusList.Items.Add(dr["Status"] + "," + dr["StatusName"]);
+                }
+                DDL_AssignStatusList_SelectedIndexChanged(DDL_AssignStatusList, e);
 
                 if (Request.QueryString["VarString"] != null && Request.QueryString["VarString"] != "")
                     PushPageVar(Request.QueryString["VarString"]);
@@ -41,7 +50,8 @@ namespace _3PL_System
         }
 
         #region 查詢
-        //查詢報價單單頭
+
+        #region 查詢報價單單頭
         protected void Btn_Query_Click(object sender, EventArgs e)
         {
             Btn_Query_Click();
@@ -51,19 +61,19 @@ namespace _3PL_System
             string SupdId = Txb_S_qthe_SupdId.Text;
             string SiteNo = DDL_S_qthe_SiteNo.SelectedValue;
             string Wk_Id = Txb_Wk_Id_Query.Text;
-            bool bol_Chk_ShowStatusIsZero = Chk_ShowStatusIsZero.Checked;
             string BDate = txb_D_qthe_ContractS_Qry.Text;
             string EDate = txb_D_qthe_ContractE_Qry.Text;
-            string AssignStatusType = DDL_AssignStatusList.SelectedValue;
+            string AssignStatusList = Get_chkList_Selected();
 
-            Session["QuotationList"] = _3PLAssign.GetAssignList(SupdId, SiteNo, Wk_Id, UI, bol_Chk_ShowStatusIsZero, BDate, EDate, AssignStatusType);
+            Session["QuotationList"] = _3PLAssign.GetAssignList(SupdId, SiteNo, Wk_Id, UI, BDate, EDate, AssignStatusList);
             GVBind();
 
             Div_Assign_New.Visible = false;
             Div_Cost.Visible = false;
         }
+        #endregion
 
-        //查詢報價單明細
+        #region 查詢報價單明細
         protected void Wk_Id_Select(object sender, EventArgs e)
         {
             string Wk_Id = ((LinkButton)sender).Text;
@@ -79,20 +89,125 @@ namespace _3PL_System
             BringDetail(Wk_Id);
             Div_Assign_New.Visible = true;
             Div_Cost.Visible = true;
+
         }
+        #endregion
+
+        #region 派工狀態篩選
+
+        /// <summary>
+        /// 派工狀態變更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void DDL_AssignStatusList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int Selected = ((DropDownList)sender).SelectedIndex;
+            switch (Selected)
+            {
+                case 0: //全部
+                    foreach (ListItem item in chkList_StatusList.Items)
+                    {
+                        if (item.Text.IndexOf("作廢") >= 0)
+                            item.Selected = false;
+                        else
+                            item.Selected = true;
+                    }
+                    break;
+                case 1: //未完成
+                    foreach (ListItem item in chkList_StatusList.Items)
+                    {
+                        if (item.Text.IndexOf("作廢") >= 0)
+                            item.Selected = false;
+                        else if (item.Text.IndexOf("完成") >= 0)
+                            item.Selected = false;
+                        else
+                            item.Selected = true;
+                    }
+                    break;
+                case 2: //完成
+                    foreach (ListItem item in chkList_StatusList.Items)
+                    {
+                        if (item.Text.IndexOf("完成") >= 0)
+                            item.Selected = true;
+                        else
+                            item.Selected = false;
+                    }
+                    break;
+                case 3: //作廢
+                    foreach (ListItem item in chkList_StatusList.Items)
+                    {
+                        if (item.Text.IndexOf("作廢") >= 0)
+                            item.Selected = true;
+                        else
+                            item.Selected = false;
+                    }
+                    break;
+            }
+
+            //塗顏色
+            foreach (ListItem item in chkList_StatusList.Items)
+            {
+                if (item.Selected)
+                    item.Attributes["style"] = "color:blue";
+                else
+                    item.Attributes["style"] = "";
+            }
+        }
+
+        /// <summary>
+        /// 顯示/摺疊 詳細狀態
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btn_chkList_ShowHide_Click(object sender, EventArgs e)
+        {
+            //先打開
+            div_chkList_ShowHide.Visible = !div_chkList_ShowHide.Visible;
+
+            //再改按鈕文字
+            if (div_chkList_ShowHide.Visible)
+                ((Button)sender).Text = "↑摺疊詳細狀態";
+            else
+                ((Button)sender).Text = "↓顯示詳細狀態";
+
+        }
+
+        /// <summary>
+        /// 取得有選取的狀態
+        /// </summary>
+        /// <returns></returns>
+        private string Get_chkList_Selected()
+        {
+            string returnStr = "";
+
+            foreach (ListItem item in chkList_StatusList.Items)
+            {
+                if (item.Selected)
+                {
+                    if (returnStr.Length > 0)
+                        returnStr += ",";
+                    returnStr += item.Text.Split(',')[0];
+                }
+            }
+
+            return returnStr;
+        }
+        #endregion
+
         #endregion
 
         #region 進入頁面變數
         //收集本頁變數
         private string GetPageVar()
         {
-            string VarString=_3PLCQ.Page_AssignQuery(
+            string VarString = _3PLCQ.Page_AssignQuery(
                                             Txb_S_qthe_SupdId.Text
                                             , DDL_S_qthe_SiteNo.SelectedValue
                                             , Txb_Wk_Id_Query.Text
                                             , hidTotal_I_qthe_seq.Value
-                                            ,txb_D_qthe_ContractS_Qry.Text
-                                            ,txb_D_qthe_ContractE_Qry.Text);
+                                            , txb_D_qthe_ContractS_Qry.Text
+                                            , txb_D_qthe_ContractE_Qry.Text);
 
             return VarString;
         }
@@ -269,7 +384,7 @@ namespace _3PL_System
                 {
                     if (e.Row.Cells[7].Text.Length > 20)
                     {
-                        e.Row.Cells[7].Text = e.Row.Cells[7].Text.Substring(0, 6) + "..." + e.Row.Cells[7].Text.Substring(14, 6)+"...";
+                        e.Row.Cells[7].Text = e.Row.Cells[7].Text.Substring(0, 6) + "..." + e.Row.Cells[7].Text.Substring(14, 6) + "...";
                     }
                     else
                         e.Row.Cells[7].Text = e.Row.Cells[7].Text.Substring(0, 6) + "...";
@@ -400,7 +515,7 @@ namespace _3PL_System
             }
 
             ((_3PLMasterPage)Master).ShowMessage("簽核執行完成");
-            
+
             Btn_Query_Click();
             Wk_Id_Select_Act(dr["Wk_Id"].ToString());
         }

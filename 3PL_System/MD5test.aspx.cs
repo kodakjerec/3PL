@@ -37,5 +37,13 @@ namespace _3PL_System
             string afttxt = ace.AESDc(beftxt, "SCSystem");
             TextBox6.Text = afttxt;
         }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            string beftxt = TextBox5.Text;
+            ACE_EnCode ace = new ACE_EnCode();
+            string afttxt = ace.AESEn(beftxt, "SCSystem");
+            TextBox8.Text = afttxt;
+        }
     }
 }

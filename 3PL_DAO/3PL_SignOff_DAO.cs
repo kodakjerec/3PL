@@ -14,10 +14,10 @@ namespace _3PL_DAO
 
         #region 簽核基本狀態:查詢
         /// <summary>
-        /// 簽核流程狀態一覽
+        /// 簽核流程狀態一覽, 單據種類
         /// </summary>
         /// <param name="Login_Server">資料庫</param>
-        /// <param name="PageType">單據類別 0-報價 1-派工 2-成本</param>
+        /// <param name="PageType">單據類別 1-報價 2-派工 3-成本 4-調整</param>
         /// <returns></returns>
         public DataTable GetSOStatus(string Login_Server, string PageType)
         {
@@ -38,6 +38,11 @@ namespace _3PL_DAO
 
             return SignOffStatus;
         }
+        /// <summary>
+        /// 簽核流程狀態一覽
+        /// </summary>
+        /// <param name="Login_Server"></param>
+        /// <returns></returns>
         public DataTable GetSOStatus(string Login_Server)
         {
             DataTable SignOffStatus = new DataTable();
@@ -46,6 +51,50 @@ namespace _3PL_DAO
             @"Select * from SignOff_Status order by PageType, Step";
             Hashtable ht1 = new Hashtable();
 
+            DataSet ds = IO.SqlQuery(Login_Server, Sql_cmd, ht1);
+            SignOffStatus = ds.Tables[0];
+
+            //加入primaryKey
+            DataColumn[] keys = new DataColumn[2];
+            keys[0] = SignOffStatus.Columns["PageType"];
+            keys[1] = SignOffStatus.Columns["Step"];
+            SignOffStatus.PrimaryKey = keys;
+
+            return SignOffStatus;
+        }
+        /// <summary>
+        /// 簽核流程狀態一覽, 單據種類+ID
+        /// </summary>
+        /// <param name="Login_Server"></param>
+        /// <param name="PageType"></param>
+        /// <param name="ClassId"></param>
+        /// <returns></returns>
+        public DataTable GetSOStatus(string Login_Server, string PageType, string ClassId)
+        {
+            DataTable SignOffStatus = new DataTable();
+
+            string Sql_cmd =
+              @"SELECT 
+		            DISTINCT [Status], [StatusName]
+	            FROM 
+		            SignOff_status a with(nolock)
+	            INNER JOIN
+		            SignOff_Permission b with(nolock)
+	            ON 
+		            a.Sn=b.SignOffSn
+	            INNER JOIN
+		            EmpClass c with(nolock)
+	            ON 
+		            b.ClassId=c.ClassId
+	            where a.PageType=@PageType and c.ClassId=@ClassId
+                Union
+	            Select '0','作廢'
+                Union
+                Select '20','完成'
+                order by [Status]";
+            Hashtable ht1 = new Hashtable();
+            ht1.Add("@PageType", PageType);
+            ht1.Add("@ClassId", ClassId);
             DataSet ds = IO.SqlQuery(Login_Server, Sql_cmd, ht1);
             SignOffStatus = ds.Tables[0];
 
@@ -282,7 +331,7 @@ namespace _3PL_DAO
         #region 簽核權限
 
         /// <summary>
-        /// 簽核成功/退回(其他議價單,需跑完簽核過程)
+        /// 簽核成功/退回(其他議價單,需跑完簽核過程), 適用每關審核的Step by Step
         /// </summary>
         /// <param name="Login_Server"></param>
         /// <param name="UserID"></param>
@@ -428,7 +477,7 @@ namespace _3PL_DAO
         }
 
         /// <summary>
-        /// 簽核成功(其他議價單)
+        /// 簽核成功(一般議價單)
         /// </summary>
         /// <param name="Login_Server"></param>
         /// <param name="UserID"></param>

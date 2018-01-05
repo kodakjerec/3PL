@@ -3,16 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw">
 <head runat="server">
-    <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="CSS/Style.css" type="text/css" />
-    <link rel="stylesheet" href="js/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.css" type="text/css" />
-
-    <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/3PL/js/CommonLoader.js"></script>
     <style>
         .dialog_noTitle .ui-dialog-titlebar {
             Display: none;

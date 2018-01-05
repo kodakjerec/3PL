@@ -13,24 +13,6 @@ namespace _3PL_System {
     public partial class FunList {
         
         /// <summary>
-        /// lbl_CustInf 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_CustInf;
-        
-        /// <summary>
-        /// lbl_RoleId 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_RoleId;
-        
-        /// <summary>
         /// ddl_Role 控制項。
         /// </summary>
         /// <remarks>
@@ -38,15 +20,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_Role;
-        
-        /// <summary>
-        /// lbl_Fun 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Fun;
         
         /// <summary>
         /// txb_Fun 控制項。

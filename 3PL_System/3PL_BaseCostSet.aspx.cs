@@ -25,7 +25,7 @@ namespace _3PL_System
                 CB.DropDownListBind(ref ddl_SiteNo, GetCQ.GetFieldList(Login_Server, "SiteNo"), "S_bsda_FieldId", "S_bsda_FieldName", "請選擇", "");
                 CB.DropDownListBind(ref ddl_TypeId, GetCQ.GetFieldList(Login_Server, "TypeId"), "S_bsda_FieldId", "S_bsda_FieldName", "請選擇", "");
                 ddl_SiteNo.SelectedIndex = 1;
-                ddl_TypeId.SelectedIndex = 1;
+                ddl_TypeId.SelectedIndex = 0;
 
                 if (Request.QueryString["VarString"] != null)
                     PushPageVar(Request.QueryString["VarString"]);

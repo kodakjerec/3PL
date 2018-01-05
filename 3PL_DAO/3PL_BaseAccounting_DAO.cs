@@ -19,7 +19,8 @@ namespace _3PL_DAO
             DataTable AccList = new DataTable();
 
             string Sql_cmd = @"Select I_Acci_seq,S_Acci_Id,S_Acci_Name
-                                    From [3PL_baseAccounting]
+                                    From [3PL_baseAccounting] with(nolock)
+                                    where I_acci_DelFlag=0
                                     order by S_Acci_Id";
             Hashtable ht1 = new Hashtable();
             DataSet ds = IO.SqlQuery(Login_Server, Sql_cmd, ht1);

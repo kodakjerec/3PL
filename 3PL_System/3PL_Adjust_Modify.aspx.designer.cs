@@ -13,15 +13,6 @@ namespace _3PL_System {
     public partial class _3PL_Adjust_Modify {
         
         /// <summary>
-        /// lbl_Quotation 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Quotation;
-        
-        /// <summary>
         /// lbl_Quotation_Query 控制項。
         /// </summary>
         /// <remarks>
@@ -49,15 +40,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox lbl_Adj_Id;
         
         /// <summary>
-        /// Label8 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
-        
-        /// <summary>
         /// DDL_Adj_Type 控制項。
         /// </summary>
         /// <remarks>
@@ -65,15 +47,6 @@ namespace _3PL_System {
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDL_Adj_Type;
-        
-        /// <summary>
-        /// Label2 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
         /// lbl_Adj_PageId 控制項。

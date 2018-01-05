@@ -35,14 +35,15 @@ namespace _3PL_DAO
             from edi_retn_price with(nolock)
             where 1=1 ";
             Hashtable ht1 = new Hashtable();
-            if (site_no != "") {
+            if (site_no != "")
+            {
                 Sql_cmd += " and site_no=@site_no";
                 ht1.Add("@site_no", site_no);
             }
             if (vendor_no != "")
             {
                 Sql_cmd += " and vendor_no=@vendor_no";
-                ht1.Add("@vendor_no",vendor_no);
+                ht1.Add("@vendor_no", vendor_no);
             }
             if (back_id != "")
             {
@@ -84,24 +85,45 @@ namespace _3PL_DAO
         }
 
         /// <summary>
-        /// 逆物流費的清單
+        /// 逆物流費的細類清單
         /// </summary>
         /// <returns></returns>
-        public DataTable KindList()
+        public DataTable kind_list()
         {
-            DataTable dt1 = new DataTable();
-            dt1.Columns.Add("Name", typeof(string));
-            dt1.Columns.Add("Value", typeof(string));
-            dt1.Rows.Add(new object[] { "食安專退", "食安專退" });
-            dt1.Rows.Add(new object[] { "食安管制", "食安管制" });
-            dt1.Rows.Add(new object[] { "約期下架", "約期下架" });
-            dt1.Rows.Add(new object[] { "食安特收", "食安特收" });
-            dt1.Rows.Add(new object[] { "管制品", "管制品" });
-            dt1.Rows.Add(new object[] { "廠商自行退貨", "廠商自行退貨" });
-            dt1.Rows.Add(new object[] { "變規變包", "變規變包" });
-            return dt1;
+            DataTable dt = new DataTable();
+
+            string Sql_cmd =
+            @"select Value=I_bcse_Seq, Name=S_bcse_CostName, Kind=I_bcse_TypeId
+            from [3PL_BaseCostSet] with(nolock)
+            where S_bcse_SiteNo='DC01'
+	        and I_bcse_TypeId in (13,14,15,16)";
+            Hashtable ht1 = new Hashtable();
+            DataSet ds = IO.SqlQuery("3PL", Sql_cmd, ht1);
+            dt = ds.Tables[0];
+
+            return dt;
+        }
+        /// <summary>
+        /// 逆物流費的大類
+        /// </summary>
+        /// <returns></returns>
+        public DataTable charge_kind_List()
+        {
+            DataTable dt = new DataTable();
+
+            string Sql_cmd =
+            @"select Value=S_bsda_FieldId, Name=S_bsda_FieldName
+            from [3PL_BaseData] with(nolock)
+            where S_bsda_CateId='TypeId'
+	        and S_bsda_FieldId in (13,14,15,16)";
+            Hashtable ht1 = new Hashtable();
+            DataSet ds = IO.SqlQuery("3PL", Sql_cmd, ht1);
+            dt = ds.Tables[0];
+
+            return dt;
         }
 
+        //倉別清單
         public DataTable SiteNoList()
         {
             DataTable dt1 = new DataTable();
@@ -113,6 +135,47 @@ namespace _3PL_DAO
             return dt1;
         }
 
+        /// <summary>
+        /// 取得 廠商清單編號
+        /// </summary>
+        /// <returns></returns>
+        public DataTable Get_DeleteList_Supno()
+        {
+            DataTable dt = new DataTable();
+
+            string Sql_cmd =
+            @"select * 
+            from edi_retn_price_disable_supno with(nolock)
+            where del_date is null
+            order by  sup_no";
+            Hashtable ht1 = new Hashtable();
+            DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
+            dt = ds.Tables[0];
+
+            return dt;
+        }
+        /// <summary>
+        /// 取得 貨號清單
+        /// </summary>
+        /// <returns></returns>
+        public DataTable Get_DeleteList_ItemNo()
+        {
+            DataTable dt = new DataTable();
+
+            string Sql_cmd =
+            @"select * 
+            from edi_retn_price_disable_item with(nolock)
+            where del_date is null
+            order by  item_id";
+            Hashtable ht1 = new Hashtable();
+            DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
+            dt = ds.Tables[0];
+
+            return dt;
+        }
+        #endregion
+
+        #region Update
         /// <summary>
         /// 更新資料
         /// </summary>
@@ -135,6 +198,90 @@ namespace _3PL_DAO
             ht1.Add("@User", UI.UserID);
 
             DataSet ds = IO.SqlQuery(Login_Server, Sql_cmd, ht1);
+        }
+        #endregion
+
+        #region DELETE
+        /// <summary>
+        /// 刪除廠商編號
+        /// </summary>
+        /// <param name="sup_no"></param>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
+        public bool del_Supno(string sup_no, string UserID)
+        {
+            bool IsOK = false;
+
+            string Sql_cmd =
+            @"Update edi_retn_price_disable_supno 
+            set del_user=@UserID, del_date=GETDATE()
+            WHERE sup_no=@sup_no;select @@ROWCOUNT";
+            Hashtable ht1 = new Hashtable();
+            ht1.Add("@UserID", UserID);
+            ht1.Add("@sup_no", sup_no);
+            DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
+            if (ds.Tables[0].Rows.Count > 0)
+                IsOK = true;
+
+            return IsOK;
+        }
+
+        /// <summary>
+        /// 刪除貨號
+        /// </summary>
+        /// <param name="item_no"></param>
+        /// <param name="UserID"></param>
+        /// <returns></returns>
+        public bool del_ItemNo(string item_no, string UserID)
+        {
+            bool IsOK = false;
+
+            string Sql_cmd =
+            @"Update edi_retn_price_disable_item 
+            set del_user=@UserID, del_date=GETDATE()
+            WHERE item_id=@item_no;select @@ROWCOUNT";
+            Hashtable ht1 = new Hashtable();
+            ht1.Add("@UserID", UserID);
+            ht1.Add("@item_no", item_no);
+            DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
+            if (ds.Tables[0].Rows.Count > 0)
+                IsOK = true;
+
+            return IsOK;
+        }
+        #endregion
+
+        #region Insert
+        public bool Insert_Supno(string sup_no)
+        {
+            bool IsOK = false;
+
+            string Sql_cmd =
+            @"Insert Into edi_retn_price_disable_supno (sup_no)
+            values(@sup_no);select @@ROWCOUNT";
+            Hashtable ht1 = new Hashtable();
+            ht1.Add("@sup_no", sup_no);
+            DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
+            if (ds.Tables[0].Rows.Count > 0)
+                IsOK = true;
+
+            return IsOK;
+        }
+
+        public bool Insert_ItemNo(string item_no)
+        {
+            bool IsOK = false;
+
+            string Sql_cmd =
+            @"Insert Into edi_retn_price_disable_item (item_id)
+            values(@item_no);select @@ROWCOUNT";
+            Hashtable ht1 = new Hashtable();
+            ht1.Add("@item_no", item_no);
+            DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
+            if (ds.Tables[0].Rows.Count > 0)
+                IsOK = true;
+
+            return IsOK;
         }
         #endregion
     }

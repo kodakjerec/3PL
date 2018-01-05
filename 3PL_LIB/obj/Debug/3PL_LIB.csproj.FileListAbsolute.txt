@@ -12,3 +12,6 @@ F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\MD5.pdb
 F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\3PL_LIB.csprojResolveAssemblyReference.cache
 F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\3PL_LIB.dll
 F:\Projects\AspDotnet\3PL\3PL_LIB\obj\Debug\3PL_LIB.pdb
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\Newtonsoft.Json.dll
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\Newtonsoft.Json.pdb
+F:\Projects\AspDotnet\3PL\3PL_LIB\bin\Debug\Newtonsoft.Json.xml

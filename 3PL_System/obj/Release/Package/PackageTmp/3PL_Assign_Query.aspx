@@ -4,89 +4,97 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script type="text/javascript">
+        function pageLoad(){
+            load();
+        }
         function show_table1() { <%=xtable1.ClientID %>.style.display = 'inline'; }
         function hide_table1() { <%=xtable1.ClientID %>.style.display = 'none'; }
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
+        function load() {
             $("#<%=txb_D_qthe_ContractS_Qry.ClientID %>").datepicker({ dateFormat: 'yy/mm/dd' });
             $("#<%=txb_D_qthe_ContractE_Qry.ClientID %>").datepicker({ dateFormat: 'yy/mm/dd' });
-        });
+        }
     </script>
     <title>派工單查詢</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table class="tborder" style="width:100%">
+    <table class="tborder" style="width: 100%">
         <tr>
-            <td class="PageTitle">
-                <asp:Label ID="lbl_Quotation" runat="server" Text="派工單設定"></asp:Label>
+            <td class="PageTitle">派工單設定
             </td>
         </tr>
         <tr>
-            <td class="HeaderStyle ">
-                <asp:Label ID="lbl_Quotation_Query" runat="server" Text="派工單資料"></asp:Label>
+            <td class="HeaderStyle ">派工單資料
             </td>
         </tr>
     </table>
-    <asp:Panel ID="Pan_Quotation_Query" runat="server">
-        <table class="tborder">
-            <tr>
-                <td class="EditTD1">供應商編號：
-                </td>
-                <td>
-                    <asp:TextBox ID="Txb_S_qthe_SupdId" runat="server"></asp:TextBox>
-                    <asp:Button ID="Btn_S_qthe_SupdId" runat="server" Text="選擇對象" OnClick="Btn_S_qthe_SupdId_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td class="EditTD1">
-                    <asp:Label ID="Label3" runat="server" ForeColor="Red" Text="*"></asp:Label>
-                    寄倉倉別：
-                </td>
-                <td>
-                    <asp:DropDownList ID="DDL_S_qthe_SiteNo" runat="server">
-                    </asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td class="EditTD1">派工單號：
-                </td>
-                <td>
-                    <asp:TextBox ID="Txb_Wk_Id_Query" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="EditTD1">預計完工日：
-                </td>
-                <td>
-                    <asp:TextBox ID="txb_D_qthe_ContractS_Qry" runat="server" />
-                    至
-                    <asp:TextBox ID="txb_D_qthe_ContractE_Qry" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="EditTD1">派工狀態：
-                </td>
-                <td>
-                    <asp:DropDownList ID="DDL_AssignStatusList" runat="server" />
-                    <asp:CheckBox ID="Chk_ShowStatusIsZero" runat="server" Text="顯示作廢單據" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Button ID="Btn_Query" runat="server" Text="查詢" OnClick="Btn_Query_Click" />
-                </td>
-            </tr>
-        </table>
-    </asp:Panel>
     <asp:UpdatePanel ID="UpdPanel_Assign_HeadList" runat="server" UpdateMode="Always">
         <ContentTemplate>
-            <table class="tborder" style="width:100%">
+            <asp:Panel ID="Pan_Quotation_Query" runat="server">
+                <table class="tborder">
+                    <tr>
+                        <td class="EditTD1">供應商編號：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="Txb_S_qthe_SupdId" runat="server"></asp:TextBox>
+                            <asp:Button ID="Btn_S_qthe_SupdId" runat="server" Text="選擇對象" OnClick="Btn_S_qthe_SupdId_Click" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="EditTD1">
+                            <span style="color: red">*</span>
+                            寄倉倉別：
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="DDL_S_qthe_SiteNo" runat="server">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="EditTD1">派工單號：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="Txb_Wk_Id_Query" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="EditTD1">預計完工日：
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txb_D_qthe_ContractS_Qry" runat="server" />
+                            至
+                    <asp:TextBox ID="txb_D_qthe_ContractE_Qry" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="EditTD1">派工狀態：
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="DDL_AssignStatusList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDL_AssignStatusList_SelectedIndexChanged" />
+                            <asp:Button ID="btn_chkList_ShowHide" runat="server" OnClick="btn_chkList_ShowHide_Click" Text="↓顯示詳細狀態" />
+                        </td>
+                    </tr>
+                    <div id="div_chkList_ShowHide" runat="server" visible="false">
+                        <tr>
+                            <td class="EditTD1"></td>
+                            <td>
+                                <asp:CheckBoxList ID="chkList_StatusList" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
+                            </td>
+                        </tr>
+                    </div>
+                    <tr>
+                        <td>
+                            <asp:Button ID="Btn_Query" runat="server" Text="查詢" OnClick="Btn_Query_Click" />
+                        </td>
+                    </tr>
+                </table>
+            </asp:Panel>
+
+            <table class="tborder" style="width: 100%">
                 <tr>
                     <td>
                         <asp:GridView ID="GV_Quotation_Query" runat="server" Width="100%" AutoGenerateColumns="False"
                             CssClass="GVStyle" OnRowCommand="GV_Quotation_Query_RowCommand" OnRowDataBound="GV_Quotation_Query_RowDataBound"
-                            PageSize="5" AllowPaging="True" OnPageIndexChanging="GV_Quotation_Query_PageIndexChanging">
+                            PageSize="10" AllowPaging="True" OnPageIndexChanging="GV_Quotation_Query_PageIndexChanging">
                             <HeaderStyle CssClass="GVHead" />
                             <RowStyle CssClass="one" />
                             <AlternatingRowStyle CssClass="two" />
@@ -137,7 +145,7 @@
     <asp:UpdatePanel ID="UpdPanel_Assgin_Detail" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div id="Div_Assign_New" runat="server" visible="false">
-                <hr size="5" color="Blue" />
+                <hr style="border-top: 5px solid blue;" />
                 <asp:Label ID="Label5" Text="派工單單頭" runat="server" ForeColor="Blue"></asp:Label>
                 <table class="tborder" id="AssignHead" width="100%">
                     <tr>
@@ -203,7 +211,7 @@
                         </td>
                     </tr>
                 </table>
-                <hr size="5" color="Blue" />
+                <hr style="border-top: 5px solid blue;" />
                 <asp:Label ID="Label6" Text="派工單內容" runat="server" ForeColor="Blue"></asp:Label>
                 <table class="tborder" id="AssignClass" width="100%">
                     <tr>
@@ -220,6 +228,7 @@
                                     <asp:BoundField DataField="Wk_ClassNm" HeaderText="分類名稱" />
                                     <asp:BoundField DataField="Qty" HeaderText="派工數量" />
                                     <asp:BoundField DataField="RealQty" HeaderText="完工數量" />
+                                    <asp:BoundField DataField="RealQty_WMS" HeaderText="實績量" />
                                     <asp:BoundField DataField="Unit" HeaderText="單位" />
                                     <asp:BoundField DataField="PONO" HeaderText="PO單號" />
                                     <asp:BoundField DataField="itemno" HeaderText="貨號" />
@@ -239,7 +248,7 @@
     <asp:UpdatePanel ID="UpdPanel_Cost_Detail" runat="server" UpdateMode="Always">
         <ContentTemplate>
             <div id="Div_Cost" runat="server" visible="false">
-                <hr size="5" color="Blue" />
+                <hr style="border-top: 5px solid blue;" />
                 <asp:Label ID="Label4" Text="成本單內容" runat="server" ForeColor="Blue"></asp:Label>
                 <table class="tborder" id="Table2" width="100%">
                     <tr>

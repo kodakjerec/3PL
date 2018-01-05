@@ -96,7 +96,6 @@ namespace _3PL_DAO
             left join mer_package c with(nolock) on b.L_reci_merdsysno=c.L_merp_merdsysno and c.I_merp_boxflag=1
             where a.S_rech_erpid=@PLNO
 	            and b.S_reci_merdid like '%'+@itemno+'%'
-                and left(a.S_rech_SupdId,4)=@Sup_Id
             ) final";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@PLNO", PLNO);

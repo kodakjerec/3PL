@@ -9,20 +9,20 @@
     <table class="tborder" style="width:100%">
         <tr>
             <td class="PageTitle" colspan="4">
-                <asp:Label ID="lbl_PriceSet" runat="server" Text="計價費用設定"></asp:Label>
+               計價費用設定
             </td>
         </tr>
         <tr>
             <td class="HeaderStyle" colspan="4">
-                <asp:Label ID="lbl_PriceSet_Query" runat="server" Text="計價費用設定查詢"></asp:Label>
+                計價費用設定查詢
             </td>
         </tr>
     </table>
     <table class="tborder">
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="Label1" runat="server" Text="*" ForeColor="Red"></asp:Label>
-                <asp:Label ID="lbl_SiteNo" runat="server" Text="寄倉倉別："></asp:Label>
+                <span style="color:red">*</span>
+                寄倉倉別：
             </td>
             <td>
                 <asp:DropDownList ID="ddl_SiteNo" runat="server" AutoPostBack="True">
@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <td class="EditTD1">
-                <asp:Label ID="lbl_TypeId" runat="server" Text="報價主類別："></asp:Label>
+                報價主類別：
             </td>
             <td>
                 <asp:DropDownList ID="ddl_TypeId" runat="server" AutoPostBack="True">
