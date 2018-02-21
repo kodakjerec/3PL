@@ -31,10 +31,10 @@
       <publishTime>11/29/2017 16:21:25</publishTime>
     </File>
     <File Include="3PL_Assign_Query.aspx">
-      <publishTime>12/13/2017 17:03:38</publishTime>
+      <publishTime>01/18/2018 14:29:52</publishTime>
     </File>
     <File Include="3PL_BaseAccounting.aspx">
-      <publishTime>11/03/2017 17:52:39</publishTime>
+      <publishTime>02/05/2018 11:24:20</publishTime>
     </File>
     <File Include="3PL_BaseCost.aspx">
       <publishTime>12/13/2017 17:03:58</publishTime>
@@ -67,7 +67,7 @@
       <publishTime>10/13/2017 11:03:11</publishTime>
     </File>
     <File Include="3PL_Other_edi_retn_price_Settings.aspx">
-      <publishTime>11/01/2017 15:38:05</publishTime>
+      <publishTime>01/18/2018 15:34:03</publishTime>
     </File>
     <File Include="3PL_Quotation_Modify.aspx">
       <publishTime>11/29/2017 16:22:09</publishTime>
@@ -76,7 +76,7 @@
       <publishTime>04/20/2017 14:56:16</publishTime>
     </File>
     <File Include="3PL_Quotation_Query.aspx">
-      <publishTime>11/29/2017 16:21:58</publishTime>
+      <publishTime>01/18/2018 15:50:50</publishTime>
     </File>
     <File Include="3PL_Quotation_Stamp.aspx">
       <publishTime>11/29/2017 16:21:47</publishTime>
@@ -97,7 +97,7 @@
       <publishTime>11/28/2017 16:43:02</publishTime>
     </File>
     <File Include="3PL_ToExcel001.aspx">
-      <publishTime>11/10/2017 11:05:58</publishTime>
+      <publishTime>02/05/2018 11:31:21</publishTime>
     </File>
     <File Include="3PL_ToExcel002_SendBox.aspx">
       <publishTime>08/01/2017 09:36:52</publishTime>
@@ -106,7 +106,7 @@
       <publishTime>09/29/2017 09:29:21</publishTime>
     </File>
     <File Include="bin/3PL_DAO.dll">
-      <publishTime>01/03/2018 13:23:14</publishTime>
+      <publishTime>02/05/2018 11:23:12</publishTime>
     </File>
     <File Include="bin/3PL_DAO.pdb">
       <publishTime>07/28/2015 11:21:12</publishTime>
@@ -118,7 +118,7 @@
       <publishTime>08/07/2015 16:00:34</publishTime>
     </File>
     <File Include="bin/3PL_System.dll">
-      <publishTime>01/03/2018 13:23:17</publishTime>
+      <publishTime>02/05/2018 11:32:43</publishTime>
     </File>
     <File Include="bin/3PL_System.pdb">
       <publishTime>08/12/2015 16:00:33</publishTime>
@@ -184,7 +184,7 @@
       <publishTime>01/23/2015 18:00:33</publishTime>
     </File>
     <File Include="CSS/Style.css">
-      <publishTime>11/22/2017 11:13:08</publishTime>
+      <publishTime>01/18/2018 15:57:03</publishTime>
     </File>
     <File Include="CSS/Style.jqGrid.css">
       <publishTime>12/08/2017 17:02:56</publishTime>
@@ -796,13 +796,13 @@
       <publishTime>01/23/2015 18:00:35</publishTime>
     </File>
     <File Include="js/_3PL_DAO/CommonLib/CommonLib.js">
-      <publishTime>01/02/2018 15:17:58</publishTime>
+      <publishTime>02/05/2018 11:12:03</publishTime>
     </File>
     <File Include="js/_3PL_DAO/CommonLib/CommonQuery.js">
-      <publishTime>01/02/2018 15:18:12</publishTime>
+      <publishTime>02/05/2018 09:42:24</publishTime>
     </File>
     <File Include="js/_3PL_DAO/CommonLib/Settings.js">
-      <publishTime>12/18/2017 10:19:51</publishTime>
+      <publishTime>01/29/2018 17:42:50</publishTime>
     </File>
     <File Include="LogIn.aspx">
       <publishTime>12/13/2017 16:47:25</publishTime>
@@ -831,32 +831,41 @@
     <File Include="Other/EDI_Retn_Price/EDI_Retn_Price.js">
       <publishTime>11/30/2017 09:24:08</publishTime>
     </File>
+    <File Include="pages/_3PL_BaseAccounting/_3PL_BaseAccounting.aspx">
+      <publishTime>02/05/2018 11:19:50</publishTime>
+    </File>
+    <File Include="pages/_3PL_BaseAccounting/_3PL_BaseAccounting.js">
+      <publishTime>02/05/2018 11:12:26</publishTime>
+    </File>
     <File Include="pages/_3PL_BaseCost_Formula/_3PL_BaseCost_Formula.aspx">
       <publishTime>12/28/2017 17:28:25</publishTime>
     </File>
     <File Include="pages/_3PL_BaseCost_Formula/_3PL_BaseCost_Formula.js">
-      <publishTime>12/29/2017 16:55:42</publishTime>
+      <publishTime>01/04/2018 16:07:40</publishTime>
+    </File>
+    <File Include="pages/_3PL_QuotationHead_Addon.js">
+      <publishTime>01/31/2018 13:08:08</publishTime>
     </File>
     <File Include="pages/_3PL_QuotationHead_Addon_00/_3PL_QuotationHead_Addon_00.aspx">
-      <publishTime>12/29/2017 10:26:04</publishTime>
+      <publishTime>01/19/2018 13:38:31</publishTime>
     </File>
     <File Include="pages/_3PL_QuotationHead_Addon_00/_3PL_QuotationHead_Addon_00.js">
-      <publishTime>12/29/2017 10:28:12</publishTime>
+      <publishTime>01/19/2018 13:39:47</publishTime>
     </File>
     <File Include="pages/_3PL_QuotationHead_Addon_01/_3PL_QuotationHead_Addon_01.aspx">
-      <publishTime>12/28/2017 17:27:25</publishTime>
+      <publishTime>01/19/2018 13:39:01</publishTime>
     </File>
     <File Include="pages/_3PL_QuotationHead_Addon_01/_3PL_QuotationHead_Addon_01.js">
-      <publishTime>12/27/2017 15:35:35</publishTime>
+      <publishTime>01/19/2018 13:39:43</publishTime>
     </File>
     <File Include="pages/_3PL_QuotationHead_Addon_02/_3PL_QuotationHead_Addon_02.aspx">
-      <publishTime>12/28/2017 17:27:44</publishTime>
+      <publishTime>01/19/2018 13:39:05</publishTime>
     </File>
     <File Include="pages/_3PL_QuotationHead_Addon_02/_3PL_QuotationHead_Addon_02.js">
-      <publishTime>12/27/2017 15:36:19</publishTime>
+      <publishTime>01/19/2018 13:39:38</publishTime>
     </File>
     <File Include="pages/_3PL_ToExcel001/_3PL_ToExcel001.aspx">
-      <publishTime>12/28/2017 17:26:09</publishTime>
+      <publishTime>02/05/2018 11:32:26</publishTime>
     </File>
     <File Include="pages/_3PL_ToExcel001/_3PL_ToExcel001.css">
       <publishTime>12/08/2017 17:12:35</publishTime>
@@ -894,6 +903,12 @@
     <File Include="ScOffer/pages/Report001/Report001.js">
       <publishTime>12/28/2017 17:23:51</publishTime>
     </File>
+    <File Include="ScOffer/pages/ScOfferPage/ScOfferPage.aspx">
+      <publishTime>01/31/2018 18:05:09</publishTime>
+    </File>
+    <File Include="ScOffer/pages/ScOfferPage/ScOfferPage.js">
+      <publishTime>02/01/2018 14:24:51</publishTime>
+    </File>
     <File Include="ScOffer/pages/SupMonthPriceMax/SupMonthPriceMax.aspx">
       <publishTime>12/22/2017 13:32:05</publishTime>
     </File>
@@ -901,7 +916,7 @@
       <publishTime>11/23/2017 11:09:37</publishTime>
     </File>
     <File Include="ScOffer/pages/SupMonthPriceMax/SupMonthPriceMax.js">
-      <publishTime>12/26/2017 11:52:57</publishTime>
+      <publishTime>01/29/2018 13:48:11</publishTime>
     </File>
     <File Include="ScOffer/Report001.aspx">
       <publishTime>11/29/2017 11:56:26</publishTime>
@@ -925,7 +940,7 @@
       <publishTime>08/26/2015 10:36:36</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/22/2017 15:20:33</publishTime>
+      <publishTime>02/01/2018 10:14:46</publishTime>
     </File>
   </ItemGroup>
 </Project>

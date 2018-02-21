@@ -88,6 +88,10 @@ namespace _3PL_System
         {
             string InsertId = ((TextBox)GV_BaseAccounting.FooterRow.FindControl("TBX_INS_S_Acci_Id")).Text.Trim();
             string InsertName = ((TextBox)GV_BaseAccounting.FooterRow.FindControl("TBX_INS_S_Acci_Name")).Text.Trim();
+            string txb_INS_S_Acci_ClassNo1 = ((TextBox)GV_BaseAccounting.FooterRow.FindControl("txb_INS_S_Acci_ClassNo1")).Text.Trim();
+            string txb_INS_S_Acci_ClassName1 = ((TextBox)GV_BaseAccounting.FooterRow.FindControl("txb_INS_S_Acci_ClassName1")).Text.Trim();
+            string txb_INS_S_Acci_ClassNo2 = ((TextBox)GV_BaseAccounting.FooterRow.FindControl("txb_INS_S_Acci_ClassNo2")).Text.Trim();
+            string txb_INS_S_Acci_ClassName2 = ((TextBox)GV_BaseAccounting.FooterRow.FindControl("txb_INS_S_Acci_ClassName2")).Text.Trim();
             if (InsertId == "" || InsertName=="")
             {
                 ((_3PLMasterPage)Master).ShowMessage("無法建立空白科目");
@@ -101,6 +105,10 @@ namespace _3PL_System
             dr[0] = 65535;
             dr[1] = InsertId;
             dr[2] = InsertName;
+            dr[3] = txb_INS_S_Acci_ClassNo1;
+            dr[3] = txb_INS_S_Acci_ClassName1;
+            dr[3] = txb_INS_S_Acci_ClassNo2;
+            dr[3] = txb_INS_S_Acci_ClassName2;
             GetAcc.AccList_Insert(Login_Server, UI.UserID, dr);
 
             Session["AccList"] = GetAcc.GetAccList(Login_Server);

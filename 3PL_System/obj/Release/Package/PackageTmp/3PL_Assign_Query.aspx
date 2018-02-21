@@ -2,7 +2,6 @@
     CodeBehind="3PL_Assign_Query.aspx.cs" Inherits="_3PL_System._3PL_Assign_Query" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
     <script type="text/javascript">
         function pageLoad(){
             load();
@@ -69,18 +68,9 @@
                         <td class="EditTD1">派工狀態：
                         </td>
                         <td>
-                            <asp:DropDownList ID="DDL_AssignStatusList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DDL_AssignStatusList_SelectedIndexChanged" />
-                            <asp:Button ID="btn_chkList_ShowHide" runat="server" OnClick="btn_chkList_ShowHide_Click" Text="↓顯示詳細狀態" />
+                            <asp:CheckBoxList ID="chkList_StatusList" RepeatDirection="Horizontal" runat="server" AutoPostBack="True" OnSelectedIndexChanged="chkList_StatusList_SelectedIndexChanged"></asp:CheckBoxList>
                         </td>
                     </tr>
-                    <div id="div_chkList_ShowHide" runat="server" visible="false">
-                        <tr>
-                            <td class="EditTD1"></td>
-                            <td>
-                                <asp:CheckBoxList ID="chkList_StatusList" RepeatDirection="Horizontal" runat="server"></asp:CheckBoxList>
-                            </td>
-                        </tr>
-                    </div>
                     <tr>
                         <td>
                             <asp:Button ID="Btn_Query" runat="server" Text="查詢" OnClick="Btn_Query_Click" />

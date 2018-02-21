@@ -34,19 +34,28 @@ namespace _3PL_System
                 //產生作業大類下拉式選單
                 CB.DropDownListBind(ref DDL_DC, _3PLCQ.GetFieldList(Login_Server, "SiteNo", UI), "S_bsda_FieldId", "S_bsda_FieldName", "請選擇", "");
                 CB.DropDownListBind(ref DDL_S_qthe_SiteNo, _3PLCQ.GetFieldList(Login_Server, "SiteNo", UI), "S_bsda_FieldId", "S_bsda_FieldName", "ALL", "");
-                CB.DropDownListBind(ref DDL_AssignStatusList, _3PLCQ.GetAssignStatusList(), "Value", "Name");
 
                 //產生CheckBoxList
                 DataTable dt_SOStatus = _3PLSignOff.GetSOStatus(Login_Server, "2", UI.ClassId);
                 foreach (DataRow dr in dt_SOStatus.Rows)
                 {
-                    chkList_StatusList.Items.Add(dr["Status"] + "," + dr["StatusName"]);
+                    ListItem li = new ListItem(dr["Status"] + "," + dr["StatusName"]);
+                    li.Attributes.Add("class", "btn btn-default");
+                    chkList_StatusList.Items.Add(li);
                 }
-                DDL_AssignStatusList_SelectedIndexChanged(DDL_AssignStatusList, e);
+                foreach (ListItem item in chkList_StatusList.Items)
+                {
+                    if (item.Text.IndexOf("作廢")<0
+                        && item.Text.IndexOf("完成") <0)
+                    {
+                        item.Selected = true;
+                    }
+                }
 
                 if (Request.QueryString["VarString"] != null && Request.QueryString["VarString"] != "")
                     PushPageVar(Request.QueryString["VarString"]);
             }
+            chkList_StatusList_SelectedIndexChanged(chkList_StatusList, e);
         }
 
         #region 查詢
@@ -94,83 +103,15 @@ namespace _3PL_System
         #endregion
 
         #region 派工狀態篩選
-
-        /// <summary>
-        /// 派工狀態變更
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void DDL_AssignStatusList_SelectedIndexChanged(object sender, EventArgs e)
+        protected void chkList_StatusList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int Selected = ((DropDownList)sender).SelectedIndex;
-            switch (Selected)
-            {
-                case 0: //全部
-                    foreach (ListItem item in chkList_StatusList.Items)
-                    {
-                        if (item.Text.IndexOf("作廢") >= 0)
-                            item.Selected = false;
-                        else
-                            item.Selected = true;
-                    }
-                    break;
-                case 1: //未完成
-                    foreach (ListItem item in chkList_StatusList.Items)
-                    {
-                        if (item.Text.IndexOf("作廢") >= 0)
-                            item.Selected = false;
-                        else if (item.Text.IndexOf("完成") >= 0)
-                            item.Selected = false;
-                        else
-                            item.Selected = true;
-                    }
-                    break;
-                case 2: //完成
-                    foreach (ListItem item in chkList_StatusList.Items)
-                    {
-                        if (item.Text.IndexOf("完成") >= 0)
-                            item.Selected = true;
-                        else
-                            item.Selected = false;
-                    }
-                    break;
-                case 3: //作廢
-                    foreach (ListItem item in chkList_StatusList.Items)
-                    {
-                        if (item.Text.IndexOf("作廢") >= 0)
-                            item.Selected = true;
-                        else
-                            item.Selected = false;
-                    }
-                    break;
-            }
-
-            //塗顏色
             foreach (ListItem item in chkList_StatusList.Items)
             {
                 if (item.Selected)
-                    item.Attributes["style"] = "color:blue";
+                    item.Attributes["class"] = "btn btn-primary";
                 else
-                    item.Attributes["style"] = "";
+                    item.Attributes["class"] = "btn btn-default";
             }
-        }
-
-        /// <summary>
-        /// 顯示/摺疊 詳細狀態
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btn_chkList_ShowHide_Click(object sender, EventArgs e)
-        {
-            //先打開
-            div_chkList_ShowHide.Visible = !div_chkList_ShowHide.Visible;
-
-            //再改按鈕文字
-            if (div_chkList_ShowHide.Visible)
-                ((Button)sender).Text = "↑摺疊詳細狀態";
-            else
-                ((Button)sender).Text = "↓顯示詳細狀態";
-
         }
 
         /// <summary>
@@ -190,7 +131,8 @@ namespace _3PL_System
                     returnStr += item.Text.Split(',')[0];
                 }
             }
-
+            if (returnStr.Length == 0)
+                returnStr = "''";
             return returnStr;
         }
         #endregion

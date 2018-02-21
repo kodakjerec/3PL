@@ -2,10 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>逆物流費用設定_設定濾除</title>
-        <style>
+    <style>
         .myMessage {
-            color:red;
-            font-size:xx-large;
+            color: red;
+            font-size: xx-large;
         }
     </style>
 </asp:Content>
@@ -14,6 +14,8 @@
         <ContentTemplate>
             <asp:Button ID="btn_Supno" runat="server" Text="廠商" CssClass="btn-primary" OnClick="btn_Supno_Click" />
             <asp:Button ID="btn_itemno" runat="server" Text="貨號" CssClass="btn-default" OnClick="btn_Itemno_Click" />
+            <br />
+            <asp:CheckBox ID="chk_IsShowDeleted" runat="server" CssClass="btn-default" Checked="false" Text="顯示已刪除資料" OnCheckedChanged="chk_IsShowDeleted_CheckedChanged" AutoPostBack="true" />
             <br />
             <asp:Label ID="lbl_Message" CssClass="myMessage" runat="server" Text="."></asp:Label>
 
@@ -36,6 +38,7 @@
                     <tr>
                         <td>
                             <asp:GridView ID="GV_ClassList" runat="server" CssClass="GVStyle" AutoGenerateColumns="False"
+                                PageSize="10" AllowPaging="True" OnPageIndexChanging="GV_ClassList_PageIndexChanging"
                                 OnRowCommand="GV_ClassList_RowCommand">
                                 <HeaderStyle CssClass="GVHead" />
                                 <RowStyle CssClass="one" />
@@ -52,7 +55,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="del_user" HeaderText="刪除使用者" />
-                                    <asp:BoundField DataField="del_date" HeaderText="刪除時間" />
+                                    <asp:TemplateField HeaderText="刪除時間">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbl_del_date" Text='<%# Bind("del_date") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="建立時間">
                                         <ItemTemplate>
                                             <asp:Label ID="lbl_create_date" Text='<%# Bind("create_date", "{0:yyyy/MM/dd HH:mm:ss}") %>' runat="server" />
@@ -85,6 +92,7 @@
                     <tr>
                         <td>
                             <asp:GridView ID="GV_ItemNoList" runat="server" CssClass="GVStyle" AutoGenerateColumns="False"
+                                PageSize="10" AllowPaging="True" OnPageIndexChanging="GV_ItemNoList_PageIndexChanging"
                                 OnRowCommand="GV_ItemNoList_RowCommand">
                                 <HeaderStyle CssClass="GVHead" />
                                 <RowStyle CssClass="one" />
@@ -101,7 +109,11 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="del_user" HeaderText="刪除使用者" />
-                                    <asp:BoundField DataField="del_date" HeaderText="刪除時間" />
+                                    <asp:TemplateField HeaderText="刪除時間">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbl_del_date" Text='<%# Bind("del_date") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="建立時間">
                                         <ItemTemplate>
                                             <asp:Label ID="lbl_create_date" Text='<%# Bind("create_date", "{0:yyyy/MM/dd HH:mm:ss}") %>' runat="server" />

@@ -219,7 +219,7 @@
                     <tr>
                         <td>
                             <asp:GridView ID="GV_Quotation_Detail_New" runat="server" Width="100%" AutoGenerateColumns="False"
-                                CssClass="GVStyle" AllowPaging="True" PageSize="5" OnPageIndexChanging="GV_Quotation_Detail_New_PageIndexChanging">
+                                CssClass="GVStyle" AllowPaging="True" PageSize="10" OnPageIndexChanging="GV_Quotation_Detail_New_PageIndexChanging">
                                 <HeaderStyle CssClass="GVHead" />
                                 <RowStyle CssClass="one" />
                                 <AlternatingRowStyle CssClass="two" />

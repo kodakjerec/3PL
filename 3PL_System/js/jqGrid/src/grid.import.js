@@ -1,5 +1,5 @@
 /*jshint eqeqeq:false, eqnull:true, devel:true */
-/*global jQuery, jqGridUtils, define, URL */
+/*global jQuery, define, URL */
 (function( factory ) {
 	"use strict";
 	if ( typeof define === "function" && define.amd ) {
@@ -26,7 +26,8 @@ $.extend($.jgrid,{
 			compression: false,
 			compressionModule :  'LZString', // object by example gzip, LZString
 			compressionMethod : 'compressToUTF16', // string by example zip, compressToUTF16
-			debug : false
+			debug : false,
+			saveData : true
 		}, o || {});
 		if(!jqGridId) { return; }
 		var gridstate = "", data = "", ret, $t = $("#"+jqGridId)[0], tmp;
@@ -40,10 +41,13 @@ $.extend($.jgrid,{
 		if(tmp && $t.p.filterToolbar) {
 			$($t).jqGrid('setGridParam',{_fT: tmp});
 		}
-		gridstate  =  $($t).jqGrid('jqGridExport', { exptype : "jsonstring", ident:"", root:"" });
-		data = $($t.grid.bDiv).find(".ui-jqgrid-btable tbody:first").html();
-		var firstrow  = data.indexOf("</tr>");
-		data = data.slice(firstrow + 5);
+		gridstate  =  $($t).jqGrid('jqGridExport', { exptype : "jsonstring", ident:"", root:"", data : o.saveData });
+		data = '';
+		if( o.saveData ) {
+			data = $($t.grid.bDiv).find(".ui-jqgrid-btable tbody:first").html();
+			var firstrow  = data.indexOf("</tr>");
+			data = data.slice(firstrow + 5);
+		}
 		if($.isFunction(o.beforeSetItem)) {
 			ret = o.beforeSetItem.call($t, gridstate);
 			if(ret != null) {
@@ -68,10 +72,10 @@ $.extend($.jgrid,{
 			$("#link_save").attr("href",url).on('click',function(){
 				$(this).remove();
 			});
-		}		
+		}
 		if(o.compression) {
 			if(o.compressionModule) {
-				try { 
+				try {
 					ret = window[o.compressionModule][o.compressionMethod](gridstate);
 					if(ret != null) {
 						gridstate = ret;
@@ -104,7 +108,8 @@ $.extend($.jgrid,{
 			afterSetGrid : null,
 			decompression: false,
 			decompressionModule :  'LZString', // object by example gzip, LZString
-			decompressionMethod : 'decompressFromUTF16' // string by example unzip, decompressFromUTF16
+			decompressionMethod : 'decompressFromUTF16', // string by example unzip, decompressFromUTF16
+			restoreData : true
 		}, o || {});
 		if(!jqGridId) { return; }
 		var ret, tmp, $t = $("#"+jqGridId)[0], data, iN, fT;
@@ -130,10 +135,10 @@ $.extend($.jgrid,{
 				}
 			}
 		}
-		ret = jqGridUtils.parse( gridstring );
+		ret = $.jgrid.parseFunc( gridstring );
 		if( ret && $.type(ret) === 'object') {
-			if($t.grid) { 
-				$.jgrid.gridUnload( jqGridId ); 
+			if($t.grid) {
+				$.jgrid.gridUnload( jqGridId );
 			}
 			if($.isFunction(o.beforeSetGrid)) {
 				tmp = o.beforeSetGrid( ret );
@@ -160,14 +165,16 @@ $.extend($.jgrid,{
 
 			if(ret.inlineNav) {
 				iN = retfunc( ret._iN );
-				ret._iN = null; delete ret._iN; 
+				ret._iN = null; delete ret._iN;
 			}
 			if(ret.filterToolbar) {
 				fT = retfunc( ret._fT );
-				ret._fT = null; delete ret._fT; 
+				ret._fT = null; delete ret._fT;
 			}
 			var grid = $("#"+jqGridId).jqGrid( ret );
-			grid.append( data );
+			if( o.restoreData && $.trim( data ) !== '') {
+				grid.append( data );
+			}
 			grid.jqGrid( 'setGridParam', prm);
 			if(ret.storeNavOptions && ret.navGrid) {
 				// set to false so that nav grid can be run
@@ -183,7 +190,7 @@ $.extend($.jgrid,{
 					}
 				}
 			}
-			// refresh index 
+			// refresh index
 			grid[0].refreshIndex();
 			// subgrid
 			if(ret.subGrid) {
@@ -262,7 +269,7 @@ $.extend($.jgrid,{
 				grid.jqGrid('setFrozenColumns');
 			}
 			grid[0].updatepager(true, true);
-			
+
 			if($.isFunction(o.afterSetGrid)) {
 				o.afterSetGrid( grid );
 			}
@@ -294,19 +301,19 @@ $.extend($.jgrid,{
 			storageType: "sessionStorage"
 		};
 		o =  $.extend(o , options || {});
-		
+
 		if( !o.regional ) {
 			return;
 		}
-		
+
 		$.jgrid.saveState( jqGridId, o );
-		
+
 		o.beforeSetGrid = function(params) {
 			params.regional = o.regional;
 			params.force_regional = true;
 			return params;
 		};
-		
+
 		$.jgrid.loadState( jqGridId, null, o);
 		// check for formatter actions
 		var grid = $("#"+jqGridId)[0],
@@ -352,8 +359,8 @@ $.extend($.jgrid,{
 		var xmlConvert = function (xml,o) {
 			var cnfg = $(o.xmlGrid.config,xml)[0];
 			var xmldata = $(o.xmlGrid.data,xml)[0], jstr, jstr1, key;
-			if(jqGridUtils.xmlToJSON ) {
-				jstr = jqGridUtils.xmlToJSON( cnfg );
+			if($.grid.xmlToJSON ) {
+				jstr = $.jgrid.xmlToJSON( cnfg );
 				//jstr = $.jgrid.parse(jstr);
 				for(key in jstr) {
 					if(jstr.hasOwnProperty(key)) {
@@ -375,7 +382,7 @@ $.extend($.jgrid,{
 		};
 		var jsonConvert = function (jsonstr,o){
 			if (jsonstr && typeof jsonstr === 'string') {
-				var json = jqGridUtils.parse(jsonstr);
+				var json = $.jgrid.parseFunc(jsonstr);
 				var gprm = json[o.jsonGrid.config];
 				var jdata = json[o.jsonGrid.data];
 				if(jdata) {
@@ -456,12 +463,13 @@ $.extend($.jgrid,{
 				exptype : "xmlstring",
 				root: "grid",
 				ident: "\t",
-				addOptions : {}
+				addOptions : {},
+				data : true
 			}, o || {});
 			var ret = null;
 			this.each(function () {
 				if(!this.grid) { return;}
-				var key, gprm = $.extend(true, {}, $(this).jqGrid("getGridParam"), o.addOptions);
+				var gprm = $.extend(true, {}, $(this).jqGrid("getGridParam"), o.addOptions);
 				// we need to check for:
 				// 1.multiselect, 2.subgrid  3. treegrid and remove the unneded columns from colNames
 				if(gprm.rownumbers) {
@@ -477,12 +485,16 @@ $.extend($.jgrid,{
 					gprm.colModel.splice(0,1);
 				}
 				gprm.knv = null;
+				if(!o.data) {
+					gprm.data = [];
+					gprm._index = {};
+				}
 				switch (o.exptype) {
 					case 'xmlstring' :
-						ret = "<"+o.root+">"+ jqGridUtils.jsonToXML( gprm, {xmlDecl:""} )+"</"+o.root+">";
+						ret = "<"+o.root+">"+ $.jgrid.jsonToXML( gprm, {xmlDecl:""} )+"</"+o.root+">";
 						break;
 					case 'jsonstring' :
-						ret =  jqGridUtils.stringify( gprm );
+						ret =  $.jgrid.stringify( gprm );
 						if(o.root) { ret = "{"+ o.root +":"+ret+"}"; }
 						break;
 				}
@@ -520,13 +532,13 @@ $.extend($.jgrid,{
 						}
 						var newm1 = JSON.stringify( newm );
 						if(typeof newm1 === 'string' ) {
-							pdata['colModel'] = newm1;
+							pdata.colModel = newm1;
 						}
 					}
 					if(o.exportgrouping) {
 						expg = JSON.stringify( this.p.groupingView );
 						if(typeof expg === 'string' ) {
-							pdata['groupingView'] = expg;
+							pdata.groupingView = expg;
 						}
 					}
 					var params = jQuery.param(pdata);

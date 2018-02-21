@@ -3,6 +3,7 @@
 
 <head>
     <script type="text/javascript" src="/3PL/js/CommonLoader.js"></script>
+    <script type="text/javascript" src="../_3PL_QuotationHead_Addon.js"></script>
     <script type="text/javascript" src="./_3PL_QuotationHead_Addon_01.js"></script>
     <title>短期寄倉收費</title>
 </head>

@@ -441,9 +441,9 @@ namespace _3PL_System
             dr["I_qtde_Price"] = intTxb_Price_Check;
             #endregion
 
+            dr["I_qtde_HaveMinimum"] = ddl_HaveMinimum.SelectedItem.Value;   //最低收費
+            dr["I_qtde_HaveMinimum_Name"] = ddl_HaveMinimum.SelectedItem.Text;   //最低收費
             dr["S_qtde_Memo"] = Txb_Memo.Text;
-            //dr["I_qtde_IsBaseCost"] = Chk_IsBaseCost.Checked == true ? 1 : 0;
-            //dr["S_qtde_PriceMemo"] = Txb_PriceMemo.Text;
             dr["I_qtde_DelFlag"] = 0;
             dr["S_qtde_CreateId"] = UI.UserID;
             dr["S_qtde_UpdId"] = UI.UserID;
@@ -473,10 +473,8 @@ namespace _3PL_System
             dr["S_qtde_Memo"] = Txb_Memo.Text;                  //備註
             dr["S_qtde_UpdId"] = UI.UserID;
 
-            dr["I_qtde_HaveMinimum"] = ddl_HaveMinimum.SelectedValue;   //最低收費
-
-            //dr["I_qtde_IsBaseCost"] = Chk_IsBaseCost.Checked == true ? 1 : 0;
-            //dr["S_qtde_PriceMemo"] = Txb_PriceMemo.Text;
+            dr["I_qtde_HaveMinimum"] = ddl_HaveMinimum.SelectedItem.Value;   //最低收費
+            dr["I_qtde_HaveMinimum_Name"] = ddl_HaveMinimum.SelectedItem.Text;   //最低收費
 
             #region Save 明細倉別
             string SiteNo = "";
@@ -490,8 +488,6 @@ namespace _3PL_System
 
             if (dr["UIStatus"].ToString() != "Added")
                 dr["UIStatus"] = "Modified";
-
-            ((_3PLMasterPage)Master).ShowMessage("明細修改完成，最後記得提交更新");
 
             change_div_Detail_Upd(0);
 

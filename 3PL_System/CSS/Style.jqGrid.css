@@ -1,6 +1,6 @@
 ﻿/* GridView Style */
 /*標題列*/
-.ui-jqgrid-htable thead tr th.ui-th-column {
+.ui-jqgrid-htable thead tr th[class*="ui-th-column"] {
     font-size: medium;
     border: 1px solid #BA9;
     font-weight: bold;

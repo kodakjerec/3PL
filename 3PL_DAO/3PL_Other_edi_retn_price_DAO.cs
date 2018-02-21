@@ -139,15 +139,15 @@ namespace _3PL_DAO
         /// 取得 廠商清單編號
         /// </summary>
         /// <returns></returns>
-        public DataTable Get_DeleteList_Supno()
+        public DataTable Get_DeleteList_Supno(bool chk_IsShowDeleted)
         {
             DataTable dt = new DataTable();
 
             string Sql_cmd =
-            @"select * 
-            from edi_retn_price_disable_supno with(nolock)
-            where del_date is null
-            order by  sup_no";
+            @"select * from edi_retn_price_disable_supno with(nolock) ";
+            if (!chk_IsShowDeleted)
+                Sql_cmd += " where del_date is null ";
+            Sql_cmd += " order by sup_no, create_date DESC";
             Hashtable ht1 = new Hashtable();
             DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
             dt = ds.Tables[0];
@@ -158,15 +158,15 @@ namespace _3PL_DAO
         /// 取得 貨號清單
         /// </summary>
         /// <returns></returns>
-        public DataTable Get_DeleteList_ItemNo()
+        public DataTable Get_DeleteList_ItemNo(bool chk_IsShowDeleted)
         {
             DataTable dt = new DataTable();
 
             string Sql_cmd =
-            @"select * 
-            from edi_retn_price_disable_item with(nolock)
-            where del_date is null
-            order by  item_id";
+            @"select * from edi_retn_price_disable_item with(nolock) ";
+            if (!chk_IsShowDeleted)
+                Sql_cmd += " where del_date is null ";
+            Sql_cmd += " order by  item_id, create_date DESC";
             Hashtable ht1 = new Hashtable();
             DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
             dt = ds.Tables[0];
@@ -208,19 +208,27 @@ namespace _3PL_DAO
         /// <param name="sup_no"></param>
         /// <param name="UserID"></param>
         /// <returns></returns>
-        public bool del_Supno(string sup_no, string UserID)
+        public bool del_Supno(string sup_no, string UserID, int Mode)
         {
             bool IsOK = false;
 
-            string Sql_cmd =
-            @"Update edi_retn_price_disable_supno 
-            set del_user=@UserID, del_date=GETDATE()
-            WHERE sup_no=@sup_no;select @@ROWCOUNT";
+            string Sql_cmd = "";
+            if (Mode == 0)
+            {
+                Sql_cmd = @"Update edi_retn_price_disable_supno 
+                set del_user=@UserID, del_date=GETDATE()
+                WHERE sup_no=@sup_no and del_date is null;select @@ROWCOUNT";
+            }
+            else
+            {
+                Sql_cmd = @"Delete from edi_retn_price_disable_supno 
+                WHERE sup_no=@sup_no and del_date is not null;select @@ROWCOUNT";
+            }
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserID", UserID);
             ht1.Add("@sup_no", sup_no);
             DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
-            if (ds.Tables[0].Rows.Count > 0)
+            if (Convert.ToInt32(ds.Tables[0].Rows[0][0]) > 0)
                 IsOK = true;
 
             return IsOK;
@@ -232,19 +240,27 @@ namespace _3PL_DAO
         /// <param name="item_no"></param>
         /// <param name="UserID"></param>
         /// <returns></returns>
-        public bool del_ItemNo(string item_no, string UserID)
+        public bool del_ItemNo(string item_no, string UserID, int Mode)
         {
             bool IsOK = false;
 
-            string Sql_cmd =
-            @"Update edi_retn_price_disable_item 
-            set del_user=@UserID, del_date=GETDATE()
-            WHERE item_id=@item_no;select @@ROWCOUNT";
+            string Sql_cmd = "";
+            if (Mode == 0)
+            {
+                Sql_cmd = @"Update edi_retn_price_disable_item 
+                set del_user=@UserID, del_date=GETDATE()
+                WHERE item_id=@item_no and del_date is null;select @@ROWCOUNT";
+            }
+            else
+            {
+                Sql_cmd = @"Delete from edi_retn_price_disable_item 
+                    WHERE item_id = @item_no and del_date is not null; select @@ROWCOUNT";
+            }
             Hashtable ht1 = new Hashtable();
             ht1.Add("@UserID", UserID);
             ht1.Add("@item_no", item_no);
             DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
-            if (ds.Tables[0].Rows.Count > 0)
+            if (Convert.ToInt32(ds.Tables[0].Rows[0][0]) > 0)
                 IsOK = true;
 
             return IsOK;
@@ -258,11 +274,11 @@ namespace _3PL_DAO
 
             string Sql_cmd =
             @"Insert Into edi_retn_price_disable_supno (sup_no)
-            values(@sup_no);select @@ROWCOUNT";
+            Select ID from drp.dbo.DRP_SUPPLIER with(nolock) where ID=@sup_no;select @@ROWCOUNT";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@sup_no", sup_no);
             DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
-            if (ds.Tables[0].Rows.Count > 0)
+            if (Convert.ToInt32(ds.Tables[0].Rows[0][0]) > 0)
                 IsOK = true;
 
             return IsOK;
@@ -274,11 +290,11 @@ namespace _3PL_DAO
 
             string Sql_cmd =
             @"Insert Into edi_retn_price_disable_item (item_id)
-            values(@item_no);select @@ROWCOUNT";
+           Select ITEM_ID from drp.dbo.DRP_ITEM with(nolock) where ITEM_ID=@item_no;select @@ROWCOUNT";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@item_no", item_no);
             DataSet ds = IO.SqlQuery("EDI", Sql_cmd, ht1);
-            if (ds.Tables[0].Rows.Count > 0)
+            if (Convert.ToInt32(ds.Tables[0].Rows[0][0]) > 0)
                 IsOK = true;
 
             return IsOK;

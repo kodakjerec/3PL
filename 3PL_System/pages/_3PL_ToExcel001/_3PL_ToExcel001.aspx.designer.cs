@@ -10,7 +10,6 @@
 namespace _3PL_System {
     
     
-    public partial class _3PL_ToExcel001
-    {
+    public partial class _3PL_ToExcel001_v2 {
     }
 }

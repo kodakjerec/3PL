@@ -18,7 +18,7 @@ namespace _3PL_DAO
         {
             DataTable AccList = new DataTable();
 
-            string Sql_cmd = @"Select I_Acci_seq,S_Acci_Id,S_Acci_Name
+            string Sql_cmd = @"Select I_Acci_seq,S_Acci_Id,S_Acci_Name,S_Acci_ClassNo1,S_Acci_ClassNo2
                                     From [3PL_baseAccounting] with(nolock)
                                     where I_acci_DelFlag=0
                                     order by S_Acci_Id";
@@ -56,12 +56,16 @@ namespace _3PL_DAO
             int SuccessCount = 0;
             bool IsSuccess = false;
 
-            string Sql_cmd = @"Insert Into [3PL_BaseAccounting] (S_Acci_Id,S_Acci_Name,S_Acci_CreateId,S_Acci_UpdId)
-                                values(@S_Acci_Id,@S_Acci_Name,@S_Acci_CreateId,'')";
+            string Sql_cmd = @"Insert Into [3PL_BaseAccounting] (S_Acci_Id,S_Acci_Name,S_Acci_CreateId,S_Acci_UpdId,S_Acci_ClassNo1,S_Acci_ClassName1,S_Acci_ClassNo2,S_Acci_ClassName2)
+                                values(@S_Acci_Id,@S_Acci_Name,@S_Acci_CreateId,'',@S_Acci_ClassNo1,@S_Acci_ClassName1,@S_Acci_ClassNo2,@S_Acci_ClassName2)";
             Hashtable ht1 = new Hashtable();
             ht1.Add("@S_Acci_Id", dr["S_Acci_Id"]);
             ht1.Add("@S_Acci_Name", dr["S_Acci_Name"]);
             ht1.Add("@S_Acci_CreateId", UserId);
+            ht1.Add("@S_Acci_ClassNo1", dr["S_Acci_ClassNo1"]);
+            ht1.Add("@S_Acci_ClassName1", dr["S_Acci_ClassName1"]);
+            ht1.Add("@S_Acci_ClassNo2", dr["S_Acci_ClassNo2"]);
+            ht1.Add("@S_Acci_ClassName2", dr["S_Acci_ClassName2"]);
             IsSuccess = IO.SqlUpdate(Login_Server, Sql_cmd, ht1, ref SuccessCount);
             if (!IsSuccess)
                 SuccessCount = 0;

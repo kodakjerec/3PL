@@ -57,20 +57,17 @@ namespace _3PL_DAO
                 Sql_cmd += " and Wk_ID like @Wk_ID+'%'";
                 ht1.Add("@Wk_ID", Wk_ID);
             }
-            if(BDate.Length>0)
+            if (BDate.Length > 0)
             {
-                Sql_cmd+=" and EtaDate>=@BDate ";
+                Sql_cmd += " and EtaDate>=@BDate ";
                 ht1.Add("@BDate", BDate);
             }
-            if(EDate.Length>0)
+            if (EDate.Length > 0)
             {
-                Sql_cmd+=" and EtaDate<=@EDate ";
+                Sql_cmd += " and EtaDate<=@EDate ";
                 ht1.Add("@EDate", EDate);
             }
-            if (AssignStatusList.Length > 0)
-            {
-                Sql_cmd += " and a.[Status] in ("+AssignStatusList+")";
-            }
+            Sql_cmd += " and a.[Status] in (" + AssignStatusList + ")";
 
             Sql_cmd += " order by FreeId DESC, Wk_Date DESC, Wk_Id";
             DataSet ds = IO.SqlQuery(Login_Server, Sql_cmd, ht1);
@@ -146,7 +143,8 @@ namespace _3PL_DAO
         /// <param name="Po_No"></param>
         /// <param name="Item_No"></param>
         /// <returns></returns>
-        public string AssignDetail_TakingRealQty(string site_no, string Po_No, string Item_No, string Unit) {
+        public string AssignDetail_TakingRealQty(string site_no, string Po_No, string Item_No, string Unit)
+        {
             string ReturnQty = "";
             DataTable dt = new DataTable();
 
@@ -338,7 +336,7 @@ namespace _3PL_DAO
         /// <param name="dr">資料列</param>
         /// <param name="Unit">計價單位</param>
         /// <returns>派工數量</returns>
-        public int GetDetailNeedQty(DataRow dr ,string Unit)
+        public int GetDetailNeedQty(DataRow dr, string Unit)
         {
             int strTotqty = 0;
             int TQty = Convert.ToInt32(dr[0]),
@@ -352,7 +350,7 @@ namespace _3PL_DAO
                 case "板":
                     strTotqty = TPallet; break;
                 case "張":
-                    strTotqty = TBox * 2;break;
+                    strTotqty = TBox * 2; break;
                 default:
                     strTotqty = TQty; break;
             }

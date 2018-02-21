@@ -2,6 +2,9 @@
 
 //關閉所有視窗
 function CloseAllMessageBox() {
+    if ($('#divToast').length > 0) {
+        $('#divToast').dialog('close');
+    }
     if ($('#divMessageBox').length > 0) {
         $('#divMessageBox').dialog('close');
     }
@@ -14,7 +17,7 @@ function CloseAllMessageBox() {
 }
 
 //Toast視窗
-function ToastShow(message) {
+function ToastShow(message, AfterCloseFunction) {
     CloseAllMessageBox();
     //小視窗如果不存在, 就新增
     if ($('#divToast').length <= 0) {
@@ -34,6 +37,8 @@ function ToastShow(message) {
 
     setTimeout(function () {
         $('#divToast').dialog('close');
+        if (AfterCloseFunction != undefined)
+            AfterCloseFunction();
     }, 1000);
 }
 //訊息視窗
@@ -186,7 +191,7 @@ $.fn.runAjax = function (server, mode, sqlcmd, params, success, fail) { //與後
                 MessageBoxShow(errMessage, '錯誤');
             }
             if (fail != undefined)
-            fail(errMessage);
+                fail(errMessage);
         },
         success: function (response, status, xhr) {
             switch (mode) {
@@ -202,14 +207,13 @@ $.fn.runAjax = function (server, mode, sqlcmd, params, success, fail) { //與後
 
                     //window.location = serverURL + '?' + obj;
                     if (success != undefined)
-                    success('[{}]');
+                        success('[{}]');
                     break;
                 default:
-                    if(success!=undefined)
-                    success(response);
+                    if (success != undefined)
+                        success(response);
                     break;
             }
-
         }
     });
 };

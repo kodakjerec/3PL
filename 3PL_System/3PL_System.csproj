@@ -78,6 +78,7 @@
     <Content Include="3PL_Quotation_Modify.aspx" />
     <Content Include="3PL_Other_edi_retn_price.aspx" />
     <Content Include="3PL_SupdSelect.aspx" />
+    <Content Include="3PL_ToExcel001.aspx" />
     <Content Include="AlartRp.aspx" />
     <Content Include="ChangePass.aspx" />
     <Content Include="ClassItem.aspx" />
@@ -257,6 +258,9 @@
     <Content Include="Other\EDI_Retn_Price\EDI_Retn_Price.aspx" />
     <Content Include="Other\EDI_Retn_Price\EDI_Retn_Price.css" />
     <Content Include="Other\EDI_Retn_Price\EDI_Retn_Price.js" />
+    <Content Include="pages\_3PL_BaseAccounting\_3PL_BaseAccounting.aspx" />
+    <Content Include="pages\_3PL_BaseAccounting\_3PL_BaseAccounting.js" />
+    <Content Include="pages\_3PL_QuotationHead_Addon.js" />
     <Content Include="pages\_3PL_BaseCost_Formula\_3PL_BaseCost_Formula.aspx" />
     <Content Include="pages\_3PL_BaseCost_Formula\_3PL_BaseCost_Formula.js" />
     <Content Include="pages\_3PL_QuotationHead_Addon_00\_3PL_QuotationHead_Addon_00.aspx" />
@@ -275,6 +279,10 @@
     <Content Include="3PL_BaseCostSet_Modify.aspx" />
     <Content Include="ScOffer\pages\Report001\Report001.aspx" />
     <Content Include="ScOffer\pages\Report001\Report001.js" />
+    <Content Include="ScOffer\pages\ScOffer_AvailableList\ScOffer_AvailableList.aspx" />
+    <Content Include="ScOffer\pages\ScOffer_AvailableList\ScOffer_AvailableList.js" />
+    <Content Include="ScOffer\pages\ScOfferPage\ScOfferPage.aspx" />
+    <Content Include="ScOffer\pages\ScOfferPage\ScOfferPage.js" />
     <Content Include="ScOffer\pages\SupMonthPriceMax\SupMonthPriceMax.aspx" />
     <Content Include="ScOffer\pages\SupMonthPriceMax\SupMonthPriceMax.js" />
     <Content Include="Web.config">
@@ -412,6 +420,13 @@
     </Compile>
     <Compile Include="3PL_SupdSelect.aspx.designer.cs">
       <DependentUpon>3PL_SupdSelect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="3PL_ToExcel001.aspx.cs">
+      <DependentUpon>3PL_ToExcel001.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="3PL_ToExcel001.aspx.designer.cs">
+      <DependentUpon>3PL_ToExcel001.aspx</DependentUpon>
     </Compile>
     <Compile Include="AlartRp.aspx.cs">
       <DependentUpon>AlartRp.aspx</DependentUpon>
@@ -575,6 +590,13 @@
     <Compile Include="Other\EDI_Retn_Price\EDI_Retn_Price.aspx.designer.cs">
       <DependentUpon>EDI_Retn_Price.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\_3PL_BaseAccounting\_3PL_BaseAccounting.aspx.cs">
+      <DependentUpon>_3PL_BaseAccounting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\_3PL_BaseAccounting\_3PL_BaseAccounting.aspx.designer.cs">
+      <DependentUpon>_3PL_BaseAccounting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\_3PL_BaseCost_Formula\_3PL_BaseCost_Formula.aspx.cs">
       <DependentUpon>_3PL_BaseCost_Formula.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -701,6 +723,17 @@
     </Compile>
     <Compile Include="ScOffer\pages\Report001\Report001.aspx.designer.cs">
       <DependentUpon>Report001.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ScOffer\pages\ScOffer_AvailableList\ScOffer_AvailableList.aspx.cs">
+      <DependentUpon>ScOffer_AvailableList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ScOffer\pages\ScOfferPage\ScOfferPage.aspx.cs">
+      <DependentUpon>ScOfferPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ScOffer\pages\ScOfferPage\ScOfferPage.aspx.designer.cs">
+      <DependentUpon>ScOfferPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ScOffer\pages\SupMonthPriceMax\SupMonthPriceMax.aspx.cs">
       <DependentUpon>SupMonthPriceMax.aspx</DependentUpon>

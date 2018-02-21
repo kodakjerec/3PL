@@ -85,33 +85,6 @@ namespace _3PL_System {
         protected global::System.Web.UI.WebControls.TextBox txb_D_qthe_ContractE_Qry;
         
         /// <summary>
-        /// DDL_AssignStatusList 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDL_AssignStatusList;
-        
-        /// <summary>
-        /// btn_chkList_ShowHide 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_chkList_ShowHide;
-        
-        /// <summary>
-        /// div_chkList_ShowHide 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_chkList_ShowHide;
-        
-        /// <summary>
         /// chkList_StatusList 控制項。
         /// </summary>
         /// <remarks>

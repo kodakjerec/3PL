@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="_3PL_ToExcel001.aspx.cs"
-    Inherits="_3PL_System._3PL_ToExcel001" %>
+    Inherits="_3PL_System._3PL_ToExcel001_v2" %>
 
 <head>
     <script type="text/javascript" src="/3PL/js/CommonLoader.js"></script>

@@ -31,20 +31,17 @@ function getPriceTypeList() {
          if (response != '')
              response.unshift({ I_acci_seq: 0, S_Acci_Id: "0", S_Acci_Name: "全部", _name: "" });
 
-         for (i = 0; i < response.length; i++) {
-             var _value = response[i].I_acci_seq;
-             var _name = response[i].S_Acci_Id + ',' + response[i].S_Acci_Name;
-             response[i]._name = _name;
-             ////jqGrid
-             //if (i > 0)
-             //    PriceTypeList += ';';
-             //PriceTypeList += _value + ":" + _name;
+         var list = [];
+         $.each(response, function (key, value) {
+             var _value = value.I_acci_seq;
+             var _name = value.S_Acci_Id + ',' + value.S_Acci_Name;
+             list.push({ Name: _name, Value: _value });
+         })
 
-             //DOM
-             $('#div_EditDialog_input_I_acci_seq').append($("<option></option>").attr('value', _value).text(_name));
-             $('#div_search_I_acci_seq').append($("<option></option>").attr('value', _value).text(_name));
-         }
-         PriceTypeList = response;
+         getlist(list, $('#div_EditDialog_input_I_acci_seq'));
+         getlist(list, $('#div_search_I_acci_seq'));
+
+         PriceTypeList = list;
 
          search(0);
      });
@@ -85,13 +82,14 @@ function search(Mode) {
             $('#jqGrid').trigger('reloadGrid');
 
             //帶入計價類別中文名稱
-            for (i = 0; i < response.length; i++) {
-                var _I_acci_seq = response[i].I_acci_seq;
+            $.each(response, function (key, value) {
+                var _I_acci_seq = value.I_acci_seq;
                 var _acci_Name = $.map(PriceTypeList, function (val) {
-                    return val.I_acci_seq == _I_acci_seq ? val._name : null;
+                    return val.Value == _I_acci_seq ? val.Name : null;
                 });
-                response[i].acci_Name = _acci_Name[0];
-            }
+                value.acci_Name = _acci_Name[0];
+            });
+
             GridData = response;
 
             if (Mode == 0) {

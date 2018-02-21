@@ -18,7 +18,8 @@ namespace _3PL_System
         {
             ((_3PLMasterPage)Master).SessionCheck(ref UI);
 
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
                 btn_Supno_Click(sender, e);
             }
         }
@@ -45,8 +46,10 @@ namespace _3PL_System
         /// <summary>
         /// 讀取 廠商編號清單
         /// </summary>
-        private void ListFor_Supno() {
-            GV_ClassList.DataSource=_edi_retn.Get_DeleteList_Supno();
+        private void ListFor_Supno()
+        {
+            Session["GV_ClassList_DataSource"] = _edi_retn.Get_DeleteList_Supno(chk_IsShowDeleted.Checked);
+            GV_ClassList.DataSource = Session["GV_ClassList_DataSource"];
             GV_ClassList.DataBind();
         }
 
@@ -56,28 +59,44 @@ namespace _3PL_System
             {
                 GridViewRow row = ((GridViewRow)((WebControl)(e.CommandSource)).NamingContainer);
                 string lbl_SupNo = ((Label)row.Cells[1].FindControl("lbl_sup_no")).Text;
+                string lbl_del_date = ((Label)row.Cells[3].FindControl("lbl_del_date")).Text;
                 //if (e.CommandName == "Select_I_qthe_PLNO")
                 //    I_qthe_PLNO_Select_Action(I_qthe_PLNO);
                 if (e.CommandName == "DeleteButton")
                 {
-                    Sup_No_Delete(lbl_SupNo);
+                    Sup_No_Delete(lbl_SupNo, lbl_del_date);
                 }
             }
+        }
+        protected void GV_ClassList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GV_ClassList.PageIndex = e.NewPageIndex;
+            GV_ClassList.DataSource = Session["GV_ClassList_DataSource"];
+            GV_ClassList.DataBind();
         }
 
         /// <summary>
         /// 刪除廠商邊號
         /// </summary>
         /// <param name="lbl_SupNo"></param>
-        private void Sup_No_Delete(string lbl_SupNo)
+        private void Sup_No_Delete(string lbl_SupNo, string del_date)
         {
-            bool IsOK=_edi_retn.del_Supno(lbl_SupNo, UI.UserID);
+            bool IsOK = false;
+
+            if (del_date.Length == 0)
+                IsOK = _edi_retn.del_Supno(lbl_SupNo, UI.UserID, 0);
+            else
+                IsOK = _edi_retn.del_Supno(lbl_SupNo, UI.UserID, 1);
             if (IsOK)
             {
-                lbl_Message.Text = "刪除廠商編號 " + lbl_SupNo + " 成功。";
+                if (del_date.Length == 0)
+                    lbl_Message.Text = "刪除廠商編號 " + lbl_SupNo + " 成功。";
+                else
+                    lbl_Message.Text = "永久刪除廠商編號 " + lbl_SupNo + " 成功。";
                 ListFor_Supno();
             }
-            else {
+            else
+            {
                 lbl_Message.Text = "刪除廠商編號 " + lbl_SupNo + " 失敗。";
             }
             return;
@@ -110,7 +129,8 @@ namespace _3PL_System
         /// </summary>
         private void ListFor_ItemNo()
         {
-            GV_ItemNoList.DataSource = _edi_retn.Get_DeleteList_ItemNo();
+            Session["GV_ItemNoList_DataSource"] = _edi_retn.Get_DeleteList_ItemNo(chk_IsShowDeleted.Checked);
+            GV_ItemNoList.DataSource = Session["GV_ItemNoList_DataSource"];
             GV_ItemNoList.DataBind();
         }
 
@@ -120,30 +140,40 @@ namespace _3PL_System
             {
                 GridViewRow row = ((GridViewRow)((WebControl)(e.CommandSource)).NamingContainer);
                 string lbl_ItemNo = ((Label)row.Cells[1].FindControl("lbl_Item_id")).Text;
+                string lbl_del_date = ((Label)row.Cells[3].FindControl("lbl_del_date")).Text;
                 //if (e.CommandName == "Select_I_qthe_PLNO")
                 //    I_qthe_PLNO_Select_Action(I_qthe_PLNO);
                 if (e.CommandName == "DeleteButton")
                 {
-                    ItemNo_Delete(lbl_ItemNo);
+                    ItemNo_Delete(lbl_ItemNo, lbl_del_date);
                 }
             }
+        }
+        protected void GV_ItemNoList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GV_ItemNoList.PageIndex = e.NewPageIndex;
+            GV_ItemNoList.DataSource = Session["GV_ItemNoList_DataSource"];
+            GV_ItemNoList.DataBind();
         }
 
         /// <summary>
         /// 刪除貨號
         /// </summary>
         /// <param name="lbl_ItemNo"></param>
-        private void ItemNo_Delete(string lbl_ItemNo)
+        private void ItemNo_Delete(string lbl_ItemNo, string del_date)
         {
-            bool IsOK = _edi_retn.del_ItemNo(lbl_ItemNo, UI.UserID);
+            bool IsOK = false;
+            if (del_date.Length == 0)
+                IsOK = _edi_retn.del_ItemNo(lbl_ItemNo, UI.UserID, 0);
+            else
+                IsOK = _edi_retn.del_ItemNo(lbl_ItemNo, UI.UserID, 1);
             if (IsOK)
             {
-                lbl_Message.Text = "刪除廠商編號 " + lbl_ItemNo + " 成功。";
+                if (del_date.Length == 0)
+                    lbl_Message.Text = "刪除貨號 " + lbl_ItemNo + " 成功。";
+                else
+                    lbl_Message.Text = "永久刪除貨號 " + lbl_ItemNo + " 成功。";
                 ListFor_ItemNo();
-            }
-            else
-            {
-                lbl_Message.Text = "刪除廠商編號 " + lbl_ItemNo + " 失敗。";
             }
             return;
         }
@@ -168,5 +198,13 @@ namespace _3PL_System
             }
         }
         #endregion
+
+        protected void chk_IsShowDeleted_CheckedChanged(object sender, EventArgs e)
+        {
+            if (div_Supno.Visible)
+                ListFor_Supno();
+            else
+                ListFor_ItemNo();
+        }
     }
 }

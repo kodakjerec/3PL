@@ -1,5 +1,5 @@
 /*jshint eqeqeq:false, eqnull:true, devel:true */
-/*global jQuery, jqGridUtils, JSZip, pdfMake */
+/*global jQuery, JSZip, pdfMake, XMLSerializer, define */
 (function( factory ) {
 	"use strict";
 	if ( typeof define === "function" && define.amd ) {
@@ -22,10 +22,10 @@ $.jgrid = $.jgrid || {};
 
 
 $.extend($.jgrid,{
-	formatCell : function ( cellval , colpos, rwdat, cm, $t){
+	formatCell : function ( cellval , colpos, rwdat, cm, $t, etype){
 		var v;
 		if(cm.formatter !== undefined) {
-			var opts= {rowId: '', colModel:cm, gid: $t.p.id, pos:colpos, styleUI: '' };
+			var opts= {rowId: '', colModel:cm, gid: $t.p.id, pos:colpos, styleUI: '', isExported : true, exporttype : etype };
 			if($.isFunction( cm.formatter ) ) {
 				v = cm.formatter.call($t,cellval,opts,rwdat);
 			} else if($.fmatter){
@@ -51,7 +51,7 @@ $.extend($.jgrid,{
 		if( v.indexOf(p.separator) === -1 || v.indexOf(p.qoute) === -1) {
 			v = p.quote + v + p.quote;
 		}
-		return v;		
+		return v;
 	},
 
 	excelCellPos : function ( n ){
@@ -90,7 +90,7 @@ $.extend($.jgrid,{
 		var $t = this,
 		xmlserialiser = new XMLSerializer(),
 		// IE >= 9
-		ieExcel = xmlserialiser.serializeToString(	
+		ieExcel = xmlserialiser.serializeToString(
 			$.parseXML( $.jgrid.excelStrings['xl/worksheets/sheet1.xml'] ) )
 			.indexOf( 'xmlns:r' ) === -1,
 		newDir, worksheet, i, ien, attr, attrs = [], str;
@@ -138,7 +138,6 @@ $.extend($.jgrid,{
 			}
 		} );
 	},
-	// Excel - Pre-defined strings to build a basic XLSX file
 	excelStrings  : {
 		"_rels/.rels":
 			'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+
@@ -173,7 +172,7 @@ $.extend($.jgrid,{
 					'<workbookView xWindow="0" yWindow="0" windowWidth="25600" windowHeight="19020" tabRatio="500"/>'+
 				'</bookViews>'+
 				'<sheets>'+
-					'<sheet name="" sheetId="1" r:id="rId1"/>'+
+					'<sheet name="Sheet1" sheetId="1" r:id="rId1"/>'+
 				'</sheets>'+
 			'</workbook>',
 
@@ -183,9 +182,18 @@ $.extend($.jgrid,{
 				'<sheetData/>'+
 			'</worksheet>',
 
-		"xl/styles.xml": 
+		"xl/styles.xml":
 			'<?xml version="1.0" encoding="UTF-8"?>'+
 			'<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac">'+
+				'<numFmts count="7">'+
+					'<numFmt numFmtId="164" formatCode="#,##0.00_-\ [$$-45C]"/>'+
+					'<numFmt numFmtId="165" formatCode="&quot;£&quot;#,##0.00"/>'+
+					'<numFmt numFmtId="166" formatCode="[$€-2]\ #,##0.00"/>'+
+					'<numFmt numFmtId="167" formatCode="0.0%"/>'+
+					'<numFmt numFmtId="168" formatCode="#,##0;(#,##0)"/>'+
+					'<numFmt numFmtId="169" formatCode="#,##0.00;(#,##0.00)"/>'+
+					'<numFmt numFmtId="170" formatCode="yyyy/mm/dd;@"/>'+
+				'</numFmts>'+
 				'<fonts count="5" x14ac:knownFonts="1">'+
 					'<font>'+
 						'<sz val="11" />'+
@@ -216,7 +224,7 @@ $.extend($.jgrid,{
 					'<fill>'+
 						'<patternFill patternType="none" />'+
 					'</fill>'+
-					'<fill/>'+ 
+					'<fill/>'+
 					'<fill>'+
 						'<patternFill patternType="solid">'+
 							'<fgColor rgb="FFD9D9D9" />'+
@@ -269,57 +277,87 @@ $.extend($.jgrid,{
 				'<cellStyleXfs count="1">'+
 					'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" />'+
 				'</cellStyleXfs>'+
-				'<cellXfs count="2">'+
-				'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="0" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="1" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="2" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="3" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
-				'<xf numFmtId="0" fontId="4" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+				'<cellXfs count="67">'+
+					'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="1" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="2" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="3" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="4" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/>'+
+					'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1">'+
+						'<alignment horizontal="left"/>'+
+					'</xf>'+
+					'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1">'+
+						'<alignment horizontal="center"/>'+
+					'</xf>'+
+					'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1">'+
+						'<alignment horizontal="right"/>'+
+					'</xf>'+
+					'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1">'+
+						'<alignment horizontal="fill"/>'+
+					'</xf>'+
+					'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1">'+
+						'<alignment textRotation="90"/>'+
+					'</xf>'+
+					'<xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1">'+
+						'<alignment wrapText="1"/>'+
+					'</xf>'+
+					'<xf numFmtId="9"   fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="164" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="165" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="166" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="167" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="168" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="169" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="3" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="4" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="1" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="2" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
+					'<xf numFmtId="170" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/>'+
 				'</cellXfs>'+
 				'<cellStyles count="1">'+
 					'<cellStyle name="Normal" xfId="0" builtinId="0" />'+
@@ -327,10 +365,24 @@ $.extend($.jgrid,{
 				'<dxfs count="0" />'+
 				'<tableStyles count="0" defaultTableStyle="TableStyleMedium9" defaultPivotStyle="PivotStyleMedium4" />'+
 			'</styleSheet>'
-	}
-	
+	},
+	excelParsers : [
+		{ match: /^\-?\d+\.\d%$/,       style: 60, fmt: function (d) { return d/100; } }, // Precent with d.p.
+		{ match: /^\-?\d+\.?\d*%$/,     style: 56, fmt: function (d) { return d/100; } }, // Percent
+		{ match: /^\-?\$[\d,]+.?\d*$/,  style: 57 }, // Dollars
+		{ match: /^\-?£[\d,]+.?\d*$/,   style: 58 }, // Pounds
+		{ match: /^\-?€[\d,]+.?\d*$/,   style: 59 }, // Euros
+		{ match: /^\-?\d+$/,            style: 65 }, // Numbers without thousand separators
+		{ match: /^\-?\d+\.\d{2}$/,     style: 66 }, // Numbers 2 d.p. without thousands separators
+		{ match: /^\([\d,]+\)$/,        style: 61, fmt: function (d) { return -1 * d.replace(/[\(\)]/g, ''); } },  // Negative numbers indicated by brackets
+		{ match: /^\([\d,]+\.\d{2}\)$/, style: 62, fmt: function (d) { return -1 * d.replace(/[\(\)]/g, ''); } },  // Negative numbers indicated by brackets - 2d.p.
+		{ match: /^\-?[\d,]+$/,         style: 63 }, // Numbers with thousand separators
+		{ match: /^\-?[\d,]+\.\d{2}$/,  style: 64 },  // Numbers with 2 d.p. and thousands separators
+		{ match: /^\d{4}\-\d{2}\-\d{2}$/, style: 67 } // Dates
+	]
+
 });
-/******************************************************************** 
+/********************************************************************
 *
 * due to speed, every export method will have separate module
 * to collect grouped data
@@ -341,8 +393,8 @@ $.jgrid.extend({
 		p = $.extend(true, {
 			separator: ",",
 			separatorReplace : " ",
-			quote : '"', 
-			escquote : '"', 
+			quote : '"',
+			escquote : '"',
 			newLine : "\r\n", // navigator.userAgent.match(/Windows/) ?	'\r\n' : '\n';
 			replaceNewLine : " ",
 			includeCaption : true,
@@ -358,18 +410,19 @@ $.jgrid.extend({
 
 			p._regexsep = new RegExp(p.separator, "g");
 			p._regexquot = new RegExp(p.quote, "g");
-						
+
 			var $t = this,
 			// get the filtered data
-			data1 = this.addLocalData( true ), 
+			data1 = this.addLocalData( true ),
 			dlen = data1.length,
 			cm = $t.p.colModel,
 			cmlen = cm.length,
+			clbl = $t.p.colNames,
 			i, j=0, row, str = '' , tmp, k,
-			cap = "", hdr = "", ftr="",	lbl="", albl=[], restorevis = [];
+			cap = "", hdr = "", ftr="",	lbl="", albl=[];
 			function groupToCsv (grdata, p) {
 				var str="",
-				grp = $t.p.groupingView, 
+				grp = $t.p.groupingView,
 				cp=[], len =grp.groupField.length,
 				cm = $t.p.colModel,
 				colspans = cm.length,
@@ -390,8 +443,8 @@ $.jgrid.extend({
 						ret = grp[ind];
 					} else {
 						var id = grp[ind].idx;
-						if(id===0) { 
-							ret = grp[ind]; 
+						if(id===0) {
+							ret = grp[ind];
 						}  else {
 							for(i=ind;i >= 0; i--) {
 								if(grp[i].idx === id-offset) {
@@ -408,7 +461,7 @@ $.jgrid.extend({
 					//cm = $t.p.colModel,
 					vv, grlen = fdata.cnt, k, retarr= new Array(p.collen), j=0;
 					for(k=foffset; k<colspans;k++) {
-						if(cm[k].hidden) {
+						if(!cm[k].exportcol) {
 							continue;
 						}
 						var tplfld = "{0}";
@@ -418,7 +471,7 @@ $.jgrid.extend({
 									tplfld = cm[k].summaryTpl;
 								}
 								if(typeof this.st === 'string' && this.st.toLowerCase() === 'avg') {
-									if(this.sd && this.vd) { 
+									if(this.sd && this.vd) {
 										this.v = (this.v/this.vd);
 									} else if(this.v && grlen > 0) {
 										this.v = (this.v/grlen);
@@ -432,10 +485,10 @@ $.jgrid.extend({
 								} catch (ef) {
 									vv = this.v;
 								}
-								retarr[j] = 
+								retarr[j] =
 									$.jgrid.formatCellCsv(
-									$.jgrid.stripHtml( 
-									$.jgrid.template(tplfld,vv) 
+									$.jgrid.stripHtml(
+									$.jgrid.template(tplfld,vv)
 									), p ) ;
 								return false;
 							}
@@ -446,6 +499,13 @@ $.jgrid.extend({
 				}
 				var sumreverse = $.makeArray(grp.groupSummary), gv, k;
 				sumreverse.reverse();
+				if($t.p.datatype === 'local' && !$t.p.loadonce) {
+					$($t).jqGrid('groupingSetup');
+					var groupingPrepare = $.jgrid.getMethod("groupingPrepare");
+					for(var ll=0; ll < dlen; ll++) {
+						groupingPrepare.call($($t), data1[ll], ll);
+					}
+				}
 				$.each(grp.groups,function(i,n){
 					toEnd++;
 					try {
@@ -457,8 +517,8 @@ $.jgrid.extend({
 					} catch (egv) {
 						gv = n.displayValue;
 					}
-					var grpTextStr = ''; 
-					if($.isFunction(grp.groupText[n.idx])) { 
+					var grpTextStr = '';
+					if($.isFunction(grp.groupText[n.idx])) {
 						grpTextStr = grp.groupText[n.idx].call($t, gv, n.cnt, n.summary);
 					} else {
 						grpTextStr = $.jgrid.template(grp.groupText[n.idx], gv, n.cnt, n.summary);
@@ -474,7 +534,7 @@ $.jgrid.extend({
 					}
 					arr[0] = $.jgrid.formatCellCsv( $.jgrid.stripHtml( grpTextStr ), p);
 					str +=  arr.join( p.separator ) + p.newLine;
-					var leaf = len-1 === n.idx; 
+					var leaf = len-1 === n.idx;
 					if( leaf ) {
 						var gg = grp.groups[i+1], kk, ik, offset = 0, sgr = n.startRow, to,
 						end = gg !== undefined ?  gg.startRow : grp.groups[i].startRow + grp.groups[i].cnt;
@@ -483,15 +543,15 @@ $.jgrid.extend({
 							to = grdata[kk - offset];
 							k = 0;
 							for(ik = 0; ik < cm.length; ik++) {
-								if(!cm[ik].hidden) {
-									arr[k] = $.jgrid.formatCellCsv( 
-										$.jgrid.formatCell( to[cm[ik].name], ik, to, cm[ik], $t ) , p);
+								if(cm[ik].exportcol) {
+									arr[k] = $.jgrid.formatCellCsv(
+										$.jgrid.formatCell( to[cm[ik].name], ik, to, cm[ik], $t, 'csv' ) , p);
 									k++;
 								}
 							}
 							str += arr.join( p.separator ) + p.newLine;
 						}
-						
+
 						if(grp.groupSummaryPos[n.idx] !== 'header') {
 							var jj;
 							if (gg !== undefined) {
@@ -515,36 +575,42 @@ $.jgrid.extend({
 			}
 
 			// end group function
-			var def = {}, key;
+			var def = [], key;
 			$.each(cm,function(i,n) {
-				if((n.name === 'cb' || n.name === 'rn') && !n.hidden) {
-					restorevis.push(i);
-					n.hidden = true;
+				if(n.exportcol === undefined) {
+					if(n.hidden) {
+						n.exportcol = false;
+					} else {
+						n.exportcol = true;
+					}
 				}
-				if(!n.hidden) {
-					albl.push( $.jgrid.formatCellCsv( n.label || n.name, p) );
-					def[n.name] = n.label || n.name;					
+				if(n.name === 'cb' || n.name === 'rn' || n.name === 'subgrid') {
+					n.exportcol = false;
+				}
+				if(n.exportcol) {
+					albl.push( $.jgrid.formatCellCsv( clbl[i], p) );
+					def.push( n.name ); // clbl[i];
 				}
 			});
-			
+
 			if(p.includeLabels) {
 				lbl = albl.join( p.separator ) + p.newLine;
 			}
-			
+
 			p.collen = albl.length;
-			
+
 			if( $t.p.grouping ) {
-				
+
 				str += groupToCsv(data1, p);
-				
+
 			}  else {
 				while(j < dlen) {
 					row = data1[j];
 					tmp = [];
 					k =0;
 					for(i = 0; i < cmlen; i++) {
-						if(!cm[i].hidden) {
-							tmp[k] = $.jgrid.formatCellCsv( $.jgrid.formatCell( row[cm[i].name], i, row, cm[i], $t ), p );
+						if(cm[i].exportcol) {
+							tmp[k] = $.jgrid.formatCellCsv( $.jgrid.formatCell( row[cm[i].name], i, row, cm[i], $t, 'csv' ), p );
 							k++;
 						}
 					}
@@ -566,33 +632,31 @@ $.jgrid.extend({
 				for (i=0;i < gh.length; i++) {
 					var ghdata = gh[i].groupHeaders;
 					j = 0; tmp = [];
-					for(key in def ) {
-						if(!def.hasOwnProperty( key )) {
-							continue;
-						}
+					for(key=0; key<def.length; key++ ) {
+						//if(!def.hasOwnProperty( key )) {
+						//	continue;
+						//}
 						tmp[j] = '';
 						for(k=0;k<ghdata.length;k++) {
-							if(ghdata[k].startColumnName === key) {
-								tmp[j]= ghdata[k].titleText;
+							if(ghdata[k].startColumnName === def[key]) {
+								tmp[j]= $.jgrid.formatCellCsv( ghdata[k].titleText, p);
 							}
 						}
 						j++;
 					}
 					hdr += tmp.join( p.separator ) + p.newLine;
- 				}
+				}
 			}
 			if(p.includeFooter && $t.p.footerrow) {
 				// already formated
 				var foot = $(".ui-jqgrid-ftable", this.sDiv);
 				if(foot.length) {
-					var frows = foot[0].rows[0];
-					i=0;j=0; tmp=[];
-					while(i < frows.cells.length){
-						var fc = frows.cells[i],
-						coln = $(fc).attr('aria-describedby').slice(-3);
-						if(!fc.hidden && coln !== '_cb' && coln !== '_rn' ) {
-							tmp[j] = $.jgrid.formatCellCsv( $(fc).text(), p );
-							j++;
+					var frows = $($t).jqGrid('footerData', 'get');
+					i=0; tmp=[];
+					while(i < p.collen){
+						var fc = def[i];
+						if(frows.hasOwnProperty(fc) ) {
+							tmp.push( $.jgrid.formatCellCsv( $.jgrid.stripHtml( frows[fc] ), p ) );
 						}
 						i++;
 					}
@@ -600,19 +664,15 @@ $.jgrid.extend({
 				}
 			}
 			ret = cap + hdr + lbl + str + ftr;
-			
-			for(i=0;i<restorevis.length;i++) {
-				cm[restorevis[i]].hidden = false;
-			}
 		});
 		if (p.returnAsString) {
 			return ret;
 		} else {
-			jqGridUtils.saveAs( ret, p.fileName, { type : p.mimetype });
+			$.jgrid.saveAs( ret, p.fileName, { type : p.mimetype });
 		}
 	},
 	/*
-	 * 
+	 *
 	 * @param object o - settings for the export
 	 * @returns excel 2007 document
 	 * The method requiere jsZip lib in order to create excel document
@@ -624,7 +684,9 @@ $.jgrid.extend({
 			includeFooter: true,
 			fileName : "jqGridExport.xlsx",
 			mimetype : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-			maxlength : 40 // maxlength for visible string data 
+			maxlength : 40, // maxlength for visible string data
+			onBeforeExport : null,
+			replaceStr : null
 		}, o || {} );
 		this.each(function() {
 			var $t = this,
@@ -649,92 +711,138 @@ $.jgrid.extend({
 				"[Content_Types].xml": $.parseXML( es['[Content_Types].xml'])
 			},
 			cm = $t.p.colModel,
-			i=0, j, ien, obj={},
-			data = { 
+			i=0, j, ien, //obj={},
+			data = {
 				body  : $t.addLocalData( true ),
 				header : [],
 				footer : [],
 				width : [],
-				map : [] 
+				map : []
 			};
 			for ( j=0, ien=cm.length ; j<ien ; j++ ) {
-				if(cm[j].hidden || cm[j].name === 'cb' || cm[j].name === 'rn') {
+				if(cm[j].exportcol === undefined) {
+					if(cm[j].hidden) {
+						cm[j].exportcol = false;
+					} else {
+						cm[j].exportcol =  true;
+					}
+				}
+				if( cm[j].name === 'cb' || cm[j].name === 'rn' || cm[j].name === 'subgrid' || !cm[j].exportcol) {
 					continue;
 				}
-				obj[ cm[j].name ] = cm[j].label || cm[j].name;
+				data.header[i] = cm[j].name;
 				data.width[ i ] = 5;
 				data.map[i] = j;
 				i++;
 			}
-			data.header.push( obj );
-			var currentRow, rowNode,
+			function _replStrFunc (v) {
+				return v.replace(/</g, '&lt;')
+						.replace(/>/g, '&gt;')
+						.replace(/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, '');
+			}
+			var _replStr = $.isFunction(o.replaceStr) ? o.replaceStr : _replStrFunc,
+			currentRow, rowNode,
 			addRow = function ( row, header ) {
 				currentRow = rowPos+1;
 				rowNode = $.jgrid.makeNode( rels, "row", { attr: {r:currentRow} } );
-				var i=0;
-				for ( var key  in data.header[0]) {
-					if(!data.header[0].hasOwnProperty( key )) {
-						continue;
-					}
+				var maxieenum = 15;
+				for ( var i =0; i < data.header.length; i++) {
 					// key = cm[i].name;
 					// Concat both the Cell Columns as a letter and the Row of the cell.
 					var cellId = $.jgrid.excelCellPos(i) + '' + currentRow,
 					cell,
-					v= row[key];
+					match,
+					v= ($.isArray(row) && header) ? $t.p.colNames[data.map[i]] : row[  data.header[i] ];
 					if ( v == null ) {
 						v = '';
 					}
 					if(!header) {
-						v = v !== '' ? $.jgrid.formatCell( v, data.map[i], row, cm[data.map[i]], $t) : v;
+						v = $.jgrid.formatCell( v, data.map[i], row, cm[data.map[i]], $t, 'excel');
 					}
-					data.width[i] = Math.max(data.width[i], Math.min(parseInt(v.length,10), o.maxlength) );
+					data.width[i] = Math.max(data.width[i], Math.min(parseInt(v.toString().length,10), o.maxlength) );
 					// Detect numbers - don't match numbers with leading zeros or a negative
 					// anywhere but the start
 					// $.jgrid.formatCell( row[cm[i].name], i, row, cm[i], $t )
-					if ( typeof v === 'number' || (
-							v.match &&
-							$.trim(v).match(/^-?\d+(\.\d+)?$/) &&
-							! $.trim(v).match(/^0\d+/) )
-					) {
-						cell = $.jgrid.makeNode( rels, 'c', {
-							attr: {
-								t: 'n',
-								r: cellId
-							},
-							children: [
-								$.jgrid.makeNode( rels, 'v', { text: v } )
-							]
-						} );
-					} else {
-						// Replace non standard characters for text output
-						var text = ! v.replace ?
-							v :
-							$.jgrid.htmlEncode (v );
-							cell = $.jgrid.makeNode( rels, 'c', {
-							attr: {
-								t: 'inlineStr',
-								r: cellId
-							},
-							children:{
-								row: $.jgrid.makeNode( rels, 'is', {
-									children: {
-										row: $.jgrid.makeNode( rels, 't', {
-											text: text
-										} )
-									}
-								} )
-							}
-						} );
+					if(v.match) {
+						match = v.match(/^-?([1-9]\d+)(\.(\d+))?$/);
 					}
-					i++;
-					rowNode.appendChild( cell );
+					cell = null;
+					for ( var j=0, jen=$.jgrid.excelParsers.length ; j<jen ; j++ ) {
+						var special = $.jgrid.excelParsers[j];
+
+						if ( v.match && ! v.match(/^0\d+/) && v.match( special.match ) ) {
+							v = v.replace(/[^\d\.\-]/g, '');
+							if ( special.fmt ) {
+								v = special.fmt( v );
+							}
+							if(special.style === 67) { //Dates
+								cell = $.jgrid.makeNode( rels, 'c', {
+									attr: {
+										t: 'd',
+										r: cellId,
+										s: special.style
+									},
+									children: [
+										$.jgrid.makeNode( rels, 'v', { text: v } )
+									]
+								} );
+							} else {
+								cell = $.jgrid.makeNode( rels, 'c', {
+									attr: {
+										r: cellId,
+										s: special.style
+									},
+									children: [
+										$.jgrid.makeNode( rels, 'v', { text: v } )
+									]
+								} );
+							}
+							rowNode.appendChild( cell );
+							break;
+						}
+					}
+					if( ! cell ) {
+						if ( (typeof v === 'number' && v.toString().length <= maxieenum) || (
+								match &&
+								(match[1].length + (match[2] ? match[3].length : 0) <= maxieenum))
+						) {
+							cell = $.jgrid.makeNode( rels, 'c', {
+								attr: {
+									t: 'n',
+									r: cellId
+								},
+								children: [
+									$.jgrid.makeNode( rels, 'v', { text: v } )
+								]
+							} );
+						} else {
+							// Replace non standard characters for text output
+							var text = ! v.replace ?
+								v : _replStr(v);
+								//$.jgrid.htmlEncode (v );
+							cell = $.jgrid.makeNode( rels, 'c', {
+								attr: {
+									t: 'inlineStr',
+									r: cellId
+								},
+								children:{
+									row: $.jgrid.makeNode( rels, 'is', {
+										children: {
+										row: $.jgrid.makeNode( rels, 't', {	text: text} )
+										}
+									} )
+								}
+							} );
+						}
+						rowNode.appendChild( cell );
+					}
 				}
 				relsGet.appendChild(rowNode);
 				rowPos++;
 			};
-//=========================================================================			
+//=========================================================================
 			function groupToExcel ( grdata ) {
-				var grp = $t.p.groupingView, 
+				var grp = $t.p.groupingView,
 				cp=[], len =grp.groupField.length,
 				colspans = cm.length,
 				toEnd = 0;
@@ -753,8 +861,8 @@ $.jgrid.extend({
 						ret = grp[ind];
 					} else {
 						var id = grp[ind].idx;
-						if(id===0) { 
-							ret = grp[ind]; 
+						if(id===0) {
+							ret = grp[ind];
 						}  else {
 							for(i=ind;i >= 0; i--) {
 								if(grp[i].idx === id-offset) {
@@ -769,9 +877,9 @@ $.jgrid.extend({
 				function buildSummaryTd(i, ik, grp, foffset) {
 					var fdata = findGroupIdx(i, ik, grp),
 					//cm = $t.p.colModel,
-					vv, grlen = fdata.cnt, k, retarr = emptyData(data.header[0]);
+					vv, grlen = fdata.cnt, k, retarr = emptyData(data.header);
 					for(k=foffset; k<colspans;k++) {
-						if(cm[k].hidden) {
+						if(!cm[k].exportcol) {
 							continue;
 						}
 						var tplfld = "{0}";
@@ -781,7 +889,7 @@ $.jgrid.extend({
 									tplfld = cm[k].summaryTpl;
 								}
 								if(typeof this.st === 'string' && this.st.toLowerCase() === 'avg') {
-									if(this.sd && this.vd) { 
+									if(this.sd && this.vd) {
 										this.v = (this.v/this.vd);
 									} else if(this.v && grlen > 0) {
 										this.v = (this.v/grlen);
@@ -804,15 +912,20 @@ $.jgrid.extend({
 				}
 				function emptyData ( d ) {
 					var clone = {};
-					for(var key in d ) {
-						if(d.hasOwnProperty(key)) {
-							clone[key] = "";
-						}
+					for(var key=0;key<d.length; key++ ) {
+						clone[ d[key] ] = "";
 					}
 					return clone;
 				}
 				var sumreverse = $.makeArray(grp.groupSummary), gv;
 				sumreverse.reverse();
+				if($t.p.datatype === 'local' && !$t.p.loadonce) {
+					$($t).jqGrid('groupingSetup');
+					var groupingPrepare = $.jgrid.getMethod("groupingPrepare");
+					for(var ll=0; ll < data.body.length; ll++) {
+						groupingPrepare.call($($t), data.body[ll], ll);
+					}
+				}
 				$.each(grp.groups,function(i,n){
 					toEnd++;
 					try {
@@ -824,8 +937,8 @@ $.jgrid.extend({
 					} catch (egv) {
 						gv = n.displayValue;
 					}
-					var grpTextStr = ''; 
-					if($.isFunction(grp.groupText[n.idx])) { 
+					var grpTextStr = '';
+					if($.isFunction(grp.groupText[n.idx])) {
 						grpTextStr = grp.groupText[n.idx].call($t, gv, n.cnt, n.summary);
 					} else {
 						grpTextStr = $.jgrid.template(grp.groupText[n.idx], gv, n.cnt, n.summary);
@@ -837,12 +950,12 @@ $.jgrid.extend({
 					if(grp.groupSummaryPos[n.idx] === 'header')  {
 						arr = buildSummaryTd(i, 0, grp.groups, 0 /*grp.groupColumnShow[n.idx] === false ? (mul ==="" ? 2 : 3) : ((mul ==="") ? 1 : 2)*/ );
 					} else {
-						arr = emptyData(data.header[0]);
+						arr = emptyData(data.header);
 					}
 					var fkey = Object.keys(arr);
 					arr[fkey[0]] = $.jgrid.stripHtml( new Array(n.idx*5).join(' ') + grpTextStr );
 					addRow( arr, true );
-					var leaf = len-1 === n.idx; 
+					var leaf = len-1 === n.idx;
 					if( leaf ) {
 						var gg = grp.groups[i+1], kk, ik, offset = 0, sgr = n.startRow,
 						end = gg !== undefined ?  gg.startRow : grp.groups[i].startRow + grp.groups[i].cnt;
@@ -851,7 +964,7 @@ $.jgrid.extend({
 							var to = grdata[kk - offset];
 							addRow( to, false );
 						}
-				
+
 						if(grp.groupSummaryPos[n.idx] !== 'header') {
 							var jj;
 							if (gg !== undefined) {
@@ -872,21 +985,19 @@ $.jgrid.extend({
 					}
 				});
 			}
-//============================================================================			
-			
+//============================================================================
+
 			$( 'sheets sheet', xlsx.xl['workbook.xml'] ).attr( 'name', o.sheetName );
 			if(o.includeGroupHeader && $t.p.groupHeader && $t.p.groupHeader.length) {
-				var gh = $t.p.groupHeader, mergecell=[];
-				var mrow = 0;
-				for (i=0;i<gh.length;i++) {
-					var ghdata = gh[i].groupHeaders, clone ={};
-					j=0; mrow++;
-					for(var key in data.header[0] ) {
-						if(!data.header[0].hasOwnProperty(key)) {
-							continue;
-						}
+				var gh = $t.p.groupHeader, mergecell=[],
+				mrow = 0, key, l;
+				for (l = 0; l < gh.length; l++) {
+					var ghdata = gh[l].groupHeaders, clone ={};
+					mrow++; j=0;
+					for(j = 0; j < data.header.length; j++  ) {
+						key = data.header[j];
 						clone[key] = "";
-						for(var k=0;k<ghdata.length;k++) {
+						for(var k = 0; k < ghdata.length; k++) {
 							if(ghdata[k].startColumnName === key) {
 								clone[key] = ghdata[k].titleText;
 								var start = $.jgrid.excelCellPos(j) + mrow,
@@ -894,10 +1005,12 @@ $.jgrid.extend({
 								mergecell.push({ ref: start+":"+end });
 							}
 						}
-						j++;
 					}
 					addRow( clone, true );
- 				}
+				}
+
+				$('row c', rels).attr( 's', '2' ); // bold
+
 				var merge = $.jgrid.makeNode( rels, 'mergeCells', {
 					attr : {
 						count : mergecell.length
@@ -905,15 +1018,15 @@ $.jgrid.extend({
 				});
 				$('worksheet', rels).append( merge );
 				for(i=0;i<mergecell.length;i++) {
-					merge.appendChild($.jgrid.makeNode(rels, 'mergeCell',{ 
+					merge.appendChild($.jgrid.makeNode(rels, 'mergeCell',{
 						attr:  mergecell[i]
 					}));
-				}	
+				}
 			}
-			
+
 			if ( o.includeLabels ) {
-				addRow( data.header[0], true );
-				$('row c', rels).attr( 's', '2' ); // bold
+				addRow( data.header, true );
+				$('row:last c', rels).attr( 's', '2' ); // bold
 			}
 			if( $t.p.grouping ) {
 				groupToExcel(data.body);
@@ -932,7 +1045,7 @@ $.jgrid.extend({
 				addRow( data.footer, true );
 				$('row:last c', rels).attr( 's', '2' ); // bold
 			}
-			
+
 			// Set column widths
 			var cols = $.jgrid.makeNode( rels, 'cols' );
 			$('worksheet', rels).prepend( cols );
@@ -947,26 +1060,27 @@ $.jgrid.extend({
 					}
 				} ) );
 			}
+			if($.isFunction( o.onBeforeExport) ) {
+				o.onBeforeExport( xlsx );
+			}
 			data = null; // free memory
 			try {
 				var zip = new JSZip();
 				var zipConfig = {
 					type: 'blob',
-					mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+					mimeType: o.mimetype
 				};
 				$.jgrid.xmlToZip( zip, xlsx );
-					if ( zip.generateAsync ) {
+				if ( zip.generateAsync ) {
 					// JSZip 3+
-					zip
-						.generateAsync( zipConfig )
-						.then( function ( blob ) {
-							jqGridUtils.saveAs( blob, o.fileName, { type : o.mimetype } );
-						});
+					zip.generateAsync( zipConfig )
+					.then( function ( blob ) {
+						$.jgrid.saveAs( blob, o.fileName, { type : o.mimetype } );
+					});
 				} else {
 					// JSZip 2.5
-					jqGridUtils.saveAs( zip.generate( zipConfig ), o.fileName, { type : o.mimetype } );				}
-			}
-			catch(e) {
+					$.jgrid.saveAs( zip.generate( zipConfig ), o.fileName, { type : o.mimetype } );				}
+			} catch(e) {
 				throw e;
 			}
 		});
@@ -977,21 +1091,21 @@ $.jgrid.extend({
 			orientation: 'portrait',
 			pageSize: 'A4',
 			description: null,
-			customSettings: null,
+			onBeforeExport: null,
 			download: 'download',
 			includeLabels : true,
 			includeGroupHeader : true,
 			includeFooter: true,
 			fileName : "jqGridExport.pdf",
 			mimetype : "application/pdf"
-			
+
 		}, o || {} );
 		return this.each(function() {
-			var $t = this, rows = [], j, cm = $t.p.colModel, ien, obj = {}, key, 
-			data = $t.addLocalData( true ), def = {}, i=0, map=[], test=[], widths = [],  align={};
-// Group function			
+			var $t = this, rows = [], j, cm = $t.p.colModel, ien, obj = {}, key,
+			data = $t.addLocalData( true ), def = [], i=0, map=[], test=[], widths = [],  align={};
+// Group function
 			function groupToPdf ( grdata ) {
-				var grp = $t.p.groupingView, 
+				var grp = $t.p.groupingView,
 				cp=[], len =grp.groupField.length,
 				cm = $t.p.colModel,
 				colspans = cm.length,
@@ -1006,33 +1120,30 @@ $.jgrid.extend({
 						}
 					}
 				});
-				
+
 				function constructRow( row, fmt ) {
 					var k =0, test=[];
 					//row = data[i];
-					for( var key in def ) {
-						//obj = row[key] == null ? '' : $.jgrid.formatCell( row[key] + '', map[k], data[i], cm[map[k]], $t)
-						if(def.hasOwnProperty( key )) {
-							obj = {
-								text: row[key] == null ? '' : (fmt ? $.jgrid.formatCell( row[key] + '', map[k], data[i], cm[map[k]], $t) : row[key]),
-								alignment : align[key],
-								style : 'tableBody'
-							};
-							test.push(obj);
-							k++;
-						}
+					for( var key=0; key < def.length; key++ ) {
+						obj = {
+							text: row[def[key]] == null ? '' : (fmt ? $.jgrid.formatCell( row[def[key]] + '', map[k], data[i], cm[map[k]], $t, 'pdf') : row[def[key]]),
+							alignment : align[key],
+							style : 'tableBody'
+						};
+						test.push(obj);
+						k++;
 					}
 					return test;
 				}
-				
+
 				function findGroupIdx( ind , offset, grp) {
 					var ret = false, i;
 					if(offset===0) {
 						ret = grp[ind];
 					} else {
 						var id = grp[ind].idx;
-						if(id===0) { 
-							ret = grp[ind]; 
+						if(id===0) {
+							ret = grp[ind];
 						}  else {
 							for(i=ind;i >= 0; i--) {
 								if(grp[i].idx === id-offset) {
@@ -1044,13 +1155,13 @@ $.jgrid.extend({
 					}
 					return ret;
 				}
-				
+
 				function buildSummaryTd(i, ik, grp, foffset) {
 					var fdata = findGroupIdx(i, ik, grp),
 					//cm = $t.p.colModel,
 					vv, grlen = fdata.cnt, k, retarr = emptyData(def);
 					for(k=foffset; k<colspans;k++) {
-						if(cm[k].hidden) {
+						if(!cm[k].exportcol) {
 							continue;
 						}
 						var tplfld = "{0}";
@@ -1060,7 +1171,7 @@ $.jgrid.extend({
 									tplfld = cm[k].summaryTpl;
 								}
 								if(typeof this.st === 'string' && this.st.toLowerCase() === 'avg') {
-									if(this.sd && this.vd) { 
+									if(this.sd && this.vd) {
 										this.v = (this.v/this.vd);
 									} else if(this.v && grlen > 0) {
 										this.v = (this.v/grlen);
@@ -1081,19 +1192,24 @@ $.jgrid.extend({
 					}
 					return retarr;
 				}
-				
+
 				function emptyData ( d ) {
 					var clone = {};
-					for(var key in d ) {
-						if(d.hasOwnProperty(key)) {
-							clone[key] = "";
-						}
+					for(var key = 0; key< d.length; key++ ) {
+						clone[d[key]] = "";
 					}
 					return clone;
 				}
 
 				var sumreverse = $.makeArray(grp.groupSummary), gv;
 				sumreverse.reverse();
+				if($t.p.datatype === 'local' && !$t.p.loadonce) {
+					$($t).jqGrid('groupingSetup');
+					var groupingPrepare = $.jgrid.getMethod("groupingPrepare");
+					for(var ll=0; ll < data.length; ll++) {
+						groupingPrepare.call($($t), data[ll], ll);
+					}
+				}
 				$.each(grp.groups,function(i,n){
 					toEnd++;
 					try {
@@ -1105,8 +1221,8 @@ $.jgrid.extend({
 					} catch (egv) {
 						gv = n.displayValue;
 					}
-					var grpTextStr = ''; 
-					if($.isFunction(grp.groupText[n.idx])) { 
+					var grpTextStr = '';
+					if($.isFunction(grp.groupText[n.idx])) {
 						grpTextStr = grp.groupText[n.idx].call($t, gv, n.cnt, n.summary);
 					} else {
 						grpTextStr = $.jgrid.template(grp.groupText[n.idx], gv, n.cnt, n.summary);
@@ -1123,7 +1239,7 @@ $.jgrid.extend({
 					var fkey = Object.keys(arr);
 					arr[fkey[0]] = $.jgrid.stripHtml( new Array(n.idx*5).join(' ') + grpTextStr );
 					rows.push( constructRow (arr, false) );
-					var leaf = len-1 === n.idx; 
+					var leaf = len-1 === n.idx;
 					if( leaf ) {
 						var gg = grp.groups[i+1], kk, ik, offset = 0, sgr = n.startRow,
 						end = gg !== undefined ?  gg.startRow : grp.groups[i].startRow + grp.groups[i].cnt;
@@ -1153,17 +1269,24 @@ $.jgrid.extend({
 					}
 				});
 			}
-//============================================================================			
+//============================================================================
 			var k;
 			for ( j=0, ien=cm.length ; j<ien ; j++ ) {
-				if(cm[j].hidden || cm[j].name === 'cb' || cm[j].name === 'rn') {
+				if(cm[j].exportcol === undefined ) {
+					if(cm[j].hidden) {
+						cm[j].exportcol = false;
+					} else {
+						cm[j].exportcol = true;
+					}
+				}
+				if(cm[j].name === 'cb' || cm[j].name === 'rn' || cm[j].name === 'subgrid' || !cm[j].exportcol) {
 					continue;
 				}
-				obj = { text:  cm[j].label || cm[j].name, style: 'tableHeader' };
+				obj = { text:  $t.p.colNames[j], style: 'tableHeader' };
 				test.push( obj );
-				def[cm[j].name]  = cm[j].label || cm[j].name;
+				def[i]  = cm[j].name;
 				map[i] = j;
-				widths.push(cm[j].width); 
+				widths.push(cm[j].width);
 				align[cm[j].name] = cm[j].align || 'left';
 				i++;
 			}
@@ -1173,15 +1296,12 @@ $.jgrid.extend({
 				for (i=0;i < gh.length; i++) {
 					var clone = [],
 					ghdata = gh[i].groupHeaders;
-					for(key in def ) {
-						if(!def.hasOwnProperty( key )) {
-							continue;
-						}
+					for(key=0; key < def.length; key++ ) {
 						obj = {text:'', style: 'tableHeader'};
 						for(k=0;k<ghdata.length;k++) {
-							if(ghdata[k].startColumnName === key) {
-								obj = { 
-									text : ghdata[k].titleText, 
+							if(ghdata[k].startColumnName === def[key]) {
+								obj = {
+									text : ghdata[k].titleText,
 									colSpan: ghdata[k].numberOfColumns,
 									style: 'tableHeader'
 								};
@@ -1191,9 +1311,9 @@ $.jgrid.extend({
 						j++;
 					}
 					rows.push(clone);
- 				}
+				}
 			}
-			
+
 			if(o.includeLabels) {
 				rows.push( test );
 			}
@@ -1202,38 +1322,32 @@ $.jgrid.extend({
 			} else {
 				var row;
 				for ( i=0, ien=data.length ; i<ien ; i++ ) {
-					k =0; 
+					k =0;
 					test=[];
 					row = data[i];
-					for( key in def ) {
-						//obj = row[key] == null ? '' : $.jgrid.formatCell( row[key] + '', map[k], data[i], cm[map[k]], $t)
-						if( def.hasOwnProperty( key )) {
-							obj	= {
-								text: row[key] == null ? '' : $.jgrid.formatCell( row[key] + '', map[k], data[i], cm[map[k]], $t),
-								alignment : align[key],
-								style : 'tableBody'
-							};
-					
-							test.push(obj);
-							k++;
-						}
+					for( key = 0;key < def.length; key++ ) {
+						obj	= {
+							text: row[def[key]] == null ? '' : $.jgrid.formatCell( row[def[key]] + '', map[k], data[i], cm[map[k]], $t, 'pdf'),
+							alignment : align[def[key]],
+							style : 'tableBody'
+						};
+						test.push(obj);
+						k++;
 					}
 					rows.push(test);
 				}
 			}
-			
+
 			if ( o.includeFooter && $t.p.footerrow) {
 				var fdata = $($t).jqGrid('footerData', 'get');
 				test=[];
-				for( key in def) {
-					if(def.hasOwnProperty(key) ) {
-						obj  =  {
-							text : $.jgrid.stripHtml(fdata[key]),
-							style : 'tableFooter',
-							alignment : align[key]
-						};
-						test.push( obj );
-					}
+				for( key =0; key< def.length; key++) {
+					obj  =  {
+						text : $.jgrid.stripHtml(fdata[def[key]]),
+						style : 'tableFooter',
+						alignment : align[def[key]]
+					};
+					test.push( obj );
 				}
 				rows.push( test );
 			}
@@ -1293,8 +1407,8 @@ $.jgrid.extend({
 					margin: [ 0, 0, 0, 12 ]
 				} );
 			}
-			if( o. customSettings ) {
-				o.customSettings.call($t, doc);
+			if( $.isFunction( o.onBeforeExport ) ) {
+				o.onBeforeExport.call($t, doc);
 			}
 			try {
 				var pdf = pdfMake.createPdf( doc );
@@ -1302,14 +1416,328 @@ $.jgrid.extend({
 					pdf.open();
 				} else {
 					pdf.getBuffer( function (buffer) {
-						jqGridUtils.saveAs( buffer, o.fileName, {type: o.mimetype } );
+						$.jgrid.saveAs( buffer, o.fileName, {type: o.mimetype } );
 					} );
 				}
 			} catch(e) {
 				throw e;
 			}
 		});
+	},
+	exportToHtml : function ( o ) {
+		o = $.extend(true,{
+			title: '',
+			onBeforeExport: null,
+			includeLabels : true,
+			includeGroupHeader : true,
+			includeFooter: true,
+			tableClass : 'jqgridprint',
+			autoPrint : false,
+			topText : '',
+			bottomText : '',
+			returnAsString : false
+
+		}, o || {} );
+		var ret;
+		this.each(function() {
+			var $t = this,
+			cm = $t.p.colModel,
+			i=0, j, ien, //obj={},
+			data = {
+				body  : $t.addLocalData( true ),
+				header : [],
+				footer : [],
+				width : [],
+				map : [],
+				align:[]
+			};
+			for ( j=0, ien=cm.length ; j<ien ; j++ ) {
+				if(cm[j].exportcol === undefined) {
+					cm[j].exportcol =  true;
+				}
+				if(cm[j].hidden || cm[j].name === 'cb' || cm[j].name === 'rn' || !cm[j].exportcol) {
+					continue;
+				}
+				data.header[i] = cm[j].name;
+				data.width[ i ] = cm[j].width;
+				data.map[i] = j;
+				data.align[i] = cm[j].align || 'left';
+				i++;
+			}
+
+			var _link = document.createElement( 'a' );
+
+			var _styleToAbs = function( el ) {
+				var clone = $(el).clone()[0];
+
+				if ( clone.nodeName.toLowerCase() === 'link' ) {
+					clone.href = _relToAbs( clone.href );
+				}
+
+				return clone.outerHTML;
+			};
+
+			var _relToAbs = function( href ) {
+				// Assign to a link on the original page so the browser will do all the
+				// hard work of figuring out where the file actually is
+				_link.href = href;
+				var linkHost = _link.host;
+
+				// IE doesn't have a trailing slash on the host
+				// Chrome has it on the pathname
+				if ( linkHost.indexOf('/') === -1 && _link.pathname.indexOf('/') !== 0) {
+					linkHost += '/';
+				}
+
+				return _link.protocol+"//"+linkHost+_link.pathname+_link.search;
+			};
+
+			var addRow = function ( d, tag , style ) {
+				var str = '<tr>', stl;
+				for ( var i=0, ien=d.length ; i<ien ; i++ ) {
+					stl = (style === true ? " style=width:"+data.width[i]+"px;":"");
+					str += '<'+tag+stl+'>'+d[i]+'</'+tag+'>';
+				}
+
+				return str + '</tr>';
+			};
+			var addBodyRow = function ( d, tag, frm, style, colsp) {
+				var str = '<tr>', f, stl;
+				//style = true;
+
+				for ( var i=0, ien = data.header.length; i< ien; i++ ) {
+					if(colsp) {
+						stl = ' colspan= "'+ (data.header.length) +'"' + " style=text-align:left";
+					} else {
+						stl = (style === true ? " style=width:"+data.width[i]+"px;text-align:"+data.align[i]+";" : " style=text-align:"+data.align[i]+";");
+					}
+					f= data.header[i];
+					if (d.hasOwnProperty(f) ) {
+						str += '<'+tag+stl+'>'+ (frm ? $.jgrid.formatCell( d[f], data.map[i], d, cm[data.map[i]], $t, 'html') : d[f])+'</'+tag+'>';
+					}
+					if(colsp) {
+						break;
+					}
+				}
+
+				return str + '</tr>';
+			};
+//=========================================================================
+			function groupToHtml ( grdata ) {
+				var grp = $t.p.groupingView,
+				cp=[], len =grp.groupField.length,
+				colspans = cm.length,
+				toEnd = 0, retstr="";
+				$.each(cm, function (i,n){
+					var ii;
+					for(ii=0;ii<len;ii++) {
+						if(grp.groupField[ii] === n.name ) {
+							cp[ii] = i;
+							break;
+						}
+					}
+				});
+				function findGroupIdx( ind , offset, grp) {
+					var ret = false, i;
+					if(offset===0) {
+						ret = grp[ind];
+					} else {
+						var id = grp[ind].idx;
+						if(id===0) {
+							ret = grp[ind];
+						}  else {
+							for(i=ind;i >= 0; i--) {
+								if(grp[i].idx === id-offset) {
+									ret = grp[i];
+									break;
+								}
+							}
+						}
+					}
+					return ret;
+				}
+				function buildSummaryTd(i, ik, grp, foffset) {
+					var fdata = findGroupIdx(i, ik, grp),
+					//cm = $t.p.colModel,
+					vv, grlen = fdata.cnt, k, retarr = emptyData(data.header);
+					for(k=foffset; k<colspans;k++) {
+						if(cm[k].hidden || !cm[k].exportcol) {
+							continue;
+						}
+						var tplfld = "{0}";
+						$.each(fdata.summary,function(){
+							if(this.nm === cm[k].name) {
+								if(cm[k].summaryTpl)  {
+									tplfld = cm[k].summaryTpl;
+								}
+								if(typeof this.st === 'string' && this.st.toLowerCase() === 'avg') {
+									if(this.sd && this.vd) {
+										this.v = (this.v/this.vd);
+									} else if(this.v && grlen > 0) {
+										this.v = (this.v/grlen);
+									}
+								}
+								try {
+									this.groupCount = fdata.cnt;
+									this.groupIndex = fdata.dataIndex;
+									this.groupValue = fdata.value;
+									vv = $t.formatter('', this.v, k, this);
+								} catch (ef) {
+									vv = this.v;
+								}
+								retarr[this.nm] = $.jgrid.stripHtml( $.jgrid.template(tplfld,vv) );
+								return false;
+							}
+						});
+					}
+					return retarr;
+				}
+				function emptyData ( d ) {
+					var clone = {};
+					for(var key=0;key<d.length; key++ ) {
+						clone[ d[key] ] = "";
+					}
+					return clone;
+				}
+				var sumreverse = $.makeArray(grp.groupSummary), gv;
+				sumreverse.reverse();
+				if($t.p.datatype === 'local' && !$t.p.loadonce) {
+					$($t).jqGrid('groupingSetup');
+					var groupingPrepare = $.jgrid.getMethod("groupingPrepare");
+					for(var ll=0; ll < data.body.length; ll++) {
+						groupingPrepare.call($($t), data.body[ll], ll);
+					}
+				}
+				$.each(grp.groups,function(i,n){
+					toEnd++;
+					try {
+						if ($.isArray(grp.formatDisplayField) && $.isFunction(grp.formatDisplayField[n.idx])) {
+							gv = grp.formatDisplayField[n.idx].call($t, n.displayValue, n.value, $t.p.colModel[cp[n.idx]], n.idx, grp);
+						} else {
+							gv = $t.formatter('', n.displayValue, cp[n.idx], n.value );
+						}
+					} catch (egv) {
+						gv = n.displayValue;
+					}
+					var grpTextStr = '';
+					if($.isFunction(grp.groupText[n.idx])) {
+						grpTextStr = grp.groupText[n.idx].call($t, gv, n.cnt, n.summary);
+					} else {
+						grpTextStr = $.jgrid.template(grp.groupText[n.idx], gv, n.cnt, n.summary);
+					}
+					if( !(typeof grpTextStr ==='string' || typeof grpTextStr ==='number' ) ) {
+						grpTextStr = gv;
+					}
+					var arr, colSpan = false;
+					if(grp.groupSummaryPos[n.idx] === 'header')  {
+						arr = buildSummaryTd(i, 0, grp.groups, 0 /*grp.groupColumnShow[n.idx] === false ? (mul ==="" ? 2 : 3) : ((mul ==="") ? 1 : 2)*/ );
+					} else {
+						arr = emptyData(data.header);
+						colSpan = true;
+					}
+					var fkey = Object.keys(arr);
+					arr[fkey[0]] =  new Array(n.idx*5).join(' ') + grpTextStr ;
+					retstr += addBodyRow( arr, 'td', false, toEnd === 1, colSpan  );
+					var leaf = len-1 === n.idx;
+					if( leaf ) {
+						var gg = grp.groups[i+1], kk, ik, offset = 0, sgr = n.startRow,
+						end = gg !== undefined ?  gg.startRow : grp.groups[i].startRow + grp.groups[i].cnt;
+						for(kk=sgr;kk<end;kk++) {
+							if(!grdata[kk - offset]) { break; }
+							var to = grdata[kk - offset];
+							retstr += addBodyRow( to, 'td', false );
+							//addRow( to, false );
+						}
+
+						if(grp.groupSummaryPos[n.idx] !== 'header') {
+							var jj;
+							if (gg !== undefined) {
+								for (jj = 0; jj < grp.groupField.length; jj++) {
+									if (gg.dataIndex === grp.groupField[jj]) {
+										break;
+									}
+								}
+								toEnd = grp.groupField.length - jj;
+							}
+							for (ik = 0; ik < toEnd; ik++) {
+								if(!sumreverse[ik]) { continue; }
+								arr = buildSummaryTd(i, ik, grp.groups, 0);
+								retstr += addBodyRow( arr, 'td', false );
+								//addRow( arr, true );
+							}
+							toEnd = jj;
+						}
+					}
+				});
+				return retstr;
+			}
+			var html = '<table class="'+o.tableClass+'">';
+
+			if ( o.includeLabels ) {
+				html += '<thead>'+ addRow( data.header, 'th', true ) +'</thead>';
+			}
+
+			html += '<tbody>';
+			if( $t.p.grouping ) {
+				html += groupToHtml(data.body);
+			} else {
+				for ( var i=0, ien=data.body.length ; i<ien ; i++ ) {
+					html += addBodyRow( data.body[i], 'td', true, (i===0?true:false) );
+				}
+			}
+
+			if ( o.includeFooter && $t.p.footerrow ) {
+				data.footer = $($t).jqGrid('footerData', 'get', null, false);
+
+				html += addBodyRow( data.footer, 'td' , false);
+			}
+			html += '</tbody>';
+			html += '</table>';
+			if (o.returnAsString ) {
+				ret = html;
+			} else {
+				// Open a new window for the printable table
+				var win = window.open( '', '' );
+				win.document.close();
+
+				var head = o.title ? '<title>'+o.title+'</title>' : '';
+				$('style, link').each( function () {
+					head += _styleToAbs( this );
+				} );
+
+				try {
+					win.document.head.innerHTML = head; // Work around for Edge
+				}
+				catch (e) {
+					$(win.document.head).html( head ); // Old IE
+				}
+
+				win.document.body.innerHTML =
+					(o.title ? '<h1>'+o.title+'</h1>' : '') +
+					'<div>'+(o.topText || '')+'</div>'+
+					html+
+					'<div>'+(o.bottomText || '')+'</div>';
+
+				$(win.document.body).addClass('html-view');
+
+				$('img', win.document.body).each( function ( i, img ) {
+					img.setAttribute( 'src', _relToAbs( img.getAttribute('src') ) );
+				} );
+
+				if ( o.onBeforeExport ) {
+					o.onBeforeExport( win );
+				}
+
+				setTimeout( function () {
+					if ( o.autoPrint ) {
+						win.print();
+						win.close();
+					}
+				}, 1000 );
+			}
+		});
+		return ret;
 	}
 });
-//module end	
+//module end
 }));
